@@ -1,0 +1,36 @@
+payload:
+  # > HK Relay
+####
+# Bing
+  - DOMAIN,www.bing.com
+# Copilot
+  - DOMAIN,copilot.microsoft.com
+  - DOMAIN,gateway-copilot.bingviz.microsoftapp.net
+# Google
+  - DOMAIN,www.google.com
+# Gemini
+  - DOMAIN,gemini.google.com
+  - DOMAIN,proactivebackend-pa.googleapis.com
+# Claude
+  - DOMAIN,api.claude.ai
+# ChatGPT
+  - DOMAIN,ab.chatgpt.com
+  - DOMAIN,ios.chat.openai.com
+# RTHK
+  - DOMAIN-KEYWORD,rthk
+# TVB
+  - DOMAIN-KEYWORD,mytvsuper
+  - DOMAIN-SUFFIX,tvb.com
+# ViuTV
+  - DOMAIN-KEYWORD,viutv
+  - DOMAIN-KEYWORD,viu.tv
+  - DOMAIN-SUFFIX,now.com
+  - DOMAIN-SUFFIX,nowe.com
+  - DOMAIN-SUFFIX,viu.com
+  - DOMAIN,licensing.bitmovin.com
+  - DOMAIN,d1ckiw6kv3s3l5.cloudfront.net
+  - DOMAIN,d1k2us671qcoau.cloudfront.net
+  - DOMAIN,d2anahhhmp1ffz.cloudfront.net
+  - DOMAIN,d3o7oi00quuwqu.cloudfront.net
+  - DOMAIN,sns.ap-southeast-1.amazonaws.com
+  - DOMAIN,mobileanalytics.us-east-1.amazonaws.com
