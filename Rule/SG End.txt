@@ -1,10 +1,6 @@
 payload:
   # > SG End
 ####
-# FMM
-  - DOMAIN-KEYWORD,fanmingming
-# Stream Link
-  - DOMAIN-KEYWORD,stream-link
 # Disney+
   - DOMAIN,disney.api.edge.bamgrid.com
 # HBO MAX
