@@ -5,7 +5,7 @@ payload:
   - DOMAIN-KEYWORD,fanmingming
 # Stream Link
   - DOMAIN-KEYWORD,stream-link
-# DisneyPlus
+# Disney+
   - DOMAIN,disney.api.edge.bamgrid.com
 # HBO MAX
   - DOMAIN,busy.any-any.prd.api.discomax.com
