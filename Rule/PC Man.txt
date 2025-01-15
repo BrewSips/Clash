@@ -2,6 +2,6 @@ payload:
   # > PC Man
 ####
 # FMM
-  - DOMAIN-KEYWORD,fanmingming
+  #- DOMAIN-KEYWORD,fanmingming
 # Stream Link
-  - DOMAIN-KEYWORD,stream-link
+  #- DOMAIN-KEYWORD,stream-link
