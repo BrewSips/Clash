@@ -7,7 +7,7 @@ payload:
   - DOMAIN,copilot.microsoft.com
   - DOMAIN,gateway-copilot.bingviz.microsoftapp.net
 # Google
-  - DOMAIN,www.google.com
+  #- DOMAIN,www.google.com
   - DOMAIN-SUFFIX,googleapis.com
 # Gemini
   - DOMAIN,gemini.google.com
