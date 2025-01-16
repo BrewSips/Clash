@@ -2,7 +2,7 @@ payload:
   # > OT Relay
 ####
 # Bing
-  - DOMAIN,www.bing.com
+  #- DOMAIN,www.bing.com
 # Copilot
   #- DOMAIN,copilot.microsoft.com
   #- DOMAIN,gateway-copilot.bingviz.microsoftapp.net
