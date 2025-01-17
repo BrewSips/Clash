@@ -12,6 +12,8 @@ payload:
   - DOMAIN,adc3-launch.adcolony.com
 # 南方 Plus
   - DOMAIN,advapi.nfnews.com
+# 小米电视
+  - DOMAIN,adx.v.mitvos.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 喜马拉雅
