@@ -1,7 +1,7 @@
 payload:
   # > US Landing
 ####
-  - DOMAIN-KEYWORD,tiktokcdn
+  - DOMAIN-KEYWORD,tiktok
   - DOMAIN-SUFFIX,byteoversea.com
   - DOMAIN-SUFFIX,ibytedtos.com
   - DOMAIN-SUFFIX,ipstatp.com
