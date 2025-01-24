@@ -1,7 +1,3 @@
 payload:
   # > HK End
 ####
-# RTHK
-  - DOMAIN-KEYWORD,rthk
-# Stream-Link
-  - DOMAIN-KEYWORD,stream-link
