@@ -4,4 +4,4 @@ payload:
 # RTHK
   - DOMAIN-KEYWORD,rthk
 # Stream-Link
-  - DOMAIN-SUFFIX,stream-link.org
+  - DOMAIN-KEYWORD,stream-link
