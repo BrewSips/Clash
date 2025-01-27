@@ -3,7 +3,7 @@ payload:
 ####
 # Bing
   - DOMAIN,www.bing.com
-# Disney+
+# Disney Plus
   - DOMAIN,disney.api.edge.bamgrid.com
 # HBO MAX
   - DOMAIN,busy.any-any.prd.api.discomax.com
