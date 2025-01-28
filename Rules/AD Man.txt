@@ -34,7 +34,7 @@ payload:
   - DOMAIN,adbehavior.wsa.ximalaya.com
   - DOMAIN,adbehaviorhera.ximalaya.com
   - DOMAIN,xdcs-collector.ximalaya.com
-# 腾讯
+# 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 百度
@@ -43,3 +43,7 @@ payload:
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
+# 银联
+  - DOMAIN,ads.cup.com.cn
+# 联通
+  - DOMAIN-KEYWORD,ad.10010.com
