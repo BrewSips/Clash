@@ -10,6 +10,8 @@ payload:
   - DOMAIN,bcp.crwdcntrl.net
   - DOMAIN,wd.adcolony.com
   - DOMAIN,adc3-launch.adcolony.com
+# HK01
+  - DOMAIN,ads.pubmatic.com
 # 南方 Plus
   - DOMAIN,advapi.nfnews.com
 # 小米电视
