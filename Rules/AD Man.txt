@@ -37,6 +37,9 @@ payload:
 # 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
+# 东方财富
+  - DOMAIN,appadvise.eastmoney.com
+  - DOMAIN,emdcadvertise.eastmoney.com
 # 百度
   - DOMAIN,als.baidu.com
   - DOMAIN,afd.baidu.com
