@@ -12,6 +12,8 @@ payload:
   - DOMAIN,adc3-launch.adcolony.com
 # HK01
   - DOMAIN,ads.pubmatic.com
+# 联通
+  - DOMAIN-KEYWORD,ad.10010.com
 # 南方 Plus
   - DOMAIN,advapi.nfnews.com
 # 小米电视
@@ -19,6 +21,13 @@ payload:
   - DOMAIN-SUFFIX,ad.xiaomi.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
+# 联合早报
+  - DOMAIN,sdk.e.qq.com
+  - DOMAIN,mi.gdt.qq.com
+# 东方财富
+  - DOMAIN,appadvise.eastmoney.com
+  - DOMAIN,roadshow.lvb.eastmoney.com
+  - DOMAIN,emdcadvertise.eastmoney.com
 # 喜马拉雅
   #- DOMAIN,gslbali.ximalaya.com
   #- DOMAIN,gslbtx.ximalaya.com
@@ -34,18 +43,9 @@ payload:
   #- DOMAIN,adbehavior.wsa.ximalaya.com
   #- DOMAIN,adbehaviorhera.ximalaya.com
   #- DOMAIN,xdcs-collector.ximalaya.com
-# 联合早报
-  - DOMAIN,sdk.e.qq.com
-  - DOMAIN,mi.gdt.qq.com
-# 东方财富
-  - DOMAIN,appadvise.eastmoney.com
-  - DOMAIN,roadshow.lvb.eastmoney.com
-  - DOMAIN,emdcadvertise.eastmoney.com
 # 百度
   #- DOMAIN,als.baidu.com
   #- DOMAIN,afd.baidu.com
   #- DOMAIN,mobads.baidu.com
   #- DOMAIN,mobads-logs.baidu.com
   #- DOMAIN,mobads-pre-config.cdn.bcebos.com
-# 联通
-  - DOMAIN-KEYWORD,ad.10010.com
