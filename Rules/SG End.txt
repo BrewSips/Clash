@@ -2,7 +2,7 @@ payload:
   # > SG End
 ####
 # Claude
-  - DOMAIN,api.claude.ai
+  - DOMAIN,claude.ai
 # Disney Plus
   - DOMAIN,disney.api.edge.bamgrid.com
 # HBO MAX
