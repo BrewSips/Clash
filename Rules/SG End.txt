@@ -3,7 +3,6 @@ payload:
 ####
 # Gemini
   - DOMAIN,gemini.google.com
-  #- DOMAIN,proactivebackend-pa.googleapis.com
 # Claude
   - DOMAIN,claude.ai
 # Disney Plus
