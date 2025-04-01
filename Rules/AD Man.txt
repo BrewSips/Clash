@@ -26,7 +26,7 @@ payload:
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 东方财富
-  - DOMAIN,appadvise.eastmoney.com
+  #- DOMAIN,appadvise.eastmoney.com
   #- DOMAIN,roadshow.lvb.eastmoney.com
   #- DOMAIN,emdcadvertise.eastmoney.com
 # 喜马拉雅
