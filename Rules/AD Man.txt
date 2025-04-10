@@ -7,19 +7,19 @@ payload:
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
 # Viu
-  - DOMAIN,ad.crwdcntrl.net
-  - DOMAIN,bcp.crwdcntrl.net
-  - DOMAIN,wd.adcolony.com
-  - DOMAIN,adc3-launch.adcolony.com
+  #- DOMAIN,ad.crwdcntrl.net
+  #- DOMAIN,bcp.crwdcntrl.net
+  #- DOMAIN,wd.adcolony.com
+  #- DOMAIN,adc3-launch.adcolony.com
 # HK01
-  - DOMAIN,ads.pubmatic.com
+  #- DOMAIN,ads.pubmatic.com
 # 知乎
-  - DOMAIN,appcloud2.in.zhihu.com
+  #- DOMAIN,appcloud2.in.zhihu.com
 # 南方 Plus
-  - DOMAIN,advapi.nfnews.com
+  #- DOMAIN,advapi.nfnews.com
 # 小米电视
-  - DOMAIN,adx.v.mitvos.com
-  - DOMAIN-SUFFIX,ad.xiaomi.com
+  #- DOMAIN,adx.v.mitvos.com
+  #- DOMAIN-SUFFIX,ad.xiaomi.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 联合早报
