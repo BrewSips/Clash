@@ -9,10 +9,10 @@ payload:
 # Viu
   #- DOMAIN,ad.crwdcntrl.net
   #- DOMAIN,bcp.crwdcntrl.net
-  #- DOMAIN,wd.adcolony.com
-  #- DOMAIN,adc3-launch.adcolony.com
+  - DOMAIN,wd.adcolony.com
+  - DOMAIN,adc3-launch.adcolony.com
 # HK01
-  #- DOMAIN,ads.pubmatic.com
+  - DOMAIN,ads.pubmatic.com
 # 知乎
   #- DOMAIN,appcloud2.in.zhihu.com
 # 南方 Plus
