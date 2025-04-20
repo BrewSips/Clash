@@ -7,8 +7,8 @@ payload:
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
 # Viu
-  #- DOMAIN,ad.crwdcntrl.net
-  #- DOMAIN,bcp.crwdcntrl.net
+  - DOMAIN,ad.crwdcntrl.net
+  - DOMAIN,bcp.crwdcntrl.net
   - DOMAIN,wd.adcolony.com
   - DOMAIN,adc3-launch.adcolony.com
 # HK01
@@ -37,8 +37,8 @@ payload:
   - DOMAIN,adbehaviorhera.ximalaya.com
   - DOMAIN,xdcs-collector.ximalaya.com
 # 百度
-  #- DOMAIN,als.baidu.com
-  #- DOMAIN,afd.baidu.com
-  #- DOMAIN,mobads.baidu.com
-  #- DOMAIN,mobads-logs.baidu.com
-  #- DOMAIN,mobads-pre-config.cdn.bcebos.com
+  - DOMAIN,als.baidu.com
+  - DOMAIN,afd.baidu.com
+  - DOMAIN,mobads.baidu.com
+  - DOMAIN,mobads-logs.baidu.com
+  - DOMAIN,mobads-pre-config.cdn.bcebos.com
