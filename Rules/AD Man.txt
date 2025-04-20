@@ -3,7 +3,7 @@ payload:
 ####
 # Google
   - DOMAIN-KEYWORD,g.doubleclick
-  #- DOMAIN,pagead2.googlesyndication.com
+  - DOMAIN,pagead2.googlesyndication.com
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
 # Viu
@@ -13,22 +13,14 @@ payload:
   - DOMAIN,adc3-launch.adcolony.com
 # HK01
   - DOMAIN,ads.pubmatic.com
-# 知乎
-  #- DOMAIN,appcloud2.in.zhihu.com
-# 南方 Plus
-  #- DOMAIN,advapi.nfnews.com
 # 小米电视
-  #- DOMAIN,adx.v.mitvos.com
-  #- DOMAIN-SUFFIX,ad.xiaomi.com
+  - DOMAIN,adx.v.mitvos.com
+  - DOMAIN-SUFFIX,ad.xiaomi.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
-# 东方财富
-  #- DOMAIN,appadvise.eastmoney.com
-  #- DOMAIN,roadshow.lvb.eastmoney.com
-  #- DOMAIN,emdcadvertise.eastmoney.com
 # 喜马拉雅
   - DOMAIN,gslbali.ximalaya.com
   - DOMAIN,gslbtx.ximalaya.com
