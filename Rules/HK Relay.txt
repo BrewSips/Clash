@@ -1,6 +1,11 @@
 payload:
   # > HK Relay
 ####
+# Bing
+  - DOMAIN,www.bing.com
+  - DOMAIN,www.google.com
+# Gemini
+  - DOMAIN,gemini.google.com
 # RTHK
   - DOMAIN-KEYWORD,rthk
 # TVB
