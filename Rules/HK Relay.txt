@@ -3,10 +3,6 @@ payload:
 ####
 # Bing
   - DOMAIN,www.bing.com
-# Gemini
-  - DOMAIN-SUFFIX,apis.google.com
-  - DOMAIN-SUFFIX,bard.google.com
-  - DOMAIN-SUFFIX,gemini.google.com
 # RTHK
   - DOMAIN-KEYWORD,rthk
 # TVB
