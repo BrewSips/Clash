@@ -4,7 +4,6 @@ payload:
 # Google
   - DOMAIN,ad.doubleclick.net
   - DOMAIN-KEYWORD,g.doubleclick
-  - DOMAIN,pagead2.googlesyndication.com
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
 # Viu
@@ -17,6 +16,7 @@ payload:
 # 小米电视
   - DOMAIN,adx.v.mitvos.com
   - DOMAIN-SUFFIX,ad.xiaomi.com
+  - DOMAIN,milink.pandora.xiaomi.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 南方 Plus
