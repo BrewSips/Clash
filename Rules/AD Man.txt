@@ -27,7 +27,7 @@ payload:
   #- DOMAIN,adlaunch.qtfm.cn
   #- DOMAIN,mobads.baidu.com
 # 南方 Plus
-  #- DOMAIN,advapi.nfnews.com
+  - DOMAIN,advapi.nfnews.com
 # 喜马拉雅
   #- DOMAIN,gslbali.ximalaya.com
   #- DOMAIN,gslbtx.ximalaya.com
@@ -44,8 +44,8 @@ payload:
   #- DOMAIN,adbehaviorhera.ximalaya.com
   #- DOMAIN,xdcs-collector.ximalaya.com
 # 百度
-  - DOMAIN,als.baidu.com
-  - DOMAIN,afd.baidu.com
+  #- DOMAIN,als.baidu.com
+  #- DOMAIN,afd.baidu.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
