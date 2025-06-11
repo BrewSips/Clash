@@ -2,4 +2,4 @@ payload:
   # > TW End
 ####
 # Gemini
-  - DOMAIN,gemini.google.com
+  #- DOMAIN,gemini.google.com
