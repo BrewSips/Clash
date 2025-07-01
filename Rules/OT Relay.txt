@@ -2,7 +2,7 @@ payload:
   # > OT Relay
 ####
 # Qobuz
-  - DOMAIN-SUFFIX,qobuz.com
+  #- DOMAIN-SUFFIX,qobuz.com
 # Bing
   #- DOMAIN-SUFFIX,bing.com
 # Disney Plus
