@@ -1,0 +1,5 @@
+payload:
+  # > US Land
+####
+# Qobuz
+  - DOMAIN-SUFFIX,qobuz.com
