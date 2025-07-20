@@ -1,5 +1,3 @@
 payload:
   # > SG End
 ####
-# Gemini
-  #- DOMAIN,gemini.google.com
