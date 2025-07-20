@@ -22,10 +22,6 @@ payload:
 # 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
-# 蜻蜓FM
-  #- DOMAIN,ad.qtfm.cn
-  #- DOMAIN,adlaunch.qtfm.cn
-  #- DOMAIN,mobads.baidu.com
 # 南方 Plus
   - DOMAIN,advapi.nfnews.com
 # 喜马拉雅
@@ -44,8 +40,6 @@ payload:
   - DOMAIN,adbehaviorhera.ximalaya.com
   - DOMAIN,xdcs-collector.ximalaya.com
 # 百度
-  #- DOMAIN,als.baidu.com
-  #- DOMAIN,afd.baidu.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
