@@ -1,10 +1,6 @@
 payload:
   # > OT Relay
 ####
-# Qobuz
-  #- DOMAIN-SUFFIX,qobuz.com
-# Bing
-  #- DOMAIN-SUFFIX,bing.com
 # Disney Plus
   #- DOMAIN,disney.api.edge.bamgrid.com
 # HBO MAX
