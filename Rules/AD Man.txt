@@ -4,8 +4,12 @@ payload:
 # Google
   - DOMAIN,ad.doubleclick.net
   - DOMAIN-KEYWORD,g.doubleclick
+  - DOMAIN,pagead2.googlesyndication.com
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
+# HOY
+  - DOMAIN,adscreative.hoy.tv
+  - DOMAIN-KEYWORD,ad.hoy.tv
 # Viu
   - DOMAIN,ad.crwdcntrl.net
   - DOMAIN,bcp.crwdcntrl.net
