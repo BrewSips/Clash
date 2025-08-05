@@ -44,6 +44,9 @@ payload:
   - DOMAIN,adbehaviorhera.ximalaya.com
   - DOMAIN,xdcs-collector.ximalaya.com
 # 百度
+  #- DOMAIN,afd.baidu.com
+  #- DOMAIN,als.baidu.com
+  #- DOMAIN,lbsnavi.cdn.bcebos.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
