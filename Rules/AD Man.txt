@@ -18,35 +18,185 @@ payload:
 # HK01
   - DOMAIN,ads.pubmatic.com
 # 小米电视
-  - DOMAIN,adx.v.mitvos.com
-  - DOMAIN-SUFFIX,ad.xiaomi.com
-  - DOMAIN,milink.pandora.xiaomi.com
+  #- DOMAIN,adx.v.mitvos.com
+  #- DOMAIN-SUFFIX,ad.xiaomi.com
+  #- DOMAIN,milink.pandora.xiaomi.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 南方 Plus
-  - DOMAIN,advapi.nfnews.com
+  #- DOMAIN,advapi.nfnews.com
 # 喜马拉雅
-  - DOMAIN,gslbali.ximalaya.com
-  - DOMAIN,gslbtx.ximalaya.com
-  - DOMAIN,mwsa.ximalaya.com
-  - DOMAIN,mobwsa.ximalaya.com
-  - DOMAIN,livewsa.ximalaya.com
-  - DOMAIN,ad.ximalaya.com
-  - DOMAIN,adwbs.ximalaya.com
-  - DOMAIN,adse.ximalaya.com
-  - DOMAIN,adse.wsa.ximalaya.com
-  - DOMAIN,adsehera.ximalaya.com
-  - DOMAIN,adbehavior.ximalaya.com
-  - DOMAIN,adbehavior.wsa.ximalaya.com
-  - DOMAIN,adbehaviorhera.ximalaya.com
-  - DOMAIN,xdcs-collector.ximalaya.com
+  #- DOMAIN,gslbali.ximalaya.com
+  #- DOMAIN,gslbtx.ximalaya.com
+  #- DOMAIN,mwsa.ximalaya.com
+  #- DOMAIN,mobwsa.ximalaya.com
+  #- DOMAIN,livewsa.ximalaya.com
+  #- DOMAIN,ad.ximalaya.com
+  #- DOMAIN,adwbs.ximalaya.com
+  #- DOMAIN,adse.ximalaya.com
+  #- DOMAIN,adse.wsa.ximalaya.com
+  #- DOMAIN,adsehera.ximalaya.com
+  #- DOMAIN,adbehavior.ximalaya.com
+  #- DOMAIN,adbehavior.wsa.ximalaya.com
+  #- DOMAIN,adbehaviorhera.ximalaya.com
+  #- DOMAIN,xdcs-collector.ximalaya.com
 # 百度
-  - DOMAIN,afd.baidu.com
-  - DOMAIN,als.baidu.com
-  - DOMAIN,nsclick.baidu.com
-  - DOMAIN,mobads.baidu.com
-  - DOMAIN,mobads-logs.baidu.com
-  - DOMAIN,mobads-pre-config.cdn.bcebos.com
+- DOMAIN,a.baidu.com,REJECT
+- DOMAIN,ad.duapps.com,REJECT
+- DOMAIN,ad.player.baidu.com,REJECT
+- DOMAIN,adm.baidu.com,REJECT
+- DOMAIN,adscdn.baidu.com,REJECT
+- DOMAIN,adx.xiaodutv.com,REJECT
+- DOMAIN,ae.bdstatic.com,REJECT
+- DOMAIN,afd.baidu.com,REJECT
+- DOMAIN,als.baidu.com,REJECT
+- DOMAIN,api.mobula.sdk.duapps.com,REJECT
+- DOMAIN,api.tuisong.baidu.com,REJECT
+- DOMAIN,appc.baidu.com,REJECT
+- DOMAIN,b.bdstatic.com,REJECT
+- DOMAIN,baichuan.baidu.com,REJECT
+- DOMAIN,baidustatic.com,REJECT
+- DOMAIN,baidutv.baidu.com,REJECT
+- DOMAIN,banlv.baidu.com,REJECT
+- DOMAIN,bar.baidu.com,REJECT
+- DOMAIN,bdplus.baidu.com,REJECT
+- DOMAIN,btlaunch.baidu.com,REJECT
+- DOMAIN,c.baidu.com,REJECT
+- DOMAIN,cb.baidu.com,REJECT
+- DOMAIN,cbjs.baidu.com,REJECT
+- DOMAIN,cjhq.baidu.com,REJECT
+- DOMAIN,cleaner.baidu.com,REJECT
+- DOMAIN,click.bes.baidu.com,REJECT
+- DOMAIN,click.qianqian.com,REJECT
+- DOMAIN,cm.baidu.com,REJECT
+- DOMAIN,cpro.baidu.cn,REJECT
+- DOMAIN,cpro.baidu.com,REJECT
+- DOMAIN,cpro.baidustatic.com,REJECT
+- DOMAIN,cpro.tieba.baidu.com,REJECT
+- DOMAIN,cpro.zhidao.baidu.com,REJECT
+- DOMAIN,cpro2.baidu.com,REJECT
+- DOMAIN,cpro2.baidustatic.com,REJECT
+- DOMAIN,cpu.baidu.com,REJECT
+- DOMAIN,crs.baidu.com,REJECT
+- DOMAIN,cstm.baidu.com,REJECT
+- DOMAIN,datax.baidu.com,REJECT
+- DOMAIN,dd713.bj.bcebos.com,REJECT
+- DOMAIN,dl.client.baidu.com,REJECT
+- DOMAIN,dl.ops.baidu.com,REJECT
+- DOMAIN,dl1sw.baidu.com,REJECT
+- DOMAIN,dl2.bav.baidu.com,REJECT
+- DOMAIN,dlsw.baidu.com,REJECT
+- DOMAIN,dlsw.br.baidu.com,REJECT
+- DOMAIN,dlswbr.baidu.com,REJECT
+- DOMAIN,dl-vip.bav.baidu.com,REJECT
+- DOMAIN,dl-vip.pcfaster.baidu.co.th,REJECT
+- DOMAIN,download.bav.baidu.com,REJECT
+- DOMAIN,download.sd.baidu.com,REJECT
+- DOMAIN,drmcmm.baidu.com,REJECT
+- DOMAIN,duiwai.baidu.com,REJECT
+- DOMAIN,dup.baidustatic.com,REJECT
+- DOMAIN,dxp.baidu.com,REJECT
+- DOMAIN,dzl.baidu.com,REJECT
+- DOMAIN,e.baidu.com,REJECT
+- DOMAIN,eclick.baidu.com,REJECT
+- DOMAIN,ecma.bdimg.com,REJECT
+- DOMAIN,ecmb.bdimg.com,REJECT
+- DOMAIN,ecmc.bdimg.com,REJECT
+- DOMAIN,eduad.baidu.com,REJECT
+- DOMAIN,eiv.baidu.com,REJECT
+- DOMAIN,em.baidu.com,REJECT
+- DOMAIN,entry.baidu.com,REJECT
+- DOMAIN,ers.baidu.com,REJECT
+- DOMAIN,f10.baidu.com,REJECT
+- DOMAIN,fc-feed.cdn.bcebos.com,REJECT
+- DOMAIN,fclick.baidu.com,REJECT
+- DOMAIN,fclog.baidu.com,REJECT
+- DOMAIN,feed.baidu.com,REJECT
+- DOMAIN,g.baidu.com,REJECT
+- DOMAIN,gimg.baidu.com,REJECT
+- DOMAIN,goutong.baidu.com,REJECT
+- DOMAIN,gsp1.baidu.com,REJECT
+- DOMAIN,guanjia.baidu.com,REJECT
+- DOMAIN,hao123union.baidu.com,REJECT
+- DOMAIN,hc.baidu.com,REJECT
+- DOMAIN,hm.baidu.com,REJECT
+- DOMAIN,hmma.baidu.com,REJECT
+- DOMAIN,hpd.baidu.com,REJECT
+- DOMAIN,idm.bce.baidu.com,REJECT
+- DOMAIN,idm-su.baidu.com,REJECT
+- DOMAIN,iebar.baidu.com,REJECT
+- DOMAIN,ikcode.baidu.com,REJECT
+- DOMAIN,img.taotaosou.cn,REJECT
+- DOMAIN,img01.taotaosou.cn,REJECT
+- DOMAIN,imgstat.baidu.com,REJECT
+- DOMAIN,iwanad.baidu.com,REJECT
+- DOMAIN,j.br.baidu.com,REJECT
+- DOMAIN,kstj.baidu.com,REJECT
+- DOMAIN,log.music.baidu.com,REJECT
+- DOMAIN,lxbjs.baidu.com,REJECT
+- DOMAIN,m1.baidu.com,REJECT
+- DOMAIN,ma.baidu.com,REJECT
+- DOMAIN,miao.baidu.com,REJECT
+- DOMAIN,mobads.baidu.com,REJECT
+- DOMAIN,mobads-logs.baidu.com,REJECT
+- DOMAIN,mpro.baidu.com,REJECT
+- DOMAIN,msite.baidu.com,REJECT
+- DOMAIN,neirong.baidu.com,REJECT
+- DOMAIN,nsclick.baidu.com,REJECT
+- DOMAIN,nsclickvideo.baidu.com,REJECT
+- DOMAIN,openrcv.baidu.com,REJECT
+- DOMAIN,pc.videoclick.baidu.com,REJECT
+- DOMAIN,pos.baidu.com,REJECT
+- DOMAIN,pups.bdimg.com,REJECT
+- DOMAIN,push.zhanzhang.baidu.com,REJECT
+- DOMAIN,qianclick.baidu.com,REJECT
+- DOMAIN,release.baidu.com,REJECT
+- DOMAIN,res.mi.baidu.com,REJECT
+- DOMAIN,rigel.baidustatic.com,REJECT
+- DOMAIN,river.zhidao.baidu.com,REJECT
+- DOMAIN,rj.baidu.com,REJECT
+- DOMAIN,rplog.baidu.com,REJECT
+- DOMAIN,s.baidu.com,REJECT
+- DOMAIN,sa.tuisong.baidu.com,REJECT
+- DOMAIN,sclick.baidu.com,REJECT
+- DOMAIN,sestat.baidu.com,REJECT
+- DOMAIN,shadu.baidu.com,REJECT
+- DOMAIN,share.baidu.com,REJECT
+- DOMAIN,sobar.baidu.com,REJECT
+- DOMAIN,sobartop.baidu.com,REJECT
+- DOMAIN,spcode.baidu.com,REJECT
+- DOMAIN,stat.v.baidu.com,REJECT
+- DOMAIN,su.bdimg.com,REJECT
+- DOMAIN,su.bdstatic.com,REJECT
+- DOMAIN,tk.baidu.com,REJECT
+- DOMAIN,tkweb.baidu.com,REJECT
+- DOMAIN,tob-cms.bj.bcebos.com,REJECT
+- DOMAIN,tongji.baidu.com,REJECT
+- DOMAIN,toolbar.baidu.com,REJECT
+- DOMAIN,tracker.baidu.com,REJECT
+- DOMAIN,tuijian.baidu.com,REJECT
+- DOMAIN,uat1.bfsspadserver.8le8le.com,REJECT
+- DOMAIN,ubmcmm.baidustatic.com,REJECT
+- DOMAIN,ucstat.baidu.com,REJECT
+- DOMAIN,ulic.baidu.com,REJECT
+- DOMAIN,ulog.imap.baidu.com,REJECT
+- DOMAIN,union.baidu.com,REJECT
+- DOMAIN,unionimage.baidu.com,REJECT
+- DOMAIN,utility.baidu.com,REJECT
+- DOMAIN,utk.baidu.com,REJECT
+- DOMAIN,videopush.baidu.com,REJECT
+- DOMAIN,vv84.bj.bcebos.com,REJECT
+- DOMAIN,w.gdown.baidu.com,REJECT
+- DOMAIN,w.x.baidu.com,REJECT
+- DOMAIN,wangmeng.baidu.com,REJECT
+- DOMAIN,weishi.baidu.com,REJECT
+- DOMAIN,wenku-cms.bj.bcebos.com,REJECT
+- DOMAIN,wisepush.video.baidu.com,REJECT
+- DOMAIN,wkctj.baidu.com,REJECT
+- DOMAIN,wm.baidu.com,REJECT
+- DOMAIN,znsv.baidu.com,REJECT
+- DOMAIN,zz.bdstatic.com,REJECT
+- DOMAIN,zzy1.quyaoya.com,REJECT
