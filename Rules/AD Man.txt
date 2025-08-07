@@ -47,6 +47,7 @@ payload:
   - DOMAIN,afd.baidu.com
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
+  - DOMAIN,newclient.map.baidu.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
