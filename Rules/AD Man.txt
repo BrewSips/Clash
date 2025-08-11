@@ -28,5 +28,6 @@ payload:
 # 百度
   - DOMAIN,v.adintl.cn
   - DOMAIN,mobads.baidu.com
+  - DOMAIN,mobads-logs.baidu.com
   - DOMAIN,adsmis.duxiaoman.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
