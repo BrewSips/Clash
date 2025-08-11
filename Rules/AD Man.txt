@@ -2,10 +2,9 @@ payload:
   # > AD Man
 ####
 # Google
-  - DOMAIN-SUFFIX,doubleclick-cn.net
-  - DOMAIN-SUFFIX,doubleclick.cn
-  - DOMAIN-SUFFIX,doubleclick.com
-  - DOMAIN-SUFFIX,doubleclick.net
+  - DOMAIN,pubads.g.doubleclick.net
+  - DOMAIN,securepubads.g.doubleclick.net
+  - DOMAIN,googleads.g.doubleclick-cn.net
 # TVB
   - DOMAIN-KEYWORD,mai.tvb.com
 # HOY
