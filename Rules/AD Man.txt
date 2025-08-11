@@ -24,6 +24,7 @@ payload:
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 百度
+  - DOMAIN,v.adintl.cn
   - DOMAIN,mobads.baidu.com
   - DOMAIN,adsmis.duxiaoman.com
   - DOMAIN,mobads-pre-config.cdn.bcebos.com
