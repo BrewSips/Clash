@@ -9,7 +9,8 @@ payload:
   - DOMAIN,mai.tvb.com
 # HOY
   - DOMAIN,adscreative.hoy.tv
-  - DOMAIN-KEYWORD,ad.hoy.tv
+  - DOMAIN,algoad.hoy.tv
+   - DOMAIN,display-algoad.hoy.tv
 # Viu
   - DOMAIN,ad.crwdcntrl.net
   - DOMAIN,bcp.crwdcntrl.net
