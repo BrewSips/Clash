@@ -30,6 +30,7 @@ payload:
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
   - DOMAIN,mobads.baidu.com
+  - DOMAIN-SUFFIX,cdn.bcebos.com
 #Baidu
   - DOMAIN-SUFFIX,a.baidu.com
   - DOMAIN-SUFFIX,ad.duapps.com
