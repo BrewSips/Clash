@@ -26,7 +26,10 @@ payload:
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 百度
-  #- DOMAIN,mobads.baidu.com
+  - DOMAIN,afd.baidu.com
+  - DOMAIN,als.baidu.com
+  - DOMAIN,nsclick.baidu.com
+  - DOMAIN,mobads.baidu.com
 #Baidu
   - DOMAIN-SUFFIX,a.baidu.com
   - DOMAIN-SUFFIX,ad.duapps.com
