@@ -36,16 +36,16 @@ payload:
   - DOMAIN,sdkconfig.ad.xiaomi.com
   - DOMAIN,milink.pandora.xiaomi.com
 # 淘宝
-  - DOMAIN,api.adprod.cn
-  - DOMAIN,files.adprod.cn
-  - DOMAIN,adashx.m.taobao.com
-  - DOMAIN,h-adashx.ut.taobao.com
+  #- DOMAIN,api.adprod.cn
+  #- DOMAIN,files.adprod.cn
+  #- DOMAIN,adashx.m.taobao.com
+  #- DOMAIN,h-adashx.ut.taobao.com
 # 百度
   - DOMAIN,afd.baidu.com
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
   - DOMAIN,mobads.baidu.com
   - DOMAIN,mobads-logs.baidu.com
-  - DOMAIN,caid.adintl.cn
-  - DOMAIN,report-sy.adview.cn
-  - DOMAIN,resource.ad-scope.com.cn
+  #- DOMAIN,caid.adintl.cn
+  #- DOMAIN,report-sy.adview.cn
+  #- DOMAIN,resource.ad-scope.com.cn
