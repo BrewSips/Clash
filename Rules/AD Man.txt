@@ -45,4 +45,7 @@ payload:
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
   - DOMAIN,mobads.baidu.com
+  - DOMAIN,mobads-logs.baidu.com
+  - DOMAIN,caid.adintl.cn
+  - DOMAIN,report-sy.adview.cn
   - DOMAIN,resource.ad-scope.com.cn
