@@ -28,8 +28,8 @@ payload:
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
 # 小米电视
-  - DOMAIN,api.ad.xiaomi.com
   - DOMAIN,adx.v.mitvos.com
+  - DOMAIN,api.ad.xiaomi.com
   - DOMAIN,milink.pandora.xiaomi.com
 # 百度
   - DOMAIN,afd.baidu.com
