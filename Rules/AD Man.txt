@@ -29,6 +29,7 @@ payload:
 # 联合早报
   - DOMAIN,sdk.e.qq.com
   - DOMAIN,mi.gdt.qq.com
+  - DOMAIN,adsmind.gdtimg.com
 # 小米电视
   - DOMAIN,adx.v.mitvos.com
   - DOMAIN,api.ad.xiaomi.com
