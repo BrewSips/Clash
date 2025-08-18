@@ -30,6 +30,7 @@ payload:
 # 小米电视
   - DOMAIN,adx.v.mitvos.com
   - DOMAIN,api.ad.xiaomi.com
+  - DOMAIN,sdkconfig.ad.xiaomi.com
   - DOMAIN,milink.pandora.xiaomi.com
 # 百度
   - DOMAIN,afd.baidu.com
