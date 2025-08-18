@@ -2,12 +2,12 @@ payload:
   # > AD Man
 ####
 # Google
-  - DOMAIN,www.googleadservices.com
   - DOMAIN,ad.doubleclick.net
   - DOMAIN,pubads.g.doubleclick.net
   - DOMAIN,securepubads.g.doubleclick.net
   - DOMAIN,googleads.g.doubleclick.net
   - DOMAIN,googleads.g.doubleclick-cn.net
+  - DOMAIN,www.googleadservices.com
   - DOMAIN,pagead2.googlesyndication.com
   - DOMAIN,ogads-pa.clients6.google.com
 # TVB
