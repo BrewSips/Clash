@@ -2,6 +2,7 @@ payload:
   # > AD Man
 ####
 # Google
+  - DOMAIN,ad.doubleclick.net
   - DOMAIN,pubads.g.doubleclick.net
   - DOMAIN,securepubads.g.doubleclick.net
   - DOMAIN,googleads.g.doubleclick-cn.net
