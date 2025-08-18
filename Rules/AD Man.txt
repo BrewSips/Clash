@@ -37,7 +37,7 @@ payload:
   - DOMAIN,milink.pandora.xiaomi.com
 # 淘宝
   - DOMAIN,api.adprod.cn
-  - DOMAIN,adashx.m.taobao.com
+  - DOMAIN,files.adprod.cn
   - DOMAIN,adashx.m.taobao.com
   - DOMAIN,h-adashx.ut.taobao.com
 # 百度
