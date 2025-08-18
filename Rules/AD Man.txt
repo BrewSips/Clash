@@ -34,5 +34,3 @@ payload:
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
   - DOMAIN,mobads.baidu.com
-# 淘宝
-  - DOMAIN-KEYWORD,adash
