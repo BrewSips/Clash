@@ -36,5 +36,3 @@ payload:
   - DOMAIN,als.baidu.com
   - DOMAIN,nsclick.baidu.com
   - DOMAIN,mobads.baidu.com
-# 银联
-  - DOMAIN,ads.cup.com.cn
