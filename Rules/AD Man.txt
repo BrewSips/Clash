@@ -261,3 +261,38 @@ payload:
   - DOMAIN-SUFFIX,partner.toutiao.com
   - DOMAIN-SUFFIX,pglstatp-toutiao.com
   - DOMAIN-SUFFIX,sm.toutiao.com
+  # Sina
+  - DOMAIN-SUFFIX,ad.sina.com.cn
+  - DOMAIN-SUFFIX,adbox.sina.com.cn
+  - DOMAIN-SUFFIX,add.sina.com.cn
+  - DOMAIN-SUFFIX,adimg.mobile.sina.cn
+  - DOMAIN-SUFFIX,adm.sina.com.cn
+  - DOMAIN-SUFFIX,alitui.weibo.com.cn
+  - DOMAIN-SUFFIX,biz.weibo.com.cn
+  - DOMAIN-SUFFIX,cre.dp.sina.cn
+  - DOMAIN-SUFFIX,dcads.sina.com.cn
+  - DOMAIN-SUFFIX,dd.sina.com.cn
+  - DOMAIN-SUFFIX,dmp.sina.com.cn
+  - DOMAIN-SUFFIX,game.weibo.com.cn
+  - DOMAIN-SUFFIX,gw5.push.mcp.weibo.cn
+  - DOMAIN-SUFFIX,leju.sina.com.cn
+  - DOMAIN-SUFFIX,log.mix.sina.com.cn
+  - DOMAIN-SUFFIX,mobileads.dx.cn
+  - DOMAIN-SUFFIX,newspush.sinajs.cn
+  - DOMAIN-SUFFIX,pay.mobile.sina.cn
+  - DOMAIN-SUFFIX,sax.mobile.sina.cn
+  - DOMAIN-SUFFIX,sax.sina.com.cn
+  - DOMAIN-SUFFIX,saxd.sina.com.cn
+  - DOMAIN-SUFFIX,sdkapp.mobile.sina.cn
+  - DOMAIN-SUFFIX,sdkapp.uve.weibo.com
+  - DOMAIN-SUFFIX,sdkclick.mobile.sina.cn
+  - DOMAIN-SUFFIX,slog.sina.com.cn
+  - DOMAIN-SUFFIX,trends.mobile.sina.cn
+  - DOMAIN-SUFFIX,tui.weibo.com
+  - DOMAIN-SUFFIX,u1.img.mobile.sina.cn
+  - DOMAIN-SUFFIX,wax.weibo.com.cn
+  - DOMAIN-SUFFIX,wbapp.mobile.sina.cn
+  - DOMAIN-SUFFIX,wbapp.uve.weibo.com
+  - DOMAIN-SUFFIX,wbclick.mobile.sina.cn
+  - DOMAIN-SUFFIX,wbpctips.mobile.sina.cn
+  - DOMAIN-SUFFIX,zymo.mps.weibo.com
