@@ -1,0 +1,35 @@
+name: Update China ASN Rules
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "30 2 * * *"   # 可改：UTC 每天 02:30 运行
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Generate Rules/ChinaASN.txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/refs/heads/main/ASN.China.list"
+          OUT="Rules/ChinaASN.txt"
+          mkdir -p "$(dirname "$OUT")"
+          {
+            echo "payload:"
+            curl -fsSL "$URL" \
+              | sed 's/\r$//' \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
+
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(rules): update ChinaASN.txt from ASN-China"
+          file_pattern: Rules/ChinaASN.txt
