@@ -46,7 +46,7 @@ jobs:
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
             decoded_name="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$name")"
-            curl -fsSL "$u" -o "Rules/$decoded_name"
+            curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
 
       - name: Commit & push if changed
