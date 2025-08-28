@@ -12,27 +12,11 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate Rules/ChinaASN.txt from ASN-China
+      - name: Download Media/AI provider YAMLs into Rules/Auto
         shell: bash
         run: |
           set -euo pipefail
-          URL="https://raw.githubusercontent.com/missuo/ASN-China/refs/heads/main/ASN.China.list"
-          OUT="Rules/ChinaASN.txt"
-          mkdir -p "$(dirname "$OUT")"
-          {
-            echo "payload:"
-            curl -fsSL "$URL" \
-              | sed 's/\r$//' \
-              | sed 's/[[:space:]]*\/\/.*$//' \
-              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
-              | awk '{print "  - " $0}'
-          } > "$OUT"
-
-      - name: Download Media/AI provider YAMLs into Rules/
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p Rules
+          mkdir -p Rules/Auto
           urls=(
             "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/YouTube.yaml"
@@ -46,11 +30,27 @@ jobs:
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
             decoded_name="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$name")"
-            curl -fsSL "$u" -o "Rules/$decoded_name"
+            curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
+
+      - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/refs/heads/main/ASN.China.list"
+          OUT="Rules/Auto/ChinaASN.txt"
+          mkdir -p "$(dirname "$OUT")"
+          {
+            echo "payload:"
+            curl -fsSL "$URL" \
+              | sed 's/\r$//' \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
 
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update ChinaASN.txt and provider YAMLs"
-          file_pattern: Rules/*
+          commit_message: "chore(rules): update provider YAMLs and ChinaASN.txt"
+          file_pattern: Rules/Auto/*
