@@ -12,48 +12,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Append BanAD.yaml (without header) to Rules/AD Man.txt
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p Rules
-          OUT="Rules/AD Man.txt"
-
-          # 多镜像回退，避免 raw 404 或地区性故障
-          try_fetch() {
-            local url="$1"
-            curl -fsSL "$url" && return 0 || return 1
-          }
-
-          RAW="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
-          JSDELIVR="https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Providers/BanAD.yaml"
-          FASTGIT="https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
-
-          CONTENT="$(
-            try_fetch "$RAW"      || \
-            try_fetch "$JSDELIVR" || \
-            try_fetch "$FASTGIT"
-          )" || { echo "Failed to download BanAD.yaml from all mirrors"; exit 1; }
-
-          {
-            echo ""                         # 先空一行
-            printf "%s" "$CONTENT" \
-              | sed 's/\r$//' \
-              | sed '/^payload:/d'          # 去掉标头
-          } >> "$OUT"
-
       - name: Download Media/AI provider YAMLs into Rules/Auto
         shell: bash
         run: |
           set -euo pipefail
           mkdir -p Rules/Auto
           urls=(
+            “https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml”
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/YouTube.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Apple%20TV.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Disney%20Plus.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Netflix.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
           )
@@ -82,7 +53,5 @@ jobs:
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update AD Man.txt, provider YAMLs, and ChinaASN.txt"
-          file_pattern: |
-            Rules/AD Man.txt
-            Rules/Auto/*
+          commit_message: "chore(rules): update provider YAMLs and ChinaASN.txt"
+          file_pattern: Rules/Auto/*
