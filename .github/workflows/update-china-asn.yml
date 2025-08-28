@@ -34,6 +34,7 @@ jobs:
           set -euo pipefail
           mkdir -p Rules
           urls=(
+            "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/YouTube.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Apple%20TV.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Disney%20Plus.yaml"
