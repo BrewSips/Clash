@@ -12,6 +12,18 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Append BanAD.yaml (without header) to Rules/AD Man.txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+          URL="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          {
+            echo ""
+            curl -fsSL "$URL" | sed 's/\r$//' | sed '/^payload:/d'
+          } >> "$OUT"
+
       - name: Download Media/AI provider YAMLs into Rules/Auto
         shell: bash
         run: |
@@ -23,7 +35,7 @@ jobs:
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Disney%20Plus.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Netflix.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
           )
@@ -52,5 +64,7 @@ jobs:
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update provider YAMLs and ChinaASN.txt"
-          file_pattern: Rules/Auto/*
+          commit_message: "chore(rules): update AD Man.txt, provider YAMLs, and ChinaASN.txt"
+          file_pattern: |
+            Rules/AD Man.txt
+            Rules/Auto/*
