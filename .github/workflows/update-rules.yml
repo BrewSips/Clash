@@ -34,7 +34,7 @@ jobs:
             curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
 
-      - name: Update managed BanAD block in Rules/AD Man.txt (no duplicates)
+      - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
         shell: bash
         run: |
           set -euo pipefail
@@ -47,16 +47,14 @@ jobs:
             exit 1
           fi
 
-          # 处理 BanAD.yaml：去 BOM、去 CR、去掉仅含 payload: 的标头行
           CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
             | sed -E 's/\r$//' \
             | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
 
-          # 若目标文件不存在，先建空文件
-          mkdir -p "Rules"
+          mkdir -p Rules
           touch "$OUT"
 
-          # 删除旧的受管区块
+          # 删除旧区块
           awk '
             BEGIN {inblk=0}
             /^# BEGIN BanAD \(auto\)/ {inblk=1; next}
@@ -64,7 +62,10 @@ jobs:
             !inblk {print}
           ' "$OUT" > "$TMP"
 
-          # 追加新的受管区块（前面空一行）
+          # 去掉末尾多余的空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+
+          # 写入新块，确保前面只有一行空行
           {
             echo ""
             echo "# BEGIN BanAD (auto)"
@@ -94,5 +95,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(rules): refresh BanAD managed block, provider YAMLs, and ChinaASN.txt"
-          file_pattern: |
-            Rules/**
+          file_pattern: Rules/**
