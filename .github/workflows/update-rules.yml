@@ -34,36 +34,45 @@ jobs:
             curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
 
-      - name: Append BanAD.yaml (strip header) to Rules/AD Man.txt
+      - name: Update managed BanAD block in Rules/AD Man.txt (no duplicates)
         shell: bash
         run: |
           set -euo pipefail
-          mkdir -p Rules
           SRC="Rules/Auto/BanAD.yaml"
           OUT="Rules/AD Man.txt"
+          TMP="$(mktemp)"
 
           if [[ ! -f "$SRC" ]]; then
             echo "BanAD.yaml not found at $SRC"
             exit 1
           fi
 
-          # 去 BOM、去 CR，删除从文件开头到第一条 payload:（含其本身）之间的所有内容
-          # 若文件没有 payload:，则不删任何行（整文件保留）
-          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" | sed -E 's/\r$//')"
-          if echo "$CONTENT" | grep -qE '^[[:space:]]*payload:[[:space:]]*$'; then
-            CONTENT="$(printf "%s\n" "$CONTENT" | sed -E '0,/^[[:space:]]*payload:[[:space:]]*$/d')"
-          fi
+          # 处理 BanAD.yaml：去 BOM、去 CR、去掉仅含 payload: 的标头行
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
 
-          # 若有内容，先空一行再追加
-          if [[ -n "$CONTENT" ]]; then
-            {
-              echo ""
-              printf "%s\n" "$CONTENT"
-            } >> "$OUT"
-            echo "Appended to '$OUT'."
-          else
-            echo "No content to append from $SRC."
-          fi
+          # 若目标文件不存在，先建空文件
+          mkdir -p "Rules"
+          touch "$OUT"
+
+          # 删除旧的受管区块
+          awk '
+            BEGIN {inblk=0}
+            /^# BEGIN BanAD \(auto\)/ {inblk=1; next}
+            /^# END BanAD \(auto\)/   {inblk=0; next}
+            !inblk {print}
+          ' "$OUT" > "$TMP"
+
+          # 追加新的受管区块（前面空一行）
+          {
+            echo ""
+            echo "# BEGIN BanAD (auto)"
+            printf "%s\n" "$CONTENT"
+            echo "# END BanAD (auto)"
+          } >> "$TMP"
+
+          mv "$TMP" "$OUT"
 
       - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
         shell: bash
@@ -84,5 +93,6 @@ jobs:
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update provider YAMLs, AD Man.txt, and ChinaASN.txt"
-          file_pattern: Rules/**
+          commit_message: "chore(rules): refresh BanAD managed block, provider YAMLs, and ChinaASN.txt"
+          file_pattern: |
+            Rules/**
