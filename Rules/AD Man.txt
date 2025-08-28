@@ -7,6 +7,7 @@ payload:
   - DOMAIN,securepubads.g.doubleclick.net
   - DOMAIN,googleads.g.doubleclick.net
   - DOMAIN,googleads.g.doubleclick-cn.net
+  - DOMAIN,ogads-pa.clients6.google.com
 # TVB
   - DOMAIN,mai.tvb.com
 # HOY
