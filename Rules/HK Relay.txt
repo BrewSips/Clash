@@ -1,6 +1,10 @@
 payload:
   # > HK Relay
 ####
+# Bing
+  - DOMAIN,www.bing.com
+# RTHK
+  - DOMAIN-KEYWORK,rthk
 # TVB
   - DOMAIN-KEYWORD,mytvsuper
   - DOMAIN-SUFFIX,tvb.com
