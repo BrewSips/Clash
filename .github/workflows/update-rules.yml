@@ -47,9 +47,16 @@ jobs:
             exit 1
           fi
 
-          # 去 BOM；删除仅含 payload: 的标头行；前面空一行再追加
+          # 统计将要追加的有效行数（去掉payload头、去掉空行和注释）
+          TO_APPEND_LINES=$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d' \
+            | sed -E '/^[[:space:]]*#/d;/^[[:space:]]*$/d' | wc -l)
+          echo "Will append ${TO_APPEND_LINES} non-empty non-comment lines from BanAD.yaml to '${OUT}'."
+
           {
-            echo ""
+            echo ""  # 空一行
+            # 去 BOM -> 去 CR -> 删除仅含 payload: 的标头行 -> 保留其余原样
             awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
               | sed -E 's/\r$//' \
               | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d'
