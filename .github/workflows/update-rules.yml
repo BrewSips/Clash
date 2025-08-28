@@ -26,6 +26,7 @@ jobs:
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
           )
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
