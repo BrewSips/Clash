@@ -17,11 +17,29 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Rules
-          URL="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
           OUT="Rules/AD Man.txt"
+
+          # 多镜像回退，避免 raw 404 或地区性故障
+          try_fetch() {
+            local url="$1"
+            curl -fsSL "$url" && return 0 || return 1
+          }
+
+          RAW="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+          JSDELIVR="https://cdn.jsdelivr.net/gh/ACL4SSR/ACL4SSR@master/Clash/Providers/BanAD.yaml"
+          FASTGIT="https://raw.fastgit.org/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+
+          CONTENT="$(
+            try_fetch "$RAW"      || \
+            try_fetch "$JSDELIVR" || \
+            try_fetch "$FASTGIT"
+          )" || { echo "Failed to download BanAD.yaml from all mirrors"; exit 1; }
+
           {
-            echo ""
-            curl -fsSL "$URL" | sed 's/\r$//' | sed '/^payload:/d'
+            echo ""                         # 先空一行
+            printf "%s" "$CONTENT" \
+              | sed 's/\r$//' \
+              | sed '/^payload:/d'          # 去掉标头
           } >> "$OUT"
 
       - name: Download Media/AI provider YAMLs into Rules/Auto
