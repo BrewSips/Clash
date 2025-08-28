@@ -1,9 +1,9 @@
-name: Update China ASN Rules
+name: Update China ASN & Media Rules
 
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "30 2 * * *"   # 可改：UTC 每天 02:30 运行
+    - cron: "30 2 * * *"   # UTC 每天 02:30，可按需修改
 
 jobs:
   build:
@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Generate Rules/ChinaASN.txt
+      - name: Generate Rules/ChinaASN.txt from ASN-China
         shell: bash
         run: |
           set -euo pipefail
@@ -28,8 +28,38 @@ jobs:
               | awk '{print "  - " $0}'
           } > "$OUT"
 
+      - name: Download Media/AI provider YAMLs into Rules/
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+
+          # 需要拉取的链接（对含空格的路径已做 %20 编码）
+          urls=(
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/YouTube.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Apple%20TV.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Disney%20Plus.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Netflix.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
+          )
+
+          # 将 %XX 解码回原始文件名（保留空格），并覆盖写入 Rules/
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            decoded_name="$(python3 - <<'PY'
+import sys, urllib.parse
+print(urllib.parse.unquote(sys.argv[1]))
+PY
+"$name")"
+            curl -fsSL "$u" -o "Rules/$decoded_name"
+          done
+
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update ChinaASN.txt from ASN-China"
-          file_pattern: Rules/ChinaASN.txt
+          commit_message: "chore(rules): update ChinaASN.txt and provider YAMLs"
+          file_pattern: |
+            Rules/ChinaASN.txt
+            Rules/*.yaml
