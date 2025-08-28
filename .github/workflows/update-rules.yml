@@ -34,7 +34,7 @@ jobs:
             curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
 
-      - name: Append BanAD.yaml (without header) to Rules/AD Man.txt
+      - name: Append BanAD.yaml (strip header) to Rules/AD Man.txt
         shell: bash
         run: |
           set -euo pipefail
@@ -47,20 +47,23 @@ jobs:
             exit 1
           fi
 
-          # 统计将要追加的有效行数（去掉payload头、去掉空行和注释）
-          TO_APPEND_LINES=$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
-            | sed -E 's/\r$//' \
-            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d' \
-            | sed -E '/^[[:space:]]*#/d;/^[[:space:]]*$/d' | wc -l)
-          echo "Will append ${TO_APPEND_LINES} non-empty non-comment lines from BanAD.yaml to '${OUT}'."
+          # 去 BOM、去 CR，删除从文件开头到第一条 payload:（含其本身）之间的所有内容
+          # 若文件没有 payload:，则不删任何行（整文件保留）
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" | sed -E 's/\r$//')"
+          if echo "$CONTENT" | grep -qE '^[[:space:]]*payload:[[:space:]]*$'; then
+            CONTENT="$(printf "%s\n" "$CONTENT" | sed -E '0,/^[[:space:]]*payload:[[:space:]]*$/d')"
+          fi
 
-          {
-            echo ""  # 空一行
-            # 去 BOM -> 去 CR -> 删除仅含 payload: 的标头行 -> 保留其余原样
-            awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
-              | sed -E 's/\r$//' \
-              | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d'
-          } >> "$OUT"
+          # 若有内容，先空一行再追加
+          if [[ -n "$CONTENT" ]]; then
+            {
+              echo ""
+              printf "%s\n" "$CONTENT"
+            } >> "$OUT"
+            echo "Appended to '$OUT'."
+          else
+            echo "No content to append from $SRC."
+          fi
 
       - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
         shell: bash
@@ -82,6 +85,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore(rules): update provider YAMLs, AD Man.txt, and ChinaASN.txt"
-          file_pattern: |
-            Rules/Auto/*
-            Rules/AD Man.txt
+          file_pattern: Rules/**
