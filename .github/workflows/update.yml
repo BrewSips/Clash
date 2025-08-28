@@ -1,4 +1,4 @@
-name: Update China ASN & Media Rules
+name: Update Rules
 
 on:
   workflow_dispatch: {}
