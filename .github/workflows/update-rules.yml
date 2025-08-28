@@ -41,12 +41,18 @@ jobs:
           mkdir -p Rules
           SRC="Rules/Auto/BanAD.yaml"
           OUT="Rules/AD Man.txt"
+
           if [[ ! -f "$SRC" ]]; then
-            echo "BanAD.yaml not found at $SRC"; exit 1
+            echo "BanAD.yaml not found at $SRC"
+            exit 1
           fi
+
+          # 去 BOM；删除仅含 payload: 的标头行；前面空一行再追加
           {
-            echo ""                               # 空一行
-            sed 's/\r$//' "$SRC" | sed '/^payload:/d'
+            echo ""
+            awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+              | sed -E 's/\r$//' \
+              | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d'
           } >> "$OUT"
 
       - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
