@@ -28,8 +28,9 @@ jobs:
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Proxy.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Domestic.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/LAN.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Domestic.yaml"
           )
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
