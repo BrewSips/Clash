@@ -17,7 +17,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Rules
-          URL="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml"
+          URL="https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
           OUT="Rules/AD Man.txt"
           {
             echo ""
