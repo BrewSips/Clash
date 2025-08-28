@@ -12,7 +12,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download Media/AI provider YAMLs into Rules/Auto
+      - name: Download Media/AI provider YAMLs into Rules/Auto (including BanAD.yaml)
         shell: bash
         run: |
           set -euo pipefail
@@ -34,6 +34,21 @@ jobs:
             curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
           done
 
+      - name: Append BanAD.yaml (without header) to Rules/AD Man.txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+          SRC="Rules/Auto/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          if [[ ! -f "$SRC" ]]; then
+            echo "BanAD.yaml not found at $SRC"; exit 1
+          fi
+          {
+            echo ""                               # 空一行
+            sed 's/\r$//' "$SRC" | sed '/^payload:/d'
+          } >> "$OUT"
+
       - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
         shell: bash
         run: |
@@ -53,5 +68,7 @@ jobs:
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): update provider YAMLs and ChinaASN.txt"
-          file_pattern: Rules/Auto/*
+          commit_message: "chore(rules): update provider YAMLs, AD Man.txt, and ChinaASN.txt"
+          file_pattern: |
+            Rules/Auto/*
+            Rules/AD Man.txt
