@@ -19,7 +19,6 @@ jobs:
           mkdir -p Rules/Auto
           urls=(
             "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/refs/heads/master/Clash/Providers/BanAD.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Special.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/YouTube.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Apple%20TV.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Disney%20Plus.yaml"
@@ -27,10 +26,11 @@ jobs:
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Proxy.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/LAN.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Domestic.yaml"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
           )
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
