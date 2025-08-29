@@ -26,8 +26,8 @@ jobs:
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Media/Max.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/AI%20Suite.yaml"
-            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
           )
           for u in "${urls[@]}"; do
