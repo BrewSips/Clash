@@ -75,6 +75,7 @@ jobs:
             exit 1
           fi
 
+          # 提取有效内容（去掉BOM、CR字符和payload行）
           CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
             | sed -E 's/\r$//' \
             | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
@@ -82,32 +83,50 @@ jobs:
           mkdir -p Rules
           touch "$OUT"
 
-          # 定义明确的标记，确保一致性
-          START_MARKER="# BEGIN BanAD (auto)"
-          END_MARKER="# END BanAD (auto)"
-
-          # 尝试删除现有标记之间的内容，然后再重建文件
-          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
-            # 先提取标记之前的内容
-            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
-            
-            # 再提取标记之后的内容
-            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
-          else
-            # 如果没有找到标记，只是复制整个文件
-            cat "$OUT" > "$TMP"
-          fi
+          # 删除所有旧的BanAD区块（包括可能存在的重复区块）
+          # 注意：这里匹配的是带反引号的标记 `(auto)`
+          awk '
+            BEGIN {inblk=0; count=0}
+            /^# BEGIN BanAD `\(auto\)`/ {
+              if (count == 0) {
+                # 只保留第一个区块的标记，删除后续重复区块
+                inblk=1
+                count++
+                next
+              } else {
+                # 删除重复区块
+                inblk=1
+                next
+              }
+            }
+            /^# END BanAD `\(auto\)`/ {
+              if (inblk) {
+                inblk=0
+                next
+              }
+            }
+            !inblk {print}
+          ' "$OUT" > "$TMP"
 
           # 去掉末尾多余的空行
           sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
 
+          # 确保文件以单个空行结尾
+          echo "" >> "$TMP"
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+
           # 写入新块，确保前面只有一行空行
+          # 注意：这里写入的也是带反引号的标记 `(auto)`
           {
             echo ""
-            echo "$START_MARKER"
+            echo "# BEGIN BanAD `(auto)`"
             printf "%s\n" "$CONTENT"
-            echo "$END_MARKER"
+            echo "# END BanAD `(auto)`"
           } >> "$TMP"
+
+          # 再次清理多余空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+          echo "" >> "$TMP"
 
           mv "$TMP" "$OUT"
 
