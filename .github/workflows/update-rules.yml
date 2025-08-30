@@ -83,52 +83,28 @@ jobs:
           mkdir -p Rules
           touch "$OUT"
 
-          # 删除所有旧的BanAD区块（包括可能存在的重复区块）
-          # 注意：这里匹配的是带反引号的标记 `(auto)`
-          awk '
-            BEGIN {inblk=0; count=0}
-            /^# BEGIN BanAD `\(auto\)`/ {
-              if (count == 0) {
-                # 只保留第一个区块的标记，删除后续重复区块
-                inblk=1
-                count++
-                next
-              } else {
-                # 删除重复区块
-                inblk=1
-                next
-              }
-            }
-            /^# END BanAD `\(auto\)`/ {
-              if (inblk) {
-                inblk=0
-                next
-              }
-            }
-            !inblk {print}
-          ' "$OUT" > "$TMP"
+          # 使用sed删除所有现有的BanAD区块（包括任何重复的）
+          # 这个方法更可靠，直接删除BEGIN到END之间的所有内容
+          sed -E '/^# BEGIN BanAD `\(auto\)`/,/^# END BanAD `\(auto\)`/d' "$OUT" > "$TMP"
 
-          # 去掉末尾多余的空行
-          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
-
-          # 确保文件以单个空行结尾
+          # 清理多余空行
+          sed -i -E ':a; /^[[:space:]]*$/{ $d; N; ba; }' "$TMP"
           echo "" >> "$TMP"
-          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
 
-          # 写入新块，确保前面只有一行空行
-          # 注意：这里写入的也是带反引号的标记 `(auto)`
+          # 添加新的BanAD区块
           {
-            echo ""
-            echo "# BEGIN BanAD `(auto)`"
+            echo "# BEGIN BanAD \`(auto)\`"
             printf "%s\n" "$CONTENT"
-            echo "# END BanAD `(auto)`"
+            echo "# END BanAD \`(auto)\`"
+            echo ""
           } >> "$TMP"
 
-          # 再次清理多余空行
-          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+          # 最终清理格式
+          sed -i -E ':a; /^[[:space:]]*$/{ $d; N; ba; }' "$TMP"
           echo "" >> "$TMP"
 
           mv "$TMP" "$OUT"
+          echo "BanAD block updated successfully"
 
       - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
