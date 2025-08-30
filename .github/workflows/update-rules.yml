@@ -58,6 +58,7 @@ jobs:
           set -euo pipefail
           mkdir -p Rules/System
           urls=(
+            "https://raw.githubusercontent.com/dler-io/Rules/refs/heads/main/Clash/Provider/Apple.yaml"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
           )
           for u in "${urls[@]}"; do
