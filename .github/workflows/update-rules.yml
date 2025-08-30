@@ -82,13 +82,21 @@ jobs:
           mkdir -p Rules
           touch "$OUT"
 
-          # 删除旧区块
-          awk '
-            BEGIN {inblk=0}
-            /^# BEGIN BanAD `\(auto\)`/ {inblk=1; next}
-            /^# END BanAD `\(auto\)`/   {inblk=0; next}
-            !inblk {print}
-          ' "$OUT" > "$TMP"
+          # 定义明确的标记，确保一致性
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
+
+          # 尝试删除现有标记之间的内容，然后再重建文件
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 先提取标记之前的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            
+            # 再提取标记之后的内容
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            # 如果没有找到标记，只是复制整个文件
+            cat "$OUT" > "$TMP"
+          fi
 
           # 去掉末尾多余的空行
           sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
@@ -96,9 +104,9 @@ jobs:
           # 写入新块，确保前面只有一行空行
           {
             echo ""
-            echo "# BEGIN BanAD (auto)"
+            echo "$START_MARKER"
             printf "%s\n" "$CONTENT"
-            echo "# END BanAD (auto)"
+            echo "$END_MARKER"
           } >> "$TMP"
 
           mv "$TMP" "$OUT"
