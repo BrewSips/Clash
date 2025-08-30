@@ -52,6 +52,19 @@ jobs:
             curl -fsSL "$u" -o "Rules/TXT/$name"
           done
 
+      - name: Download Rules into Rules/System
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/System
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            curl -fsSL "$u" -o "Rules/System/$name"
+          done
+
       - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
         shell: bash
         run: |
