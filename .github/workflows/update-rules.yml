@@ -75,7 +75,6 @@ jobs:
             exit 1
           fi
 
-          # 提取有效内容（去掉BOM、CR字符和payload行）
           CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
             | sed -E 's/\r$//' \
             | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
@@ -83,28 +82,34 @@ jobs:
           mkdir -p Rules
           touch "$OUT"
 
-          # 使用sed删除所有现有的BanAD区块（包括任何重复的）
-          # 这个方法更可靠，直接删除BEGIN到END之间的所有内容
-          sed -E '/^# BEGIN BanAD `\(auto\)`/,/^# END BanAD `\(auto\)`/d' "$OUT" > "$TMP"
+          # 定义明确的标记，确保一致性
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
 
-          # 清理多余空行
-          sed -i -E ':a; /^[[:space:]]*$/{ $d; N; ba; }' "$TMP"
-          echo "" >> "$TMP"
+          # 尝试删除现有标记之间的内容，然后再重建文件
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 先提取标记之前的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            
+            # 再提取标记之后的内容
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            # 如果没有找到标记，只是复制整个文件
+            cat "$OUT" > "$TMP"
+          fi
 
-          # 添加新的BanAD区块
+          # 去掉末尾多余的空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+
+          # 写入新块，确保前面只有一行空行
           {
-            echo "# BEGIN BanAD \`(auto)\`"
-            printf "%s\n" "$CONTENT"
-            echo "# END BanAD \`(auto)\`"
             echo ""
+            echo "$START_MARKER"
+            printf "%s\n" "$CONTENT"
+            echo "$END_MARKER"
           } >> "$TMP"
 
-          # 最终清理格式
-          sed -i -E ':a; /^[[:space:]]*$/{ $d; N; ba; }' "$TMP"
-          echo "" >> "$TMP"
-
           mv "$TMP" "$OUT"
-          echo "BanAD block updated successfully"
 
       - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
