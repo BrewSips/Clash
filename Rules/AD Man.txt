@@ -53,14 +53,6 @@ payload:
   - DOMAIN-KEYWORD,dwtrack
   - DOMAIN-KEYWORD,guanggao
   - DOMAIN-KEYWORD,omgmta
-  - DOMAIN-KEYWORD,omniture
-  - DOMAIN-KEYWORD,openx
-  - DOMAIN-KEYWORD,partnerad
-  - DOMAIN-KEYWORD,pingfore
-  - DOMAIN-KEYWORD,socdm
-  - DOMAIN-KEYWORD,supersonicads
-  - DOMAIN-KEYWORD,wlmonitor
-  - DOMAIN-KEYWORD,zjtoolbar
 
   # 广告联盟-国内****************
   - DOMAIN-SUFFIX,09mk.cn
