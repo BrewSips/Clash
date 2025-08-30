@@ -12,21 +12,7 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      # 新增步骤：下载 gfw.txt 和 proxy.txt 到 Rules/txt 目录
-      - name: Download gfw.txt and proxy.txt into Rules/txt
-        shell: bash
-        run: |
-          set -euo pipefail
-          mkdir -p Rules/txt
-          urls=(
-            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
-          )
-          for u in "${urls[@]}"; do
-            name="$(basename "$u")"
-            curl -fsSL "$u" -o "Rules/txt/$name"
-          done
-
-      - name: Download Media/AI provider YAMLs into Rules/Auto (including BanAD.yaml)
+      - name: Download Rules into Rules/Auto
         shell: bash
         run: |
           set -euo pipefail
@@ -48,6 +34,19 @@ jobs:
             name="$(basename "$u")"
             decoded_name="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$name")"
             curl -fsSL "$u" -o "Rules/Auto/$decoded_name"
+          done
+
+      - name: Download Rules into Rules/TXT
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/TXT
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/gfw.txt"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            curl -fsSL "$u" -o "Rules/TXT/$name"
           done
 
       - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
@@ -91,12 +90,12 @@ jobs:
 
           mv "$TMP" "$OUT"
 
-      - name: Generate Rules/Auto/ChinaASN.txt from ASN-China
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
         run: |
           set -euo pipefail
           URL="https://raw.githubusercontent.com/missuo/ASN-China/refs/heads/main/ASN.China.list"
-          OUT="Rules/Auto/ChinaASN.txt"
+          OUT="Rules/System/ChinaASN.txt"
           mkdir -p "$(dirname "$OUT")"
           {
             echo "payload:"
@@ -110,5 +109,5 @@ jobs:
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: "chore(rules): refresh BanAD managed block, provider YAMLs, and ChinaASN.txt"
+          commit_message: "Update Data"
           file_pattern: Rules/**
