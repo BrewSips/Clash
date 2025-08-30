@@ -12,6 +12,20 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      # 新增步骤：下载 gfw.txt 和 proxy.txt 到 Rules/txt 目录
+      - name: Download gfw.txt and proxy.txt into Rules/txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/txt
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/gfw.txt"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            curl -fsSL "$u" -o "Rules/txt/$name"
+          done
+
       - name: Download Media/AI provider YAMLs into Rules/Auto (including BanAD.yaml)
         shell: bash
         run: |
@@ -59,8 +73,8 @@ jobs:
           # 删除旧区块
           awk '
             BEGIN {inblk=0}
-            /^# BEGIN BanAD \(auto\)/ {inblk=1; next}
-            /^# END BanAD \(auto\)/   {inblk=0; next}
+            /^# BEGIN BanAD `\(auto\)`/ {inblk=1; next}
+            /^# END BanAD `\(auto\)`/   {inblk=0; next}
             !inblk {print}
           ' "$OUT" > "$TMP"
 
