@@ -1,3 +1,8 @@
 payload:
   # > SG End
 ####
+# TikTok
+  - IP-ASN,138699
+  - IP-ASN,396982
+  - IP-ASN,132203
+  - IP-ASN,136907
