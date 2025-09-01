@@ -1,0 +1,296 @@
+name: Update Rules
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "30 2 * * *"  # UTC 每天 02:30
+
+permissions:
+  contents: write
+
+env:
+  MAX_FILE_SIZE_GENERAL: 10485760  # 10MB
+  MAX_FILE_SIZE_SPECIAL: 5242880   # 5MB
+  CURL_TIMEOUT: 60
+  CURL_CONNECT_TIMEOUT: 15
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Define common functions
+        shell: bash
+        run: |
+          # 创建通用下载函数
+          cat > download_functions.sh << 'EOF'
+          #!/bin/bash
+          
+          download_with_validation() {
+            local url="$1"
+            local output_file="$2"
+            local max_size="$3"
+            local temp_file="${output_file}.tmp"
+            
+            echo "Downloading $(basename "$output_file") from $url"
+            
+            if ! curl -fsSL \
+              --connect-timeout "$CURL_CONNECT_TIMEOUT" \
+              --max-time "$CURL_TIMEOUT" \
+              --retry 3 \
+              --retry-delay 5 \
+              "$url" -o "$temp_file"; then
+              echo "ERROR: Failed to download $url" >&2
+              return 1
+            fi
+            
+            # 验证文件大小
+            local filesize=$(stat -c%s "$temp_file")
+            if [ "$filesize" -gt "$max_size" ]; then
+              echo "ERROR: File too large ($filesize bytes > $max_size bytes)" >&2
+              rm "$temp_file"
+              return 1
+            fi
+            
+            # 验证文件不为空
+            if [ "$filesize" -eq 0 ]; then
+              echo "ERROR: Downloaded file is empty" >&2
+              rm "$temp_file"
+              return 1
+            fi
+            
+            mv "$temp_file" "$output_file"
+            echo "SUCCESS: Downloaded $(basename "$output_file") ($filesize bytes)"
+            return 0
+          }
+          
+          decode_filename() {
+            python3 -c "import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))" "$1"
+          }
+          EOF
+          
+          chmod +x download_functions.sh
+          source download_functions.sh
+
+      - name: Download Rules into Rules/Auto
+        shell: bash
+        run: |
+          set -euo pipefail
+          source download_functions.sh
+          
+          mkdir -p Rules/Auto
+          failed_count=0
+          success_count=0
+          
+          urls=(
+            "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/YouTube.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Apple%20TV.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Disney%20Plus.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Netflix.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Max.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/AI%20Suite.yaml"
+          )
+          
+          for url in "${urls[@]}"; do
+            name="$(basename "$url")"
+            decoded_name="$(decode_filename "$name")"
+            
+            if download_with_validation "$url" "Rules/Auto/$decoded_name" "$MAX_FILE_SIZE_GENERAL"; then
+              ((success_count++))
+            else
+              ((failed_count++))
+            fi
+          done
+          
+          echo "Download summary: $success_count success, $failed_count failed"
+          if [ $failed_count -gt $((${#urls[@]} / 2)) ]; then
+            echo "ERROR: Too many downloads failed ($failed_count/${#urls[@]})"
+            exit 1
+          fi
+
+      - name: Download Rules into Rules/Text
+        shell: bash
+        run: |
+          set -euo pipefail
+          source download_functions.sh
+          
+          mkdir -p Rules/Text
+          failed_count=0
+          success_count=0
+          
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/private.txt"
+          )
+          
+          for url in "${urls[@]}"; do
+            name="$(basename "$url")"
+            
+            if download_with_validation "$url" "Rules/Text/$name" "$MAX_FILE_SIZE_GENERAL"; then
+              ((success_count++))
+            else
+              ((failed_count++))
+            fi
+          done
+          
+          echo "Download summary: $success_count success, $failed_count failed"
+
+      - name: Download Rules into Rules/System
+        shell: bash
+        run: |
+          set -euo pipefail
+          source download_functions.sh
+          
+          mkdir -p Rules/System
+          failed_count=0
+          success_count=0
+          
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+          )
+          
+          for url in "${urls[@]}"; do
+            name="$(basename "$url")"
+            
+            if download_with_validation "$url" "Rules/System/$name" "$MAX_FILE_SIZE_GENERAL"; then
+              ((success_count++))
+            else
+              ((failed_count++))
+            fi
+          done
+          
+          echo "Download summary: $success_count success, $failed_count failed"
+
+      - name: Update managed BanAD block in Rules/AD Man.txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          
+          SRC="Rules/Auto/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          
+          if [[ ! -f "$SRC" ]]; then
+            echo "WARNING: BanAD.yaml not found at $SRC, skipping update"
+            exit 0
+          fi
+          
+          # 验证源文件
+          filesize=$(stat -c%s "$SRC")
+          if [ "$filesize" -gt "$MAX_FILE_SIZE_SPECIAL" ]; then
+            echo "WARNING: BanAD.yaml too large ($filesize bytes), skipping"
+            exit 0
+          fi
+          
+          # 处理内容
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
+          
+          if [ -z "$CONTENT" ]; then
+            echo "WARNING: Processed BanAD content is empty, skipping update"
+            exit 0
+          fi
+          
+          mkdir -p Rules
+          touch "$OUT"
+          
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
+          
+          # 创建临时文件进行处理
+          TMP="$(mktemp)"
+          trap 'rm -f "$TMP"' EXIT
+          
+          # 验证标记完整性
+          start_count=$(grep -c "$START_MARKER" "$OUT" || true)
+          end_count=$(grep -c "$END_MARKER" "$OUT" || true)
+          
+          if [ "$start_count" -ne "$end_count" ]; then
+            echo "WARNING: Marker mismatch detected (start:$start_count, end:$end_count), rebuilding"
+            # 清空文件重新开始
+            > "$OUT"
+          fi
+          
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 提取标记之前和之后的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            cat "$OUT" > "$TMP"
+          fi
+          
+          # 清理尾部空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+          
+          # 添加新内容块
+          {
+            echo ""
+            echo "$START_MARKER"
+            printf "%s\n" "$CONTENT"
+            echo "$END_MARKER"
+          } >> "$TMP"
+          
+          mv "$TMP" "$OUT"
+          echo "Successfully updated AD Man.txt with BanAD rules"
+
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China
+        shell: bash
+        run: |
+          set -euo pipefail
+          source download_functions.sh
+          
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list"
+          OUT="Rules/System/ChinaASN.txt"
+          TMP="$(mktemp)"
+          trap 'rm -f "$TMP"' EXIT
+          
+          mkdir -p "$(dirname "$OUT")"
+          
+          if ! download_with_validation "$URL" "$TMP" "$MAX_FILE_SIZE_SPECIAL"; then
+            echo "ERROR: Failed to download ASN-China list"
+            exit 1
+          fi
+          
+          # 验证文件格式
+          if ! grep -q "IP-ASN" "$TMP"; then
+            echo "ERROR: ASN-China list format invalid"
+            echo "File content preview:"
+            head -n 10 "$TMP"
+            exit 1
+          fi
+          
+          # 处理并生成输出
+          {
+            echo "payload:"
+            sed 's/\r$//' "$TMP" \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
+          
+          echo "Successfully generated ChinaASN.txt"
+
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@8621497c8bd70a11e4da4a0b7ce63a3f84acd86b  # v5.0.0
+        with:
+          commit_message: "Update Data [$(date -u '+%Y-%m-%d %H:%M:%S') UTC]"
+          file_pattern: Rules/**
+
+      - name: Cleanup
+        if: always()
+        run: |
+          rm -f download_functions.sh
