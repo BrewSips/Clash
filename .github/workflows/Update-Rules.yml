@@ -1,0 +1,217 @@
+name: Update Rules
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "30 2 * * *"  # UTC 每天 02:30
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download Rules into Rules/Auto
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Auto
+          urls=(
+            "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/YouTube.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Apple%20TV.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Disney%20Plus.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Netflix.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Max.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/AI%20Suite.yaml"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            decoded_name="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$name")"
+            echo "Downloading $decoded_name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/Auto/$decoded_name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小，防止过大文件
+            filesize=$(stat -c%s "Rules/Auto/$decoded_name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $decoded_name is too large ($filesize bytes), skipping"
+              rm "Rules/Auto/$decoded_name.tmp"
+              continue
+            fi
+            
+            mv "Rules/Auto/$decoded_name.tmp" "Rules/Auto/$decoded_name"
+            echo "Successfully downloaded $decoded_name"
+          done
+
+      - name: Download Rules into Rules/Text
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Text
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/private.txt"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/Text/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小
+            filesize=$(stat -c%s "Rules/Text/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/Text/$name.tmp"
+              continue
+            fi
+            
+            mv "Rules/Text/$name.tmp" "Rules/Text/$name"
+            echo "Successfully downloaded $name"
+          done
+
+      - name: Download Rules into Rules/System
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/System
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+          )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/System/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小
+            filesize=$(stat -c%s "Rules/System/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/System/$name.tmp"
+              continue
+            fi
+            
+            mv "Rules/System/$name.tmp" "Rules/System/$name"
+            echo "Successfully downloaded $name"
+          done
+
+      - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="Rules/Auto/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          TMP="$(mktemp)"
+
+          if [[ ! -f "$SRC" ]]; then
+            echo "BanAD.yaml not found at $SRC"
+            exit 1
+          fi
+
+          # 检查文件大小
+          filesize=$(stat -c%s "$SRC")
+          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+            echo "Warning: BanAD.yaml is too large ($filesize bytes), skipping processing"
+            exit 1
+          fi
+
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
+
+          mkdir -p Rules
+          touch "$OUT"
+
+          # 定义明确的标记，确保一致性
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
+
+          # 尝试删除现有标记之间的内容，然后再重建文件
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 先提取标记之前的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            
+            # 再提取标记之后的内容
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            # 如果没有找到标记，只是复制整个文件
+            cat "$OUT" > "$TMP"
+          fi
+
+          # 去掉末尾多余的空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+
+          # 写入新块，确保前面只有一行空行
+          {
+            echo ""
+            echo "$START_MARKER"
+            printf "%s\n" "$CONTENT"
+            echo "$END_MARKER"
+          } >> "$TMP"
+
+          mv "$TMP" "$OUT"
+          echo "Successfully updated AD Man.txt with BanAD rules"
+
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list"
+          OUT="Rules/System/ChinaASN.txt"
+          TMP="$(mktemp)"
+          mkdir -p "$(dirname "$OUT")"
+          
+          echo "Downloading ASN-China list from $URL"
+          if ! curl -fsSL --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
+            echo "Warning: Failed to download ASN-China list"
+            exit 1
+          fi
+          
+          # 检查文件大小
+          filesize=$(stat -c%s "$TMP")
+          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+            echo "Warning: ASN-China list is too large ($filesize bytes), skipping processing"
+            rm "$TMP"
+            exit 1
+          fi
+          
+          # 检查文件内容有效性
+          if ! grep -q "IP-ASN" "$TMP"; then
+            echo "Warning: ASN-China list format seems invalid, skipping processing"
+            cat "$TMP" | head -n 10
+            rm "$TMP"
+            exit 1
+          fi
+          
+          {
+            echo "payload:"
+            cat "$TMP" \
+              | sed 's/\r$//' \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
+          
+          rm "$TMP"
+          echo "Successfully generated ChinaASN.txt"
+
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update Data"
+          file_pattern: Rules/**
