@@ -3,124 +3,171 @@ name: Update Rules
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: '30 2 * * *'  # UTC 每天 02:30
+    #- cron: "30 2 * * *"  # UTC 每天 02:30
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Download Rules (Auto/Text/System)
+      - name: Download Rules into Rules/Auto
         shell: bash
         run: |
           set -euo pipefail
-
-          # 通用下载函数：参数为目标目录 + URL 列表
-          download() {
-            local dst_dir=$1; shift
-            mkdir -p "$dst_dir"
-
-            for u in "$@"; do
-              local raw_name="$(basename "$u")"
-              # 纯 bash URL 解码
-              local name
-              name="$(printf '%b' "${raw_name//%/\\x}")"
-
-              echo "→ Downloading $name from $u"
-              if ! curl -fsSL -S --connect-timeout 10 --max-time 60 "$u" -o "$dst_dir/$name.tmp"; then
-                echo "⚠️  Failed: $u"
-                continue
-              fi
-
-              local size
-              size=$(stat -c%s "$dst_dir/$name.tmp")
-              if [ "$size" -gt 10485760 ]; then
-                echo "⚠️  Skipping $name: too large (${size} bytes)"
-                rm "$dst_dir/$name.tmp"
-                continue
-              fi
-
-              mv "$dst_dir/$name.tmp" "$dst_dir/$name"
-              echo "✔️  Saved: $dst_dir/$name"
-            done
-          }
-
-          # 需要下载的 URL 列表
-          auto_urls=(
+          mkdir -p Rules/Auto
+          urls=(
             "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/YouTube.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Apple%20TV.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Disney%20Plus.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Netflix.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Max.yaml"
-            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/TikTok.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/AI%20Suite.yaml"
           )
-          text_urls=(
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            decoded_name="$(python3 -c 'import sys,urllib.parse; print(urllib.parse.unquote(sys.argv[1]))' "$name")"
+            echo "Downloading $decoded_name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/Auto/$decoded_name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小，防止过大文件
+            filesize=$(stat -c%s "Rules/Auto/$decoded_name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $decoded_name is too large ($filesize bytes), skipping"
+              rm "Rules/Auto/$decoded_name.tmp"
+              continue
+            fi
+            
+            mv "Rules/Auto/$decoded_name.tmp" "Rules/Auto/$decoded_name"
+            echo "Successfully downloaded $decoded_name"
+          done
+
+      - name: Download Rules into Rules/Text
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Text
+          urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/private.txt"
           )
-          system_urls=(
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/Text/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小
+            filesize=$(stat -c%s "Rules/Text/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/Text/$name.tmp"
+              continue
+            fi
+            
+            mv "Rules/Text/$name.tmp" "Rules/Text/$name"
+            echo "Successfully downloaded $name"
+          done
+
+      - name: Download Rules into Rules/System
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/System
+          urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
           )
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/System/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+            
+            # 检查文件大小
+            filesize=$(stat -c%s "Rules/System/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/System/$name.tmp"
+              continue
+            fi
+            
+            mv "Rules/System/$name.tmp" "Rules/System/$name"
+            echo "Successfully downloaded $name"
+          done
 
-          download Rules/Auto   "${auto_urls[@]}"
-          download Rules/Text   "${text_urls[@]}"
-          download Rules/System "${system_urls[@]}"
-
-      - name: Update managed BanAD block in Rules/AD Man.txt
+      - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
         shell: bash
         run: |
           set -euo pipefail
           SRC="Rules/Auto/BanAD.yaml"
           OUT="Rules/AD Man.txt"
-          mkdir -p "$(dirname "$OUT")"
+          TMP="$(mktemp)"
 
-          if [ ! -f "$SRC" ]; then
-            echo "❌  Missing source: $SRC"
+          if [[ ! -f "$SRC" ]]; then
+            echo "BanAD.yaml not found at $SRC"
             exit 1
           fi
 
-          local filesize
+          # 检查文件大小
           filesize=$(stat -c%s "$SRC")
-          if [ "$filesize" -gt 5242880 ]; then
-            echo "⚠️  $SRC too large (${filesize} bytes), aborting"
+          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+            echo "Warning: BanAD.yaml is too large ($filesize bytes), skipping processing"
             exit 1
           fi
 
-          # 读取内容：去 BOM、去空 payload 行、统一换行
-          content=$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")} !/^[[:space:]]*payload:[[:space:]]*$/' "$SRC" | sed 's/\r$//')
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
 
-          # 删除旧的 BEGIN/END 块
-          if grep -q "# BEGIN BanAD (auto)" "$OUT" && grep -q "# END BanAD (auto)" "$OUT"; then
-            sed -E '/# BEGIN BanAD \(auto\)/,/# END BanAD \(auto\)/d' "$OUT" > "$OUT.tmp"
-            mv "$OUT.tmp" "$OUT"
+          mkdir -p Rules
+          touch "$OUT"
+
+          # 定义明确的标记，确保一致性
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
+
+          # 尝试删除现有标记之间的内容，然后再重建文件
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 先提取标记之前的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            
+            # 再提取标记之后的内容
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            # 如果没有找到标记，只是复制整个文件
+            cat "$OUT" > "$TMP"
           fi
 
-          # 清除末尾多余空行
-          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$OUT"
+          # 去掉末尾多余的空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
 
-          # 追加新块
+          # 写入新块，确保前面只有一行空行
           {
             echo ""
-            echo "# BEGIN BanAD (auto)"
-            printf "%s\n" "$content"
-            echo "# END BanAD (auto)"
-          } >> "$OUT"
+            echo "$START_MARKER"
+            printf "%s\n" "$CONTENT"
+            echo "$END_MARKER"
+          } >> "$TMP"
 
-          echo "✔️  Updated $OUT"
+          mv "$TMP" "$OUT"
+          echo "Successfully updated AD Man.txt with BanAD rules"
 
-      - name: Generate Rules/System/ChinaASN.txt from ASN-China list
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
         run: |
           set -euo pipefail
@@ -128,44 +175,43 @@ jobs:
           OUT="Rules/System/ChinaASN.txt"
           TMP="$(mktemp)"
           mkdir -p "$(dirname "$OUT")"
-
-          echo "→ Downloading ASN-China list..."
-          if ! curl -fsSL -S --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
-            echo "⚠️  Failed to download ASN-China list"
+          
+          echo "Downloading ASN-China list from $URL"
+          if ! curl -fsSL --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
+            echo "Warning: Failed to download ASN-China list"
             exit 1
           fi
-
-          local size
-          size=$(stat -c%s "$TMP")
-          if [ "$size" -gt 5242880 ]; then
-            echo "⚠️  ASN-China list too large (${size} bytes), aborting"
+          
+          # 检查文件大小
+          filesize=$(stat -c%s "$TMP")
+          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+            echo "Warning: ASN-China list is too large ($filesize bytes), skipping processing"
             rm "$TMP"
             exit 1
           fi
-
+          
+          # 检查文件内容有效性
           if ! grep -q "IP-ASN" "$TMP"; then
-            echo "⚠️  Invalid format, no IP-ASN lines"
-            head -n 10 "$TMP"
+            echo "Warning: ASN-China list format seems invalid, skipping processing"
+            cat "$TMP" | head -n 10
             rm "$TMP"
             exit 1
           fi
-
+          
           {
             echo "payload:"
-            grep -E '^[[:space:]]*IP-ASN,[0-9]+' "$TMP" \
+            cat "$TMP" \
               | sed 's/\r$//' \
               | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
               | awk '{print "  - " $0}'
           } > "$OUT"
-
+          
           rm "$TMP"
-          echo "✔️  Generated $OUT"
+          echo "Successfully generated ChinaASN.txt"
 
       - name: Commit & push if changed
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "Update Data"
-          file_pattern: "Rules/**"
-          branch: main
-          commit_user_name: github-actions[bot]
-          commit_user_email: github-actions[bot]@users.noreply.github.com
+          file_pattern: Rules/**
