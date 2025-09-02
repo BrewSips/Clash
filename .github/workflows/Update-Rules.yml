@@ -1,0 +1,171 @@
+name: Update Rules
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: '30 2 * * *'  # UTC 每天 02:30
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Download Rules (Auto/Text/System)
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          # 通用下载函数：参数为目标目录 + URL 列表
+          download() {
+            local dst_dir=$1; shift
+            mkdir -p "$dst_dir"
+
+            for u in "$@"; do
+              local raw_name="$(basename "$u")"
+              # 纯 bash URL 解码
+              local name
+              name="$(printf '%b' "${raw_name//%/\\x}")"
+
+              echo "→ Downloading $name from $u"
+              if ! curl -fsSL -S --connect-timeout 10 --max-time 60 "$u" -o "$dst_dir/$name.tmp"; then
+                echo "⚠️  Failed: $u"
+                continue
+              fi
+
+              local size
+              size=$(stat -c%s "$dst_dir/$name.tmp")
+              if [ "$size" -gt 10485760 ]; then
+                echo "⚠️  Skipping $name: too large (${size} bytes)"
+                rm "$dst_dir/$name.tmp"
+                continue
+              fi
+
+              mv "$dst_dir/$name.tmp" "$dst_dir/$name"
+              echo "✔️  Saved: $dst_dir/$name"
+            done
+          }
+
+          # 需要下载的 URL 列表
+          auto_urls=(
+            "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/YouTube.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Apple%20TV.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Disney%20Plus.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Netflix.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Max.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/TikTok.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/AI%20Suite.yaml"
+          )
+          text_urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/private.txt"
+          )
+          system_urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/private.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+          )
+
+          download Rules/Auto   "${auto_urls[@]}"
+          download Rules/Text   "${text_urls[@]}"
+          download Rules/System "${system_urls[@]}"
+
+      - name: Update managed BanAD block in Rules/AD Man.txt
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="Rules/Auto/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          mkdir -p "$(dirname "$OUT")"
+
+          if [ ! -f "$SRC" ]; then
+            echo "❌  Missing source: $SRC"
+            exit 1
+          fi
+
+          local filesize
+          filesize=$(stat -c%s "$SRC")
+          if [ "$filesize" -gt 5242880 ]; then
+            echo "⚠️  $SRC too large (${filesize} bytes), aborting"
+            exit 1
+          fi
+
+          # 读取内容：去 BOM、去空 payload 行、统一换行
+          content=$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")} !/^[[:space:]]*payload:[[:space:]]*$/' "$SRC" | sed 's/\r$//')
+
+          # 删除旧的 BEGIN/END 块
+          if grep -q "# BEGIN BanAD (auto)" "$OUT" && grep -q "# END BanAD (auto)" "$OUT"; then
+            sed -E '/# BEGIN BanAD \(auto\)/,/# END BanAD \(auto\)/d' "$OUT" > "$OUT.tmp"
+            mv "$OUT.tmp" "$OUT"
+          fi
+
+          # 清除末尾多余空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$OUT"
+
+          # 追加新块
+          {
+            echo ""
+            echo "# BEGIN BanAD (auto)"
+            printf "%s\n" "$content"
+            echo "# END BanAD (auto)"
+          } >> "$OUT"
+
+          echo "✔️  Updated $OUT"
+
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China list
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list"
+          OUT="Rules/System/ChinaASN.txt"
+          TMP="$(mktemp)"
+          mkdir -p "$(dirname "$OUT")"
+
+          echo "→ Downloading ASN-China list..."
+          if ! curl -fsSL -S --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
+            echo "⚠️  Failed to download ASN-China list"
+            exit 1
+          fi
+
+          local size
+          size=$(stat -c%s "$TMP")
+          if [ "$size" -gt 5242880 ]; then
+            echo "⚠️  ASN-China list too large (${size} bytes), aborting"
+            rm "$TMP"
+            exit 1
+          fi
+
+          if ! grep -q "IP-ASN" "$TMP"; then
+            echo "⚠️  Invalid format, no IP-ASN lines"
+            head -n 10 "$TMP"
+            rm "$TMP"
+            exit 1
+          fi
+
+          {
+            echo "payload:"
+            grep -E '^[[:space:]]*IP-ASN,[0-9]+' "$TMP" \
+              | sed 's/\r$//' \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
+
+          rm "$TMP"
+          echo "✔️  Generated $OUT"
+
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update Data"
+          file_pattern: "Rules/**"
+          branch: main
+          commit_user_name: github-actions[bot]
+          commit_user_email: github-actions[bot]@users.noreply.github.com
