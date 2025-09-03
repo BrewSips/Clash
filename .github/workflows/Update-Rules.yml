@@ -189,21 +189,23 @@ jobs:
             exit 0
           fi
 
-          # 1) 规范化：去 BOM/CR；把单行压缩格式转成多行：
-          #    - 在 'payload:' 后补换行
-          #    - 在 ' # > ' 前插入换行
-          #    - 在 ' - ' 前插入换行（每条规则独立一行）
-          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
-            | tr -d '\r' \
-            | sed -E 's/^payload:[[:space:]]*/payload:\n/' \
-            | sed 's/ # >/\
-# > /g' \
-            | sed 's/ - /\
-  - /g' \
-            > "$TMP_NORM"
+          # 1) 使用 Python 规范化为多行文本，避免 sed 的多行转义在 YAML 中引起解析问题
+          python3 - "$SRC" "$TMP_NORM" <<'PY'
+import sys, re
+src, dst = sys.argv[1], sys.argv[2]
+data = open(src, 'rb').read()
+data = data.lstrip(b'\xef\xbb\xbf')              # 去 BOM
+text = data.decode('utf-8', 'replace').replace('\r', '')
+# 在 'payload:' 后补换行
+text = re.sub(r'^payload:\s*', 'payload:\n', text)
+# 在 " # > " 之前插入换行
+text = re.sub(r'\s#\s>\s', '\n# > ', text)
+# 在 " - " 之前插入换行（每条规则独立一行）
+text = re.sub(r'\s-\s', '\n  - ', text)
+open(dst, 'w', encoding='utf-8').write(text)
+PY
 
-          # 2) 仅保留需要走代理的段落
-          # 与 AI Suite.yaml 中的段落标题保持一致（区分大小写、精确匹配）
+          # 2) 仅保留需要走代理的段落（标题需与文件中的 "# > <Section>" 一致）
           KEEP_SECTIONS="ChatGPT|Chat GPT API & CDN|Claude|Google Gemini|Google DeepMind|Google Generative Language API|Google AI Studio|Google NotebookLM|Meta AI|Perplexity AI|POE"
 
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
@@ -231,7 +233,7 @@ jobs:
 
           # 3) 校验：确保除了 payload: 外还有内容
           if [ "$(wc -l < "$TMP_OUT")" -le 1 ]; then
-            echo "Error: pruning produced only header without any rules. Dumping first 200 chars of normalized input for debugging:"
+            echo "Error: pruning produced only header without any rules. Dump of first 200 chars of normalized input:"
             head -c 200 "$TMP_NORM" | sed -E ':a;N;$!ba;s/\n/\\n/g'
             rm -f "$TMP_NORM" "$TMP_OUT"
             exit 1
