@@ -189,51 +189,27 @@ jobs:
             exit 0
           fi
 
-          # 1) 使用 Python 规范化为多行文本，避免 sed 的多行转义在 YAML 中引起解析问题
-          python3 - "$SRC" "$TMP_NORM" <<'PY'
-import sys, re
-src, dst = sys.argv[1], sys.argv[2]
-data = open(src, 'rb').read()
-data = data.lstrip(b'\xef\xbb\xbf')              # 去 BOM
-text = data.decode('utf-8', 'replace').replace('\r', '')
-# 在 'payload:' 后补换行
-text = re.sub(r'^payload:\s*', 'payload:\n', text)
-# 在 " # > " 之前插入换行
-text = re.sub(r'\s#\s>\s', '\n# > ', text)
-# 在 " - " 之前插入换行（每条规则独立一行）
-text = re.sub(r'\s-\s', '\n  - ', text)
-open(dst, 'w', encoding='utf-8').write(text)
-PY
+          # 1) 规范化为多行（使用 perl 一次性处理，避免 YAML 中 heredoc 引发语法问题）
+          perl -0777 -pe 's/^\x{FEFF}//; s/\r//g; s/^payload:\s*/payload:\n/s; s/\s#\s>\s/\n# > /g; s/\s-\s/\n  - /g;' "$SRC" > "$TMP_NORM"
 
           # 2) 仅保留需要走代理的段落（标题需与文件中的 "# > <Section>" 一致）
           KEEP_SECTIONS="ChatGPT|Chat GPT API & CDN|Claude|Google Gemini|Google DeepMind|Google Generative Language API|Google AI Studio|Google NotebookLM|Meta AI|Perplexity AI|POE"
 
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
-            BEGIN {
-              print "payload:";
-              keep = 0;
-            }
+            BEGIN { print "payload:"; keep=0 }
             /^[[:space:]]*payload:[[:space:]]*$/ { next }   # 丢弃规范化文本里的 payload: 行（我们重建）
             /^#[[:space:]]*>[[:space:]]*/ {
-              name = $0;
-              sub(/^#[[:space:]]*>[[:space:]]*/, "", name);
-              if (name ~ ("^(" KEEP_SECTIONS ")$")) {
-                keep = 1;
-                print "";          # 段前空行
-                print $0;          # 输出段标题
-              } else {
-                keep = 0;
-              }
-              next;
+              name=$0; sub(/^#[[:space:]]*>[[:space:]]*/,"",name);
+              if (name ~ ("^(" KEEP_SECTIONS ")$")) { keep=1; print ""; print $0; }
+              else { keep=0 }
+              next
             }
-            {
-              if (keep) print $0;
-            }
+            { if (keep) print $0 }
           ' "$TMP_NORM" > "$TMP_OUT"
 
           # 3) 校验：确保除了 payload: 外还有内容
           if [ "$(wc -l < "$TMP_OUT")" -le 1 ]; then
-            echo "Error: pruning produced only header without any rules. Dump of first 200 chars of normalized input:"
+            echo "Error: pruning produced only header without any rules."
             head -c 200 "$TMP_NORM" | sed -E ':a;N;$!ba;s/\n/\\n/g'
             rm -f "$TMP_NORM" "$TMP_OUT"
             exit 1
