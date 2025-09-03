@@ -167,14 +167,15 @@ jobs:
           mv "$TMP" "$OUT"
           echo "Successfully updated AD Man.txt with BanAD rules"
 
-      # === 新增：裁剪 AI Suite.yaml 仅保留在香港需要代理的规则段 ===
+      # === 修复版：裁剪 AI Suite.yaml 仅保留在香港需要代理的规则段（先规范化，再筛选） ===
       - name: Prune Rules/Auto/AI Suite.yaml to HK proxy-needed sections
         shell: bash
         run: |
           set -euo pipefail
           SRC="Rules/Auto/AI Suite.yaml"
-          TMP="$(mktemp)"
           OUT="$SRC"
+          TMP_NORM="$(mktemp)"
+          TMP_OUT="$(mktemp)"
 
           if [[ ! -f "$SRC" ]]; then
             echo "Warning: $SRC not found, skipping AI Suite pruning"
@@ -188,27 +189,36 @@ jobs:
             exit 0
           fi
 
-          # 需要保留的段落标题（与文件中的 "# > <Section>" 一致）
+          # 1) 规范化：去 BOM/CR；把单行压缩格式转成多行：
+          #    - 在 'payload:' 后补换行
+          #    - 在 ' # > ' 前插入换行
+          #    - 在 ' - ' 前插入换行（每条规则独立一行）
+          awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | tr -d '\r' \
+            | sed -E 's/^payload:[[:space:]]*/payload:\n/' \
+            | sed 's/ # >/\
+# > /g' \
+            | sed 's/ - /\
+  - /g' \
+            > "$TMP_NORM"
+
+          # 2) 仅保留需要走代理的段落
+          # 与 AI Suite.yaml 中的段落标题保持一致（区分大小写、精确匹配）
           KEEP_SECTIONS="ChatGPT|Chat GPT API & CDN|Claude|Google Gemini|Google DeepMind|Google Generative Language API|Google AI Studio|Google NotebookLM|Meta AI|Perplexity AI|POE"
 
-          # 说明：
-          # - 去除 BOM/CR 与重复 payload:，重建为仅 payload:+需要的段
-          # - 依据 "# > " 段落标题切换 keep 开关，非保留段落全部丢弃
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
             BEGIN {
               print "payload:";
               keep = 0;
             }
-            NR==1 { sub(/^\xef\xbb\xbf/, "", $0) }           # 去 BOM
-            { sub(/\r$/, "", $0) }                           # 去 CR
-            /^[[:space:]]*payload:[[:space:]]*$/ { next }    # 丢弃原 payload: 行
+            /^[[:space:]]*payload:[[:space:]]*$/ { next }   # 丢弃规范化文本里的 payload: 行（我们重建）
             /^#[[:space:]]*>[[:space:]]*/ {
               name = $0;
               sub(/^#[[:space:]]*>[[:space:]]*/, "", name);
               if (name ~ ("^(" KEEP_SECTIONS ")$")) {
                 keep = 1;
-                print "";                                    # 段前空行
-                print $0;                                    # 输出段标题
+                print "";          # 段前空行
+                print $0;          # 输出段标题
               } else {
                 keep = 0;
               }
@@ -217,16 +227,18 @@ jobs:
             {
               if (keep) print $0;
             }
-          ' "$SRC" > "$TMP"
+          ' "$TMP_NORM" > "$TMP_OUT"
 
-          # 简单校验：至少包含我们重建的 payload:
-          if ! head -n1 "$TMP" | grep -q "^payload:"; then
-            echo "Error: pruning produced invalid output (missing payload:). Aborting replacement."
-            rm -f "$TMP"
+          # 3) 校验：确保除了 payload: 外还有内容
+          if [ "$(wc -l < "$TMP_OUT")" -le 1 ]; then
+            echo "Error: pruning produced only header without any rules. Dumping first 200 chars of normalized input for debugging:"
+            head -c 200 "$TMP_NORM" | sed -E ':a;N;$!ba;s/\n/\\n/g'
+            rm -f "$TMP_NORM" "$TMP_OUT"
             exit 1
           fi
 
-          mv "$TMP" "$OUT"
+          mv "$TMP_OUT" "$OUT"
+          rm -f "$TMP_NORM"
           echo "Successfully pruned $OUT to HK proxy-needed sections"
 
       - name: Generate Rules/System/ChinaASN.txt from ASN-China
