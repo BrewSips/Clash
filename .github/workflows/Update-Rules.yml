@@ -167,7 +167,7 @@ jobs:
           mv "$TMP" "$OUT"
           echo "Successfully updated AD Man.txt with BanAD rules"
 
-      # === 修复版：裁剪 AI Suite.yaml 仅保留在香港需要代理的规则段（先规范化，再筛选） ===
+      # === 裁剪 AI Suite.yaml（payload: 后留一空行，段落间一空行，段内紧凑） ===
       - name: Prune Rules/Auto/AI Suite.yaml to HK proxy-needed sections
         shell: bash
         run: |
@@ -182,34 +182,44 @@ jobs:
             exit 0
           fi
 
-          # 5MB 安全限制
           filesize=$(stat -c%s "$SRC")
           if [ "$filesize" -gt 5242880 ]; then
             echo "Warning: $SRC is too large ($filesize bytes), skipping pruning"
             exit 0
           fi
 
-          # 1) 规范化为多行（使用 perl 一次性处理，避免 YAML 中 heredoc 引发语法问题）
+          # 规范化为多行
           perl -0777 -pe 's/^\x{FEFF}//; s/\r//g; s/^payload:\s*/payload:\n/s; s/\s#\s>\s/\n# > /g; s/\s-\s/\n  - /g;' "$SRC" > "$TMP_NORM"
 
-          # 2) 仅保留需要走代理的段落（标题需与文件中的 "# > <Section>" 一致）
           KEEP_SECTIONS="ChatGPT|Chat GPT API & CDN|Claude|Google Gemini|Google DeepMind|Google Generative Language API|Google AI Studio|Google NotebookLM|Meta AI|Perplexity AI|POE"
 
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
-            BEGIN { print "payload:"; keep=0 }
-            /^[[:space:]]*payload:[[:space:]]*$/ { next }   # 丢弃规范化文本里的 payload: 行（我们重建）
+            BEGIN { print "payload:\n"; keep=0; printed=0 }
+            /^[[:space:]]*payload:[[:space:]]*$/ { next }
             /^#[[:space:]]*>[[:space:]]*/ {
-              name=$0; sub(/^#[[:space:]]*>[[:space:]]*/,"",name);
-              if (name ~ ("^(" KEEP_SECTIONS ")$")) { keep=1; print ""; print $0; }
-              else { keep=0 }
+              name=$0; sub(/^#[[:space:]]*>[[:space:]]*/,"",name)
+              if (name ~ ("^(" KEEP_SECTIONS ")$")) {
+                keep=1
+                if (printed) print ""
+                print "# > " name
+                printed=1
+              } else { keep=0 }
               next
             }
-            { if (keep) print $0 }
+            {
+              if (keep) {
+                if ($0 ~ /^[[:space:]]*-[[:space:]]*/) {
+                  sub(/^[[:space:]]*-[[:space:]]*/, "  - ", $0)
+                  print $0
+                } else if ($0 ~ /^[[:space:]]{2}-[[:space:]]*/) {
+                  print $0
+                }
+              }
+            }
           ' "$TMP_NORM" > "$TMP_OUT"
 
-          # 3) 校验：确保除了 payload: 外还有内容
-          if [ "$(wc -l < "$TMP_OUT")" -le 1 ]; then
-            echo "Error: pruning produced only header without any rules."
+          if [ "$(wc -l < "$TMP_OUT")" -le 2 ]; then
+            echo "Error: pruning produced invalid output."
             head -c 200 "$TMP_NORM" | sed -E ':a;N;$!ba;s/\n/\\n/g'
             rm -f "$TMP_NORM" "$TMP_OUT"
             exit 1
@@ -217,7 +227,7 @@ jobs:
 
           mv "$TMP_OUT" "$OUT"
           rm -f "$TMP_NORM"
-          echo "Successfully pruned $OUT to HK proxy-needed sections"
+          echo "Successfully pruned $OUT (payload: +1 empty line, compact rules)"
 
       - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
@@ -234,15 +244,13 @@ jobs:
             exit 1
           fi
           
-          # 检查文件大小
           filesize=$(stat -c%s "$TMP")
-          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+          if [ "$filesize" -gt 5242880 ]; then
             echo "Warning: ASN-China list is too large ($filesize bytes), skipping processing"
             rm "$TMP"
             exit 1
           fi
           
-          # 检查文件内容有效性
           if ! grep -q "IP-ASN" "$TMP"; then
             echo "Warning: ASN-China list format seems invalid, skipping processing"
             cat "$TMP" | head -n 10
