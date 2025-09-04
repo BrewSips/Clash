@@ -55,3 +55,7 @@ payload:
 
 # > POE
   - DOMAIN-SUFFIX,poe.com
+
+# > Sora
+  - DOMAIN-SUFFIX,sora.com
+  - DOMAIN,sora-cdn.oaistatic.com
