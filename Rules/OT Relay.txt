@@ -1,3 +1,5 @@
 payload:
   # > OT Relay
 ####
+# Qobuz
+  - DOMAIN-SUFFIX,qobuz.com
