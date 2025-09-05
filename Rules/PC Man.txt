@@ -1,3 +1,4 @@
 payload:
   # > PC Man
 ####
+- DOMAIN,milink.pandora.xiaomi.com
