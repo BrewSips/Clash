@@ -1,5 +1,7 @@
 payload:
   # > PC Man
 ####
-- DOMAIN,milink.pandora.xiaomi.com
-- DOMAIN-SUFFIX,jddebug.com
+  - DOMAIN,milink.pandora.xiaomi.com
+  - DOMAIN,metrics-picture.d.meituan.net
+  - DOMAIN,maplocatesdksnapshot.d.meituan.net
+  - DOMAIN-SUFFIX,jddebug.com
