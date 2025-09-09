@@ -64,15 +64,17 @@ jobs:
           echo "Fetching Google domains..."
           if curl -fsSL --connect-timeout 10 --max-time 60 "$domains_url" -o "$tmp_file"; then
             while IFS= read -r line; do
-              line="${line%%#*}"
-              line="$(echo "$line" | xargs)"
+              line="${line%%#*}"           # 去掉注释
+              line="${line%%@*}"           # 去掉 @cn / @!cn 标签
+              line="$(echo "$line" | xargs)" # 去掉首尾空格
               [ -z "$line" ] && continue
+
               if [[ "$line" == full:* ]]; then
                 payload+=("DOMAIN,${line#full:}")
               elif [[ "$line" == domain:* ]]; then
                 payload+=("DOMAIN-SUFFIX,${line#domain:}")
-              elif [[ "$line" == keyword:* ]]; then
-                payload+=("DOMAIN-KEYWORD,${line#keyword:}")
+              else
+                payload+=("DOMAIN-SUFFIX,$line")
               fi
             done < "$tmp_file"
           else
