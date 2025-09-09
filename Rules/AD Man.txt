@@ -2,12 +2,13 @@ payload:
   # > AD Man
 ####
 # Google
-  - DOMAIN,ad.doubleclick.net
-  - DOMAIN,pubads.g.doubleclick.net
-  - DOMAIN,securepubads.g.doubleclick.net
-  - DOMAIN,googleads.g.doubleclick.net
-  - DOMAIN,googleads.g.doubleclick-cn.net
-  - DOMAIN,pagead2.googlesyndication.com
+  - DOMAIN-KEYWORD,googleadservices
+  - DOMAIN-KEYWORD,googletagservices
+  - DOMAIN-KEYWORD,googleservices
+  - DOMAIN-KEYWORD,googlesyndication
+  - DOMAIN-KEYWORD,doubleclick
+  - DOMAIN-KEYWORD,google-analytics
+  - DOMAIN-KEYWORD,googletagmanager
 # TVB
   - DOMAIN,mai.tvb.com
 # HOY
