@@ -102,7 +102,6 @@ jobs:
               }
 
               convert_list_to_rules() {
-                # 将某个 data/xxx 文件转换为规则行（DOMAIN/DOMAIN-SUFFIX），输出到 stdout
                 local name="$1"
                 local url="$base_url/$name"
                 local tmp_file
@@ -114,15 +113,12 @@ jobs:
                     line="$(echo "$line" | xargs)"
                     [ -z "$line" ] && continue
 
-                    if [[ "$line" == include:* ]]; then
-                      # AD 文件这步不解析 include，按你的要求只取 google-ads 自身内容
-                      continue
-                    elif [[ "$line" == full:* ]]; then
-                      echo "DOMAIN,${line#full:}"
+                    if [[ "$line" == full:* ]]; then
+                      echo "- DOMAIN,${line#full:}"
                     elif [[ "$line" == domain:* ]]; then
-                      echo "DOMAIN-SUFFIX,${line#domain:}"
+                      echo "- DOMAIN-SUFFIX,${line#domain:}"
                     else
-                      echo "DOMAIN-SUFFIX,$line"
+                      echo "- DOMAIN-SUFFIX,$line"
                     fi
                   done < "$tmp_file"
                 else
@@ -155,16 +151,10 @@ jobs:
                 printf "  - %s\n" "${payload[@]}" | sort -u
               } > "$out_file"
 
-              # 仅将 google-ads 的内容转换后追加到 AD Man.txt 尾部（并去重）
-              echo "Appending converted google-ads rules to $ad_file ..."
+              # 将 google-ads 转换后追加到 AD Man.txt 尾部（不改动原有内容）
+              echo "Appending google-ads rules to $ad_file ..."
               touch "$ad_file"
-              {
-                convert_list_to_rules "$ads_entry"
-                # 保证换行
-                echo ""
-              } >> "$ad_file"
-              # 去重保持整洁
-              sort -u "$ad_file" -o "$ad_file"
+              convert_list_to_rules "$ads_entry" >> "$ad_file"
 
               echo "Google rules saved to $out_file"
               echo "google-ads rules appended to $ad_file"
