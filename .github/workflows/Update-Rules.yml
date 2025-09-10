@@ -293,7 +293,7 @@ jobs:
           perl -0777 -pe 's/^\x{FEFF}//; s/\r//g; s/^payload:\s*/payload:\n/s; s/\s#\s>\s/\n# > /g; s/\s-\s/\n  - /g;' "$SRC" > "$TMP_NORM"
 
           # 关键词白名单（模糊匹配）。凡标题包含这些关键词的段落都保留（在港需代理）
-          KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|Google|Gemini|DeepMind|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
+          KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
 
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
             BEGIN { IGNORECASE=1; print "payload:\n"; keep=0; printed=0 }
