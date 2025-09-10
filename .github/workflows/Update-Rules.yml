@@ -116,6 +116,76 @@ jobs:
             echo "HK Relay rules appended to $hk_file"
           fi
 
+      - name: Append AD Rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+          ad_file="Rules/AD Man.txt"
+
+          trim() { echo "$1" | xargs; }
+
+          convert_list_to_rules() {
+            local name="$1"
+            local url="$base_url/$name"
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+
+              line="${line%%@*}"  # 去掉标签
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                convert_list_to_rules "$sub"
+              elif [[ "$line" == full:* ]]; then
+                echo "  - DOMAIN,${line#full:}"
+              elif [[ "$line" == domain:* ]]; then
+                echo "  - DOMAIN-SUFFIX,${line#domain:}"
+              elif [[ "$line" == keyword:* ]]; then
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                echo "  - $line"
+              elif [[ "$line" == regexp:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regexp:}"
+              elif [[ "$line" == regex:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regex:}"
+              else
+                echo "  - DOMAIN-SUFFIX,$line"
+              fi
+            done < "$tmp_file"
+          }
+
+          echo "Appending AD rules to $ad_file (guarded by markers)..."
+          touch "$ad_file"
+
+          for entry in category-httpdns-cn sina-ads; do
+            marker_start="### BEGIN AUTO $entry (do not edit)"
+            marker_end="### END AUTO $entry"
+
+            if grep -Fq "$marker_start" "$ad_file"; then
+              echo "Markers for $entry found, skip appending"
+            else
+              {
+                echo ""
+                echo "$marker_start"
+                echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+                convert_list_to_rules "$entry"
+                echo "$marker_end"
+              } >> "$ad_file"
+              echo "Appended $entry rules to $ad_file"
+            fi
+          done
+
       - name: Download and Convert Google Domains & IPs into Rules/Auto
         shell: bash
         run: |
