@@ -1,37 +1,84 @@
-payload:
+
   # > AD Man
-####
-# Google
-  - DOMAIN-KEYWORD,googleadservices
-  - DOMAIN-KEYWORD,googletagservices
-  - DOMAIN-KEYWORD,googleservices
-  - DOMAIN-KEYWORD,googlesyndication
+  # 本碎片只包含常见广告关键字、广告联盟。无副作用，放心使用
+  - DOMAIN,ad.crwdcntrl.net
+  - DOMAIN,adc3-launch.adcolony.com
+  - DOMAIN,ads.pubmatic.com
+  - DOMAIN,adscreative.hoy.tv
+  - DOMAIN,adx.v.mitvos.com
+  - DOMAIN,algoad.hoy.tv
+  - DOMAIN,api.ad.xiaomi.com
+  - DOMAIN,bcp.crwdcntrl.net
+  - DOMAIN,config.ptmi.gitv.tv
+  - DOMAIN,display-algoad.hoy.tv
+  - DOMAIN,galaxy.bjcathay.com
+  - DOMAIN,mai.tvb.com
+  - DOMAIN,mi.gdt.qq.com
+  - DOMAIN,sdk.e.qq.com
+  - DOMAIN,sdkconfig.ad.xiaomi.com
+  - DOMAIN,wd.adcolony.com
   - DOMAIN-KEYWORD,doubleclick
   - DOMAIN-KEYWORD,google-analytics
+  - DOMAIN-KEYWORD,googleadservices
+  - DOMAIN-KEYWORD,googleservices
+  - DOMAIN-KEYWORD,googlesyndication
   - DOMAIN-KEYWORD,googletagmanager
-# TVB
-  - DOMAIN,mai.tvb.com
-# HOY
-  - DOMAIN,adscreative.hoy.tv
-  - DOMAIN,algoad.hoy.tv
-  - DOMAIN,display-algoad.hoy.tv
-# Viu
-  - DOMAIN,ad.crwdcntrl.net
-  - DOMAIN,bcp.crwdcntrl.net
-  - DOMAIN,wd.adcolony.com
-  - DOMAIN,adc3-launch.adcolony.com
+  - DOMAIN-KEYWORD,googletagservices
+# Google
 # HK01
-  - DOMAIN,ads.pubmatic.com
+# HOY
+# TVB
+# Viu
 # 央视影音
-  - DOMAIN,galaxy.bjcathay.com
-# 联合早报
-  - DOMAIN,sdk.e.qq.com
-  - DOMAIN,mi.gdt.qq.com
 # 小米电视
-  - DOMAIN,adx.v.mitvos.com
-  - DOMAIN,api.ad.xiaomi.com
-  - DOMAIN,sdkconfig.ad.xiaomi.com
-  - DOMAIN,config.ptmi.gitv.tv
+# 联合早报
+####
+DOMAIN,analytics.google.com
+DOMAIN-SUFFIX,2mdn-cn.net
+DOMAIN-SUFFIX,2mdn.net
+DOMAIN-SUFFIX,admob-cn.com
+DOMAIN-SUFFIX,admob.com
+DOMAIN-SUFFIX,ads.youtube.com
+DOMAIN-SUFFIX,adsense.com
+DOMAIN-SUFFIX,adsensecustomsearchads.com
+DOMAIN-SUFFIX,adsenseformobileapps.com
+DOMAIN-SUFFIX,adservice.google.com
+DOMAIN-SUFFIX,advertisercommunity.com
+DOMAIN-SUFFIX,advertiserscommunity.com
+DOMAIN-SUFFIX,adwords-community.com
+DOMAIN-SUFFIX,adwords.com
+DOMAIN-SUFFIX,adwordsexpress.com
+DOMAIN-SUFFIX,app-measurement-cn.com
+DOMAIN-SUFFIX,app-measurement.com
+DOMAIN-SUFFIX,doubleclick-cn.net
+DOMAIN-SUFFIX,doubleclick.cn
+DOMAIN-SUFFIX,doubleclick.com
+DOMAIN-SUFFIX,doubleclick.net
+DOMAIN-SUFFIX,google-analytics-cn.com
+DOMAIN-SUFFIX,google-analytics.com
+DOMAIN-SUFFIX,googleadapis.com
+DOMAIN-SUFFIX,googleads-cn.com
+DOMAIN-SUFFIX,googleads.com
+DOMAIN-SUFFIX,googleadservices-cn.com
+DOMAIN-SUFFIX,googleadservices.com
+DOMAIN-SUFFIX,googleadsserving.cn
+DOMAIN-SUFFIX,googleanalytics.com
+DOMAIN-SUFFIX,googleoptimize-cn.com
+DOMAIN-SUFFIX,googleoptimize.com
+DOMAIN-SUFFIX,googlesyndication-cn.com
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN-SUFFIX,googletagmanager-cn.com
+DOMAIN-SUFFIX,googletagmanager.com
+DOMAIN-SUFFIX,googletagservices-cn.com
+DOMAIN-SUFFIX,googletagservices.com
+DOMAIN-SUFFIX,googletraveladservices-cn.com
+DOMAIN-SUFFIX,googletraveladservices.com
+DOMAIN-SUFFIX,googlevads-cn.com
+DOMAIN-SUFFIX,mail-ads.google.com
+DOMAIN-SUFFIX,marketingplatform.google.com
+DOMAIN-SUFFIX,regexp:^adservice.google.([a-z]{2}|com?)(.[a-z]{2})?$
+DOMAIN-SUFFIX,urchin.com
+payload:
 
 # BEGIN BanAD (auto)
   # 本碎片只包含常见广告关键字、广告联盟。无副作用，放心使用
