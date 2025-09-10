@@ -295,12 +295,12 @@ jobs:
           # 关键词白名单（模糊匹配）。凡标题包含这些关键词的段落都保留（在港需代理）
           KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
 
-          KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
+          awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
             BEGIN { IGNORECASE=1; print "payload:\n"; keep=0; printed=0 }
             /^[[:space:]]*payload:[[:space:]]*$/ { next }
             /^#[[:space:]]*>[[:space:]]*/ {
               name=$0; sub(/^#[[:space:]]*>[[:space:]]*/,"",name)
-              if (name ~ (KEEP_SECTIONS)) {   # 模糊匹配：只要包含关键词即可
+              if (name ~ KEEP_SECTIONS) {   # 模糊匹配：只要包含关键词即可
                 keep=1
                 if (printed) print ""         # 段落之间 1 行空行
                 print "# > " name
