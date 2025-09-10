@@ -53,18 +53,20 @@ jobs:
         run: |
               set -euo pipefail
               mkdir -p Rules/Auto
+              mkdir -p Rules
               
               base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
               domains_entry="google"
+              ads_entry="google-ads"
               ips_url="https://www.gstatic.com/ipranges/goog.json"
 
               out_file="Rules/Auto/Google.yaml"
+              ad_file="Rules/AD Man.txt"
               payload=()
               visited=()
 
               fetch_and_parse() {
                 local name="$1"
-                # 防止重复解析
                 if [[ " ${visited[*]} " == *" $name "* ]]; then
                   return
                 fi
@@ -76,24 +78,55 @@ jobs:
                 tmp_file="$(mktemp)"
                 if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
                   while IFS= read -r line; do
-                    line="${line%%#*}"            # 去掉注释
-                    line="${line%%@*}"            # 去掉 @cn / @!cn 标签
+                    line="${line%%#*}"             # 去掉注释
+                    line="${line%%@*}"             # 去掉 @cn / @!cn 标签
                     line="$(echo "$line" | xargs)" # 去掉首尾空格
                     [ -z "$line" ] && continue
 
                     if [[ "$line" == include:* ]]; then
                       sub="${line#include:}"
                       fetch_and_parse "$sub"
-                    elif [[ "$line" == full:* ]]; then
-                      payload+=("DOMAIN,${line#full:}")
-                    elif [[ "$line" == domain:* ]]; then
-                      payload+=("DOMAIN-SUFFIX,${line#domain:}")
                     else
-                      payload+=("DOMAIN-SUFFIX,$line")
+                      if [[ "$line" == full:* ]]; then
+                        payload+=("DOMAIN,${line#full:}")
+                      elif [[ "$line" == domain:* ]]; then
+                        payload+=("DOMAIN-SUFFIX,${line#domain:}")
+                      else
+                        payload+=("DOMAIN-SUFFIX,$line")
+                      fi
                     fi
                   done < "$tmp_file"
                 else
                   echo "Warning: Failed to fetch $name"
+                fi
+              }
+
+              convert_list_to_rules() {
+                # 将某个 data/xxx 文件转换为规则行（DOMAIN/DOMAIN-SUFFIX），输出到 stdout
+                local name="$1"
+                local url="$base_url/$name"
+                local tmp_file
+                tmp_file="$(mktemp)"
+                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+                  while IFS= read -r line; do
+                    line="${line%%#*}"
+                    line="${line%%@*}"
+                    line="$(echo "$line" | xargs)"
+                    [ -z "$line" ] && continue
+
+                    if [[ "$line" == include:* ]]; then
+                      # AD 文件这步不解析 include，按你的要求只取 google-ads 自身内容
+                      continue
+                    elif [[ "$line" == full:* ]]; then
+                      echo "DOMAIN,${line#full:}"
+                    elif [[ "$line" == domain:* ]]; then
+                      echo "DOMAIN-SUFFIX,${line#domain:}"
+                    else
+                      echo "DOMAIN-SUFFIX,$line"
+                    fi
+                  done < "$tmp_file"
+                else
+                  echo "Warning: Failed to fetch $name" >&2
                 fi
               }
 
@@ -115,14 +148,26 @@ jobs:
                 echo "Warning: Failed to fetch Google IP ranges"
               fi
 
-              # 去重并写入 YAML
+              # 写入 Google.yaml（去重）
               {
                 echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')"
                 echo "payload:"
                 printf "  - %s\n" "${payload[@]}" | sort -u
               } > "$out_file"
 
+              # 仅将 google-ads 的内容转换后追加到 AD Man.txt 尾部（并去重）
+              echo "Appending converted google-ads rules to $ad_file ..."
+              touch "$ad_file"
+              {
+                convert_list_to_rules "$ads_entry"
+                # 保证换行
+                echo ""
+              } >> "$ad_file"
+              # 去重保持整洁
+              sort -u "$ad_file" -o "$ad_file"
+
               echo "Google rules saved to $out_file"
+              echo "google-ads rules appended to $ad_file"
 
       - name: Download Rules into Rules/Text
         shell: bash
