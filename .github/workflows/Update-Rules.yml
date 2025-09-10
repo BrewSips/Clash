@@ -278,6 +278,102 @@ jobs:
             echo "Saved $outfile"
           done
 
+      - name: Download and Convert Apple & Microsoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Auto
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+
+          declare -A entries=(
+            ["apple"]="Apple"
+            ["microsoft"]="Microsoft"
+          )
+
+          trim() { echo "$1" | xargs; }
+
+          fetch_and_parse_split() {
+            local name="$1"
+            local outfile_cn="$2"
+            local outfile_global="$3"
+
+            if [[ -n "${visited[$name]+x}" ]]; then
+              return
+            fi
+            visited[$name]=1
+
+            local url="$base_url/$name"
+            echo "Fetching $name ..."
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              raw="$line"
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                fetch_and_parse_split "$sub" "$outfile_cn" "$outfile_global"
+                continue
+              fi
+
+              # 判断是否带 @cn
+              if [[ "$raw" == *@cn* ]]; then
+                target="$outfile_cn"
+              else
+                target="$outfile_global"
+              fi
+
+              # 去掉标签
+              line="${line%%@*}"
+
+              if [[ "$line" == full:* ]]; then
+                echo "  - DOMAIN,${line#full:}" >> "$target"
+              elif [[ "$line" == domain:* ]]; then
+                echo "  - DOMAIN-SUFFIX,${line#domain:}" >> "$target"
+              elif [[ "$line" == keyword:* ]]; then
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$target"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                echo "  - $line" >> "$target"
+              elif [[ "$line" == regexp:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regexp:}" >> "$target"
+              elif [[ "$line" == regex:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regex:}" >> "$target"
+              else
+                echo "  - DOMAIN-SUFFIX,$line" >> "$target"
+              fi
+            done < "$tmp_file"
+          }
+
+          for entry in "${!entries[@]}"; do
+            base_name="${entries[$entry]}"
+            outfile_global="Rules/Auto/${base_name}.txt"
+            outfile_cn="Rules/Auto/${base_name}CN.txt"
+
+            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_global"
+            echo "payload:" >> "$outfile_global"
+            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_cn"
+            echo "payload:" >> "$outfile_cn"
+
+            declare -A visited=()
+            fetch_and_parse_split "$entry" "$outfile_cn" "$outfile_global"
+
+            # 去重
+            for f in "$outfile_global" "$outfile_cn"; do
+              tmp="$(mktemp)"
+              awk '!seen[$0]++' "$f" > "$tmp"
+              mv "$tmp" "$f"
+              echo "Saved $f"
+            done
+          done
+
       - name: Download Rules into Rules/Text
         shell: bash
         run: |
