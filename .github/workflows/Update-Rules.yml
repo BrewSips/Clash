@@ -46,6 +46,76 @@ jobs:
             echo "Successfully downloaded $decoded_name"
           done
 
+      - name: Append HK Relay Rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+
+          hk_file="Rules/HK Relay.txt"
+          marker_start="### BEGIN AUTO HK Relay (do not edit)"
+          marker_end="### END AUTO HK Relay"
+
+          trim() { echo "$1" | xargs; }
+
+          convert_list_to_rules() {
+            local name="$1"
+            local url="$base_url/$name"
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+
+              line="${line%%@*}"  # 去掉标签
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                convert_list_to_rules "$sub"
+              elif [[ "$line" == full:* ]]; then
+                echo "  - DOMAIN,${line#full:}"
+              elif [[ "$line" == domain:* ]]; then
+                echo "  - DOMAIN-SUFFIX,${line#domain:}"
+              elif [[ "$line" == keyword:* ]]; then
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                echo "  - $line"
+              elif [[ "$line" == regexp:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regexp:}"
+              elif [[ "$line" == regex:* ]]; then
+                echo "  - DOMAIN-REGEX,${line#regex:}"
+              else
+                echo "  - DOMAIN-SUFFIX,$line"
+              fi
+            done < "$tmp_file"
+          }
+
+          echo "Appending HK Relay entries to $hk_file (guarded by markers)..."
+          touch "$hk_file"
+
+          if grep -Fq "$marker_start" "$hk_file"; then
+            echo "Markers found, skip appending to $hk_file"
+          else
+            {
+              echo ""
+              echo "$marker_start"
+              echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+              for entry in mytvsuper viu rthk now; do
+                convert_list_to_rules "$entry"
+              done
+              echo "$marker_end"
+            } >> "$hk_file"
+            echo "HK Relay rules appended to $hk_file"
+          fi
+
       - name: Download and Convert Google Domains & IPs into Rules/Auto
         shell: bash
         run: |
