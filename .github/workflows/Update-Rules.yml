@@ -18,6 +18,8 @@ jobs:
           set -euo pipefail
           mkdir -p Rules/Auto
           urls=(
+            #"https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/Providers/BanAD.yaml"
+            "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/YouTube.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Apple%20TV.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Disney%20Plus.yaml"
             "https://raw.githubusercontent.com/dler-io/Rules/main/Clash/Provider/Media/Netflix.yaml"
@@ -49,155 +51,127 @@ jobs:
       - name: Download and Convert Google Domains & IPs into Rules/Auto
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p Rules/Auto
-          mkdir -p Rules
+              set -euo pipefail
+              mkdir -p Rules/Auto
+              mkdir -p Rules
+              
+              base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+              domains_entry="google"
+              ads_entry="google-ads"
+              ips_url="https://www.gstatic.com/ipranges/goog.json"
 
-          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
-          domains_entry="google"
-          ads_entry="google-ads"
-          ips_url="https://www.gstatic.com/ipranges/goog.json"
+              out_file="Rules/Auto/Google.yaml"
+              ad_file="Rules/AD Man.txt"
+              payload=()
+              visited=()
 
-          out_file="Rules/Auto/Google.yaml"
-          ad_file="Rules/AD Man.txt"
-          payload=()
-          visited=()
+              fetch_and_parse() {
+                local name="$1"
+                if [[ " ${visited[*]} " == *" $name "* ]]; then
+                  return
+                fi
+                visited+=("$name")
 
-          # 域名合法性检查函数
-          validate_domain() {
-          local domain="$1"
-          # 合法域名：字母/数字/中划线/点，不能以 - 或 . 开头结尾，顶级域至少2位
-          if [[ "$domain" =~ ^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)*[a-zA-Z]{2,}$ ]]; then
-          return 0
-          fi
-          return 1
-          }
+                local url="$base_url/$name"
+                echo "Fetching $name ..."
+                local tmp_file
+                tmp_file="$(mktemp)"
+                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+                  while IFS= read -r line; do
+                    line="${line%%#*}"             # 去掉注释
+                    line="${line%%@*}"             # 去掉 @cn / @!cn 标签
+                    line="$(echo "$line" | xargs)" # 去掉首尾空格
+                    [ -z "$line" ] && continue
 
-          fetch_and_parse() {
-          local name="$1"
-          if [[ " ${visited[*]} " == *" $name "* ]]; then
-          return
-          fi
-          visited+=("$name")
+                    if [[ "$line" == include:* ]]; then
+                      sub="${line#include:}"
+                      fetch_and_parse "$sub"
+                    else
+                      if [[ "$line" == full:* ]]; then
+                        payload+=("DOMAIN,${line#full:}")
+                      elif [[ "$line" == domain:* ]]; then
+                        payload+=("DOMAIN-SUFFIX,${line#domain:}")
+                      else
+                        payload+=("DOMAIN-SUFFIX,$line")
+                      fi
+                    fi
+                  done < "$tmp_file"
+                else
+                  echo "Warning: Failed to fetch $name"
+                fi
+              }
 
-          local url="$base_url/$name"
-          echo "Fetching $name ..."
-          local tmp_file
-          tmp_file="$(mktemp)"
-          if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
-          while IFS= read -r line; do
-          line="${line%%#*}"             # 去掉注释
-          line="${line%%@*}"             # 去掉 @cn / @!cn 标签
-          line="$(echo "$line" | xargs)" # 去掉首尾空格
-          [ -z "$line" ] && continue
+              convert_list_to_rules() {
+                local name="$1"
+                local url="$base_url/$name"
+                local tmp_file
+                tmp_file="$(mktemp)"
+                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+                  while IFS= read -r line; do
+                    line="${line%%#*}"
+                    line="${line%%@*}"
+                    line="$(echo "$line" | xargs)"
+                    [ -z "$line" ] && continue
 
-          if [[ "$line" == include:* ]]; then
-          sub="${line#include:}"
-          fetch_and_parse "$sub"
-          else
-          if [[ "$line" == full:* ]]; then
-          dom="${line#full:}"
-          if validate_domain "$dom"; then
-          payload+=("DOMAIN,$dom")
-          fi
-          elif [[ "$line" == domain:* ]]; then
-          dom="${line#domain:}"
-          if validate_domain "$dom"; then
-          payload+=("DOMAIN-SUFFIX,$dom")
-          fi
-          else
-          dom="$line"
-          if validate_domain "$dom"; then
-          payload+=("DOMAIN-SUFFIX,$dom")
-          fi
-          fi
-          fi
-          done < "$tmp_file"
-          else
-          echo "Warning: Failed to fetch $name"
-          fi
-          }
+                    # 只处理 google-ads 自身条目，不递归 include
+                    if [[ "$line" == full:* ]]; then
+                      echo "  - DOMAIN,${line#full:}"
+                    elif [[ "$line" == domain:* ]]; then
+                      echo "  - DOMAIN-SUFFIX,${line#domain:}"
+                    else
+                      echo "  - DOMAIN-SUFFIX,$line"
+                    fi
+                  done < "$tmp_file"
+                else
+                  echo "Warning: Failed to fetch $name" >&2
+                fi
+              }
 
-          convert_list_to_rules() {
-          local name="$1"
-          local url="$base_url/$name"
-          local tmp_file
-          tmp_file="$(mktemp)"
-          if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
-          while IFS= read -r line; do
-          line="${line%%#*}"
-          line="${line%%@*}"
-          line="$(echo "$line" | xargs)"
-          [ -z "$line" ] && continue
+              echo "Fetching Google domains (with includes)..."
+              fetch_and_parse "$domains_entry"
 
-          # 只处理 google-ads 自身条目，不递归 include
-          if [[ "$line" == full:* ]]; then
-          dom="${line#full:}"
-          if validate_domain "$dom"; then
-          echo "  - DOMAIN,$dom"
-          fi
-          elif [[ "$line" == domain:* ]]; then
-          dom="${line#domain:}"
-          if validate_domain "$dom"; then
-          echo "  - DOMAIN-SUFFIX,$dom"
-          fi
-          else
-          dom="$line"
-          if validate_domain "$dom"; then
-          echo "  - DOMAIN-SUFFIX,$dom"
-          fi
-          fi
-          done < "$tmp_file"
-          else
-          echo "Warning: Failed to fetch $name" >&2
-          fi
-          }
+              echo "Fetching Google IP ranges..."
+              tmp_file="$(mktemp)"
+              if curl -fsSL --connect-timeout 10 --max-time 60 "$ips_url" -o "$tmp_file"; then
+                ipv4s=$(jq -r '.prefixes[]?.ipv4Prefix // empty' "$tmp_file")
+                ipv6s=$(jq -r '.prefixes[]?.ipv6Prefix // empty' "$tmp_file")
+                for ip in $ipv4s; do
+                  payload+=("IP-CIDR,$ip,no-resolve")
+                done
+                for ip in $ipv6s; do
+                  payload+=("IP-CIDR6,$ip,no-resolve")
+                done
+              else
+                echo "Warning: Failed to fetch Google IP ranges"
+              fi
 
-          echo "Fetching Google domains (with includes)..."
-          fetch_and_parse "$domains_entry"
+              # 写入 Google.yaml（去重）
+              {
+                echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')"
+                echo "payload:"
+                printf "  - %s\n" "${payload[@]}" | sort -u
+              } > "$out_file"
 
-          echo "Fetching Google IP ranges..."
-          tmp_file="$(mktemp)"
-          if curl -fsSL --connect-timeout 10 --max-time 60 "$ips_url" -o "$tmp_file"; then
-          ipv4s=$(jq -r '.prefixes[]?.ipv4Prefix // empty' "$tmp_file")
-          ipv6s=$(jq -r '.prefixes[]?.ipv6Prefix // empty' "$tmp_file")
-          for ip in $ipv4s; do
-          payload+=("IP-CIDR,$ip,no-resolve")
-          done
-          for ip in $ipv6s; do
-          payload+=("IP-CIDR6,$ip,no-resolve")
-          done
-          else
-          echo "Warning: Failed to fetch Google IP ranges"
-          fi
+              # 只在 AD Man.txt 末尾追加（带标志，避免重复追加）
+              echo "Appending google-ads rules to $ad_file (once, guarded by markers) ..."
+              touch "$ad_file"
+              marker_start="### BEGIN AUTO google-ads (do not edit)"
+              marker_end="### END AUTO google-ads"
 
-          # 写入 Google.yaml（去重）
-          {
-          echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')"
-          echo "payload:"
-          printf "  - %s\n" "${payload[@]}" | sort -u
-          } > "$out_file"
+              if grep -Fq "$marker_start" "$ad_file"; then
+                echo "Markers found, skip appending to $ad_file"
+              else
+                {
+                  echo ""
+                  echo "$marker_start"
+                  echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+                  convert_list_to_rules "$ads_entry"
+                  echo "$marker_end"
+                } >> "$ad_file"
+              fi
 
-          # 只在 AD Man.txt 末尾追加（带标志，避免重复追加）
-          echo "Appending google-ads rules to $ad_file (once, guarded by markers) ..."
-          touch "$ad_file"
-          marker_start="### BEGIN AUTO google-ads (do not edit)"
-          marker_end="### END AUTO google-ads"
-
-          if grep -Fq "$marker_start" "$ad_file"; then
-          echo "Markers found, skip appending to $ad_file"
-          else
-          {
-          echo ""
-          echo "$marker_start"
-          echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
-          convert_list_to_rules "$ads_entry"
-          echo "$marker_end"
-          } >> "$ad_file"
-          fi
-
-          echo "Google rules saved to $out_file"
-          echo "google-ads rules appended (guarded) to $ad_file"
+              echo "Google rules saved to $out_file"
+              echo "google-ads rules appended (guarded) to $ad_file"
 
       - name: Download Rules into Rules/Text
         shell: bash
@@ -268,6 +242,63 @@ jobs:
             echo "Successfully downloaded $name"
           done
 
+      - name: Update managed BanAD block in Rules/AD Man.txt (keep single blank line)
+        shell: bash
+        run: |
+          set -euo pipefail
+          SRC="Rules/Auto/BanAD.yaml"
+          OUT="Rules/AD Man.txt"
+          TMP="$(mktemp)"
+
+          if [[ ! -f "$SRC" ]]; then
+            echo "BanAD.yaml not found at $SRC"
+            exit 1
+          fi
+
+          # 检查文件大小
+          filesize=$(stat -c%s "$SRC")
+          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+            echo "Warning: BanAD.yaml is too large ($filesize bytes), skipping processing"
+            exit 1
+          fi
+
+          CONTENT="$(awk 'NR==1{sub(/^\xef\xbb\xbf/,"")}1' "$SRC" \
+            | sed -E 's/\r$//' \
+            | sed -E '/^[[:space:]]*payload:[[:space:]]*$/d')"
+
+          mkdir -p Rules
+          touch "$OUT"
+
+          # 定义明确的标记，确保一致性
+          START_MARKER="# BEGIN BanAD (auto)"
+          END_MARKER="# END BanAD (auto)"
+
+          # 尝试删除现有标记之间的内容，然后再重建文件
+          if grep -q "$START_MARKER" "$OUT" && grep -q "$END_MARKER" "$OUT"; then
+            # 先提取标记之前的内容
+            sed -n "1,/$START_MARKER/p" "$OUT" | head -n -1 > "$TMP"
+            
+            # 再提取标记之后的内容
+            sed -n "/$END_MARKER/,\$p" "$OUT" | tail -n +2 >> "$TMP"
+          else
+            # 如果没有找到标记，只是复制整个文件
+            cat "$OUT" > "$TMP"
+          fi
+
+          # 去掉末尾多余的空行
+          sed -i -E ':a;/^\s*$/{$d;N;ba}' "$TMP"
+
+          # 写入新块，确保前面只有一行空行
+          {
+            echo ""
+            echo "$START_MARKER"
+            printf "%s\n" "$CONTENT"
+            echo "$END_MARKER"
+          } >> "$TMP"
+
+          mv "$TMP" "$OUT"
+          echo "Successfully updated AD Man.txt with BanAD rules"
+
       # === 裁剪 AI Suite.yaml（模糊匹配关键词 + 不区分大小写；payload: 后留一空行） ===
       - name: Prune Rules/Auto/AI Suite.yaml to HK proxy-needed sections
         shell: bash
@@ -293,7 +324,7 @@ jobs:
           perl -0777 -pe 's/^\x{FEFF}//; s/\r//g; s/^payload:\s*/payload:\n/s; s/\s#\s>\s/\n# > /g; s/\s-\s/\n  - /g;' "$SRC" > "$TMP_NORM"
 
           # 关键词白名单（模糊匹配）。凡标题包含这些关键词的段落都保留（在港需代理）
-          KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
+          KEEP_SECTIONS="ChatGPT|Chat GPT|OpenAI|Sora|Claude|Anthropic|Google|Gemini|DeepMind|AI Studio|NotebookLM|Generative Language|Meta|Perplexity|POE"
 
           awk -v KEEP_SECTIONS="$KEEP_SECTIONS" '
             BEGIN { IGNORECASE=1; print "payload:\n"; keep=0; printed=0 }
