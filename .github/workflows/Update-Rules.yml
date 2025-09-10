@@ -125,34 +125,39 @@ jobs:
           tmp_file="$(mktemp)"
           if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
           while IFS= read -r line; do
+          # 先去掉注释
           line="${line%%#*}"
-          line="${line%%@*}"
+          # 去掉首尾空格
           line="$(echo "$line" | xargs)"
           [ -z "$line" ] && continue
+          
+          # 提取主要内容（去掉属性，但保留完整的前缀）
+          main_content="${line%%@*}"
+          main_content="$(echo "$main_content" | xargs)"
 
           # 只处理 google-ads 自身条目，不递归 include
-          if [[ "$line" == full:* ]]; then
-          dom="${line#full:}"
+          if [[ "$main_content" == full:* ]]; then
+          dom="${main_content#full:}"
           if validate_domain "$dom"; then
           echo "  - DOMAIN,$dom"
           fi
-          elif [[ "$line" == domain:* ]]; then
-          dom="${line#domain:}"
+          elif [[ "$main_content" == domain:* ]]; then
+          dom="${main_content#domain:}"
           if validate_domain "$dom"; then
           echo "  - DOMAIN-SUFFIX,$dom"
           fi
-          elif [[ "$line" == keyword:* ]]; then
-          keyword="${line#keyword:}"
+          elif [[ "$main_content" == keyword:* ]]; then
+          keyword="${main_content#keyword:}"
           if [[ -n "$keyword" ]]; then
           echo "  - DOMAIN-KEYWORD,$keyword"
           fi
-          elif [[ "$line" == regex:* ]]; then
-          regex="${line#regex:}"
+          elif [[ "$main_content" == regexp:* ]]; then
+          regex="${main_content#regexp:}"
           if [[ -n "$regex" ]]; then
           echo "  - DOMAIN-REGEX,$regex"
           fi
           else
-          dom="$line"
+          dom="$main_content"
           if validate_domain "$dom"; then
           echo "  - DOMAIN-SUFFIX,$dom"
           fi
