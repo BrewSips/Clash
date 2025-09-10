@@ -51,58 +51,78 @@ jobs:
       - name: Download and Convert Google Domains & IPs into Rules/Auto
         shell: bash
         run: |
-          set -euo pipefail
-          mkdir -p Rules/Auto
-          
-          domains_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data/google"
-          ips_url="https://www.gstatic.com/ipranges/goog.json"
+              set -euo pipefail
+              mkdir -p Rules/Auto
+              
+              base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+              domains_entry="google"
+              ips_url="https://www.gstatic.com/ipranges/goog.json"
 
-          out_file="Rules/Auto/Google.yaml"
-          tmp_file="$(mktemp)"
-          payload=()
+              out_file="Rules/Auto/Google.yaml"
+              payload=()
+              visited=()
 
-          echo "Fetching Google domains..."
-          if curl -fsSL --connect-timeout 10 --max-time 60 "$domains_url" -o "$tmp_file"; then
-            while IFS= read -r line; do
-              line="${line%%#*}"           # 去掉注释
-              line="${line%%@*}"           # 去掉 @cn / @!cn 标签
-              line="$(echo "$line" | xargs)" # 去掉首尾空格
-              [ -z "$line" ] && continue
+              fetch_and_parse() {
+                local name="$1"
+                # 防止重复解析
+                if [[ " ${visited[*]} " == *" $name "* ]]; then
+                  return
+                fi
+                visited+=("$name")
 
-              if [[ "$line" == full:* ]]; then
-                payload+=("DOMAIN,${line#full:}")
-              elif [[ "$line" == domain:* ]]; then
-                payload+=("DOMAIN-SUFFIX,${line#domain:}")
+                local url="$base_url/$name"
+                echo "Fetching $name ..."
+                local tmp_file
+                tmp_file="$(mktemp)"
+                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+                  while IFS= read -r line; do
+                    line="${line%%#*}"            # 去掉注释
+                    line="${line%%@*}"            # 去掉 @cn / @!cn 标签
+                    line="$(echo "$line" | xargs)" # 去掉首尾空格
+                    [ -z "$line" ] && continue
+
+                    if [[ "$line" == include:* ]]; then
+                      sub="${line#include:}"
+                      fetch_and_parse "$sub"
+                    elif [[ "$line" == full:* ]]; then
+                      payload+=("DOMAIN,${line#full:}")
+                    elif [[ "$line" == domain:* ]]; then
+                      payload+=("DOMAIN-SUFFIX,${line#domain:}")
+                    else
+                      payload+=("DOMAIN-SUFFIX,$line")
+                    fi
+                  done < "$tmp_file"
+                else
+                  echo "Warning: Failed to fetch $name"
+                fi
+              }
+
+              echo "Fetching Google domains (with includes)..."
+              fetch_and_parse "$domains_entry"
+
+              echo "Fetching Google IP ranges..."
+              tmp_file="$(mktemp)"
+              if curl -fsSL --connect-timeout 10 --max-time 60 "$ips_url" -o "$tmp_file"; then
+                ipv4s=$(jq -r '.prefixes[]?.ipv4Prefix // empty' "$tmp_file")
+                ipv6s=$(jq -r '.prefixes[]?.ipv6Prefix // empty' "$tmp_file")
+                for ip in $ipv4s; do
+                  payload+=("IP-CIDR,$ip,no-resolve")
+                done
+                for ip in $ipv6s; do
+                  payload+=("IP-CIDR6,$ip,no-resolve")
+                done
               else
-                payload+=("DOMAIN-SUFFIX,$line")
+                echo "Warning: Failed to fetch Google IP ranges"
               fi
-            done < "$tmp_file"
-          else
-            echo "Warning: Failed to fetch Google domains"
-          fi
 
-          echo "Fetching Google IP ranges..."
-          if curl -fsSL --connect-timeout 10 --max-time 60 "$ips_url" -o "$tmp_file"; then
-            ipv4s=$(jq -r '.prefixes[]?.ipv4Prefix // empty' "$tmp_file")
-            ipv6s=$(jq -r '.prefixes[]?.ipv6Prefix // empty' "$tmp_file")
-            for ip in $ipv4s; do
-              payload+=("IP-CIDR,$ip,no-resolve")
-            done
-            for ip in $ipv6s; do
-              payload+=("IP-CIDR6,$ip,no-resolve")
-            done
-          else
-            echo "Warning: Failed to fetch Google IP ranges"
-          fi
+              # 去重并写入 YAML
+              {
+                echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')"
+                echo "payload:"
+                printf "  - %s\n" "${payload[@]}" | sort -u
+              } > "$out_file"
 
-          # 去重并写入 YAML，第一行加更新时间标志
-          {
-            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')"
-            echo "payload:"
-            printf "  - %s\n" "${payload[@]}" | sort -u
-          } > "$out_file"
-
-          echo "Google rules saved to $out_file"
+              echo "Google rules saved to $out_file"
 
       - name: Download Rules into Rules/Text
         shell: bash
