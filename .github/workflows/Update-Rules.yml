@@ -208,7 +208,7 @@ jobs:
             ["disney"]="DisneyPlus.txt"
             ["netflix"]="Netflix.txt"
             ["hbo"]="HBO.txt"
-            ["TikTok"]="TikTok.txt"
+            ["tiktok"]="TikTok.txt"
             ["category-ai-!cn"]="AiSuite.txt"
           )
 
