@@ -1,4 +1,4 @@
-# Last update: 2025-09-10 23:23 UTC
+# Last update: 2025-09-10 23:57 UTC
 payload:
   - DOMAIN-SUFFIX,azure
   - DOMAIN-SUFFIX,aadrm.com

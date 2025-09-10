@@ -1,4 +1,4 @@
-# Last update: 2025-09-10 23:23 UTC
+# Last update: 2025-09-10 23:57 UTC
 payload:
   - DOMAIN-SUFFIX,api-adservices.apple.com 
   - DOMAIN-SUFFIX,iadsdk.apple.com 
