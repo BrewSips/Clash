@@ -65,6 +65,16 @@ jobs:
               payload=()
               visited=()
 
+              # 域名合法性检查函数
+              validate_domain() {
+                local domain="$1"
+                # 合法域名：字母/数字/中划线/点，不能以 - 或 . 开头结尾，顶级域至少2位
+                if [[ "$domain" =~ ^([a-zA-Z0-9]([a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)*[a-zA-Z]{2,}$ ]]; then
+                  return 0
+                fi
+                return 1
+              }
+
               fetch_and_parse() {
                 local name="$1"
                 if [[ " ${visited[*]} " == *" $name "* ]]; then
@@ -88,11 +98,20 @@ jobs:
                       fetch_and_parse "$sub"
                     else
                       if [[ "$line" == full:* ]]; then
-                        payload+=("DOMAIN,${line#full:}")
+                        dom="${line#full:}"
+                        if validate_domain "$dom"; then
+                          payload+=("DOMAIN,$dom")
+                        fi
                       elif [[ "$line" == domain:* ]]; then
-                        payload+=("DOMAIN-SUFFIX,${line#domain:}")
+                        dom="${line#domain:}"
+                        if validate_domain "$dom"; then
+                          payload+=("DOMAIN-SUFFIX,$dom")
+                        fi
                       else
-                        payload+=("DOMAIN-SUFFIX,$line")
+                        dom="$line"
+                        if validate_domain "$dom"; then
+                          payload+=("DOMAIN-SUFFIX,$dom")
+                        fi
                       fi
                     fi
                   done < "$tmp_file"
@@ -115,11 +134,20 @@ jobs:
 
                     # 只处理 google-ads 自身条目，不递归 include
                     if [[ "$line" == full:* ]]; then
-                      echo "  - DOMAIN,${line#full:}"
+                      dom="${line#full:}"
+                      if validate_domain "$dom"; then
+                        echo "  - DOMAIN,$dom"
+                      fi
                     elif [[ "$line" == domain:* ]]; then
-                      echo "  - DOMAIN-SUFFIX,${line#domain:}"
+                      dom="${line#domain:}"
+                      if validate_domain "$dom"; then
+                        echo "  - DOMAIN-SUFFIX,$dom"
+                      fi
                     else
-                      echo "  - DOMAIN-SUFFIX,$line"
+                      dom="$line"
+                      if validate_domain "$dom"; then
+                        echo "  - DOMAIN-SUFFIX,$dom"
+                      fi
                     fi
                   done < "$tmp_file"
                 else
