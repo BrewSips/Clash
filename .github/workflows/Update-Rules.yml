@@ -65,13 +65,12 @@ jobs:
               payload=()
               visited=()
 
-              # 允许单/多段域名（字母数字连字符与点），不含其他符号
+              # 允许单/多段域名（字母数字连字符与点）
               domain_regex='^[a-zA-Z0-9-]+(\.[a-zA-Z0-9-]+)*$'
 
               trim() { echo "$1" | xargs; }
 
               sanitize_domain() {
-                # 输入一行候选值，输出清洗后的域名（去掉注释、尾部空白、@标签；不合法则输出空）
                 local v="$1"
                 v="${v%%#*}"                               # 去注释
                 v="$(trim "$v")"
@@ -92,65 +91,61 @@ jobs:
                 echo "Fetching $name ..."
                 local tmp_file
                 tmp_file="$(mktemp)"
-                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
-                  while IFS= read -r line; do
-                    line="${line%%#*}"
-                    line="$(trim "$line")"
-                    [ -z "$line" ] && continue
-
-                    if [[ "$line" == include:* ]]; then
-                      sub="${line#include:}"
-                      sub="$(trim "$sub")"
-                      fetch_and_parse "$sub"
-                      continue
-                    fi
-
-                    # 解析 full:/domain:/裸域名，并清洗掉标签后验证
-                    if [[ "$line" == full:* ]]; then
-                      val="$(sanitize_domain "${line#full:}")"
-                      [[ -n "$val" ]] && payload+=("DOMAIN,$val")
-                    elif [[ "$line" == domain:* ]]; then
-                      val="$(sanitize_domain "${line#domain:}")"
-                      [[ -n "$val" ]] && payload+=("DOMAIN-SUFFIX,$val")
-                    else
-                      val="$(sanitize_domain "$line")"
-                      [[ -n "$val" ]] && payload+=("DOMAIN-SUFFIX,$val")
-                    fi
-                  done < "$tmp_file"
-                else
-                  echo "Warning: Failed to fetch $name"
+                if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+                  echo "Warning: Failed to fetch $name" >&2
+                  return 0
                 fi
+
+                while IFS= read -r line; do
+                  line="$(trim "$line")"
+                  [ -z "$line" ] && continue
+
+                  if [[ "$line" == include:* ]]; then
+                    sub="$(trim "${line#include:}")"
+                    fetch_and_parse "$sub"
+                    continue
+                  fi
+
+                  if [[ "$line" == full:* ]]; then
+                    val="$(sanitize_domain "${line#full:}")"
+                    [[ -n "$val" ]] && payload+=("DOMAIN,$val")
+                  elif [[ "$line" == domain:* ]]; then
+                    val="$(sanitize_domain "${line#domain:}")"
+                    [[ -n "$val" ]] && payload+=("DOMAIN-SUFFIX,$val")
+                  else
+                    val="$(sanitize_domain "$line")"
+                    [[ -n "$val" ]] && payload+=("DOMAIN-SUFFIX,$val")
+                  fi
+                done < "$tmp_file"
               }
 
               convert_list_to_rules() {
-                # 仅转换 google-ads 自身条目（不递归），过滤非法项；每行前两个空格
                 local name="$1"
                 local url="$base_url/$name"
                 local tmp_file
                 tmp_file="$(mktemp)"
-                if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
-                  while IFS= read -r line; do
-                    line="${line%%#*}"
-                    line="$(trim "$line")"
-                    [ -z "$line" ] && continue
-
-                    if [[ "$line" == include:* ]]; then
-                      # 按你的需求：只取 google-ads 自身内容，跳过 include
-                      continue
-                    elif [[ "$line" == full:* ]]; then
-                      val="$(sanitize_domain "${line#full:}")"
-                      [[ -n "$val" ]] && echo "  - DOMAIN,$val"
-                    elif [[ "$line" == domain:* ]]; then
-                      val="$(sanitize_domain "${line#domain:}")"
-                      [[ -n "$val" ]] && echo "  - DOMAIN-SUFFIX,$val"
-                    else
-                      val="$(sanitize_domain "$line")"
-                      [[ -n "$val" ]] && echo "  - DOMAIN-SUFFIX,$val"
-                    fi
-                  done < "$tmp_file"
-                else
+                if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
                   echo "Warning: Failed to fetch $name" >&2
+                  return 0
                 fi
+
+                while IFS= read -r line; do
+                  line="$(trim "$line")"
+                  [ -z "$line" ] && continue
+
+                  if [[ "$line" == include:* ]]; then
+                    continue
+                  elif [[ "$line" == full:* ]]; then
+                    val="$(sanitize_domain "${line#full:}")"
+                    [[ -n "$val" ]] && echo "  - DOMAIN,$val"
+                  elif [[ "$line" == domain:* ]]; then
+                    val="$(sanitize_domain "${line#domain:}")"
+                    [[ -n "$val" ]] && echo "  - DOMAIN-SUFFIX,$val"
+                  else
+                    val="$(sanitize_domain "$line")"
+                    [[ -n "$val" ]] && echo "  - DOMAIN-SUFFIX,$val"
+                  fi
+                done < "$tmp_file"
               }
 
               echo "Fetching Google domains (with includes)..."
@@ -178,7 +173,7 @@ jobs:
                 printf "  - %s\n" "${payload[@]}" | sort -u
               } > "$out_file"
 
-              # 在 AD Man.txt 末尾追加（带标志一次性追加，避免重复；不修改已有内容）
+              # 在 AD Man.txt 末尾追加 google-ads（带标志，避免重复）
               echo "Appending google-ads rules to $ad_file (once, guarded by markers) ..."
               touch "$ad_file"
               marker_start="### BEGIN AUTO google-ads (do not edit)"
