@@ -141,6 +141,16 @@ jobs:
           if validate_domain "$dom"; then
           echo "  - DOMAIN-SUFFIX,$dom"
           fi
+          elif [[ "$line" == keyword:* ]]; then
+          keyword="${line#keyword:}"
+          if [[ -n "$keyword" ]]; then
+          echo "  - DOMAIN-KEYWORD,$keyword"
+          fi
+          elif [[ "$line" == regex:* ]]; then
+          regex="${line#regex:}"
+          if [[ -n "$regex" ]]; then
+          echo "  - DOMAIN-REGEX,$regex"
+          fi
           else
           dom="$line"
           if validate_domain "$dom"; then
