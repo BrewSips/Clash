@@ -1,4 +1,4 @@
-# Last update: 2025-09-10 03:17 UTC
+# Last update: 2025-09-10 03:32 UTC
 payload:
   - DOMAIN,265.com
   - DOMAIN,2mdn-cn.net
@@ -859,9 +859,6 @@ payload:
   - DOMAIN-SUFFIX,questvisual.com
   - DOMAIN-SUFFIX,quickoffice.com
   - DOMAIN-SUFFIX,quiksee.com
-  - DOMAIN-SUFFIX,regexp:^adservice.google.([a-z]{2}|com?)(.[a-z]{2})?$
-  - DOMAIN-SUFFIX,regexp:^r+[0-9]+(---|.)sn-(2x3|ni5|j5o)w{5}.googlevideo.com$
-  - DOMAIN-SUFFIX,regexp:^r+[0-9]+(---|.)sn-(2x3|ni5|j5o)w{5}.xn--ngstr-lra8j.com$
   - DOMAIN-SUFFIX,registry.google
   - DOMAIN-SUFFIX,revolv.com
   - DOMAIN-SUFFIX,ridepenguin.com
@@ -933,14 +930,11 @@ payload:
   - DOMAIN-SUFFIX,x.team
   - DOMAIN-SUFFIX,xn--9kr7l.com
   - DOMAIN-SUFFIX,xn--9trs65b.com
-  - DOMAIN-SUFFIX,xn--flw351e
   - DOMAIN-SUFFIX,xn--flw351e.com
   - DOMAIN-SUFFIX,xn--ggle-55da.com
   - DOMAIN-SUFFIX,xn--gogl-0nd52e.com
   - DOMAIN-SUFFIX,xn--gogl-1nd42e.com
   - DOMAIN-SUFFIX,xn--ngstr-lra8j.com
-  - DOMAIN-SUFFIX,xn--p8j9a0d9c9a.xn--q9jyb4c
-  - DOMAIN-SUFFIX,xn--qcka1pmc
   - DOMAIN-SUFFIX,xplr.co
   - DOMAIN-SUFFIX,youtu.be
   - DOMAIN-SUFFIX,youtube
