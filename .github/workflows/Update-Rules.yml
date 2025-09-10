@@ -78,9 +78,9 @@ jobs:
                 tmp_file="$(mktemp)"
                 if curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
                   while IFS= read -r line; do
-                    line="${line%%#*}"             # 去掉注释
-                    line="${line%%@*}"             # 去掉 @cn / @!cn 标签
-                    line="$(echo "$line" | xargs)" # 去掉首尾空格
+                    line="${line%%#*}"
+                    line="${line%%@*}"
+                    line="$(echo "$line" | xargs)"
                     [ -z "$line" ] && continue
 
                     if [[ "$line" == include:* ]]; then
@@ -114,11 +114,11 @@ jobs:
                     [ -z "$line" ] && continue
 
                     if [[ "$line" == full:* ]]; then
-                      echo "- DOMAIN,${line#full:}"
+                      echo "  - DOMAIN,${line#full:}"
                     elif [[ "$line" == domain:* ]]; then
-                      echo "- DOMAIN-SUFFIX,${line#domain:}"
+                      echo "  - DOMAIN-SUFFIX,${line#domain:}"
                     else
-                      echo "- DOMAIN-SUFFIX,$line"
+                      echo "  - DOMAIN-SUFFIX,$line"
                     fi
                   done < "$tmp_file"
                 else
@@ -151,13 +151,16 @@ jobs:
                 printf "  - %s\n" "${payload[@]}" | sort -u
               } > "$out_file"
 
-              # 将 google-ads 转换后追加到 AD Man.txt 尾部（不改动原有内容）
-              echo "Appending google-ads rules to $ad_file ..."
+              # 生成 google-ads 规则到临时文件
+              tmp_ads="$(mktemp)"
+              convert_list_to_rules "$ads_entry" > "$tmp_ads"
+
+              # 合并去重：原有 AD Man.txt + 新规则
               touch "$ad_file"
-              convert_list_to_rules "$ads_entry" >> "$ad_file"
+              cat "$ad_file" "$tmp_ads" | sort -u > "${ad_file}.tmp" && mv "${ad_file}.tmp" "$ad_file"
 
               echo "Google rules saved to $out_file"
-              echo "google-ads rules appended to $ad_file"
+              echo "google-ads rules merged into $ad_file"
 
       - name: Download Rules into Rules/Text
         shell: bash
