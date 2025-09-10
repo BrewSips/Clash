@@ -3,7 +3,7 @@ name: Update Rules
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "30 2 * * *"  # UTC 每天 02:30
+    - cron: "30 2 * * *" # UTC 每天 02:30
 
 jobs:
   build:
@@ -37,8 +37,7 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-
-              line="${line%%@*}"  # 去掉标签
+              line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -98,7 +97,7 @@ jobs:
             ["hbo"]="HBO.txt"
             ["tiktok"]="TikTok.txt"
             ["category-ai-!cn"]="AiSuite.txt"
-            ["private"]="Private.txt"            
+            ["private"]="Private.txt"
           )
 
           trim() { echo "$1" | xargs; }
@@ -106,9 +105,7 @@ jobs:
           fetch_and_parse() {
             local name="$1"
             local outfile="$2"
-            local visited_var="$3"
 
-            # 用关联数组标记 visited
             if [[ -n "${visited[$name]+x}" ]]; then
               return
             fi
@@ -127,12 +124,11 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-
-              line="${line%%@*}"  # 去掉标签
+              line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
-                fetch_and_parse "$sub" "$outfile" "$visited_var"
+                fetch_and_parse "$sub" "$outfile"
                 continue
               fi
 
@@ -159,8 +155,7 @@ jobs:
             echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile"
             echo "payload:" >> "$outfile"
             declare -A visited=()
-            fetch_and_parse "$entry" "$outfile" visited
-            # 去重
+            fetch_and_parse "$entry" "$outfile"
             tmp="$(mktemp)"
             awk '!seen[$0]++' "$outfile" > "$tmp"
             mv "$tmp" "$outfile"
@@ -213,14 +208,12 @@ jobs:
                 continue
               fi
 
-              # 判断是否带 @cn
               if [[ "$raw" == *@cn* ]]; then
                 target="$outfile_cn"
               else
                 target="$outfile_global"
               fi
 
-              # 去掉标签
               line="${line%%@*}"
 
               if [[ "$line" == full:* ]]; then
@@ -254,7 +247,6 @@ jobs:
             declare -A visited=()
             fetch_and_parse_split "$entry" "$outfile_cn" "$outfile_global"
 
-            # 去重
             for f in "$outfile_global" "$outfile_cn"; do
               tmp="$(mktemp)"
               awk '!seen[$0]++' "$f" > "$tmp"
@@ -268,11 +260,13 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Rules/System
+
           urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
           )
+
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
             echo "Downloading $name from $u"
@@ -280,15 +274,14 @@ jobs:
               echo "Warning: Failed to download $u"
               continue
             fi
-            
-            # 检查文件大小
+
             filesize=$(stat -c%s "Rules/System/$name.tmp")
-            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+            if [ "$filesize" -gt 10485760 ]; then
               echo "Warning: File $name is too large ($filesize bytes), skipping"
               rm "Rules/System/$name.tmp"
               continue
             fi
-            
+
             mv "Rules/System/$name.tmp" "Rules/System/$name"
             echo "Successfully downloaded $name"
           done
@@ -298,10 +291,12 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Rules/Text
+
           urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
           )
+
           for u in "${urls[@]}"; do
             name="$(basename "$u")"
             echo "Downloading $name from $u"
@@ -309,19 +304,17 @@ jobs:
               echo "Warning: Failed to download $u"
               continue
             fi
-            
-            # 检查文件大小
+
             filesize=$(stat -c%s "Rules/Text/$name.tmp")
-            if [ "$filesize" -gt 10485760 ]; then  # 10MB限制
+            if [ "$filesize" -gt 10485760 ]; then
               echo "Warning: File $name is too large ($filesize bytes), skipping"
               rm "Rules/Text/$name.tmp"
               continue
             fi
-            
+
             mv "Rules/Text/$name.tmp" "Rules/Text/$name"
             echo "Successfully downloaded $name"
           done
-
 
       - name: Append HK Relay Rules
         shell: bash
@@ -330,7 +323,6 @@ jobs:
           mkdir -p Rules
 
           base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
-
           hk_file="Rules/HK Relay.txt"
           marker_start="### BEGIN AUTO HK Relay (do not edit)"
           marker_end="### END AUTO HK Relay"
@@ -351,8 +343,7 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-
-              line="${line%%@*}"  # 去掉标签
+              line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -401,38 +392,35 @@ jobs:
           OUT="Rules/System/ChinaASN.txt"
           TMP="$(mktemp)"
           mkdir -p "$(dirname "$OUT")"
-          
+
           echo "Downloading ASN-China list from $URL"
           if ! curl -fsSL --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
             echo "Warning: Failed to download ASN-China list"
             exit 1
           fi
-          
-          # 检查文件大小
+
           filesize=$(stat -c%s "$TMP")
-          if [ "$filesize" -gt 5242880 ]; then  # 5MB限制
+          if [ "$filesize" -gt 5242880 ]; then
             echo "Warning: ASN-China list is too large ($filesize bytes), skipping processing"
             rm "$TMP"
             exit 1
           fi
-          
-          # 检查文件内容有效性
+
           if ! grep -q "IP-ASN" "$TMP"; then
             echo "Warning: ASN-China list format seems invalid, skipping processing"
-            cat "$TMP" | head -n 10
+            head -n 10 "$TMP"
             rm "$TMP"
             exit 1
           fi
-          
+
           {
             echo "payload:"
-            cat "$TMP" \
-              | sed 's/\r$//' \
+            sed 's/\r$//' "$TMP" \
               | sed 's/[[:space:]]*\/\/.*$//' \
               | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
               | awk '{print "  - " $0}'
           } > "$OUT"
-          
+
           rm "$TMP"
           echo "Successfully generated ChinaASN.txt"
 
