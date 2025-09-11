@@ -33,10 +33,14 @@ jobs:
               return 0
             fi
 
-            while IFS= read -r line; do
-              line="${line%%#*}"
+            while IFS= read -r raw_line; do
+              # 保存原始行用于正则表达式
+              original_line="$raw_line"
+              # 处理注释
+              line="${raw_line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
+              # 移除属性标记
               line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
@@ -50,12 +54,18 @@ jobs:
                 echo "  - DOMAIN-KEYWORD,${line#keyword:}"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
                 echo "  - $line"
-              elif [[ "$line" == regexp:* ]]; then
-                # 保持原始的正则表达式，不做任何修改
-                echo "  - DOMAIN-REGEX,${line#regexp:}"
-              elif [[ "$line" == regex:* ]]; then
-                # 保持原始的正则表达式，不做任何修改
-                echo "  - DOMAIN-REGEX,${line#regex:}"
+              elif [[ "$line" == regexp:* ]] || [[ "$line" == regex:* ]]; then
+                # 从原始行提取正则表达式，保留所有反斜杠
+                if [[ "$line" == regexp:* ]]; then
+                  regex_pattern="${original_line#*regexp:}"
+                else
+                  regex_pattern="${original_line#*regex:}"
+                fi
+                # 移除注释和属性标记
+                regex_pattern="${regex_pattern%%#*}"
+                regex_pattern="${regex_pattern%%@*}"
+                regex_pattern="$(trim "$regex_pattern")"
+                echo "  - DOMAIN-REGEX,$regex_pattern"
               else
                 echo "  - DOMAIN-SUFFIX,$line"
               fi
@@ -138,10 +148,14 @@ jobs:
               return 0
             fi
 
-            while IFS= read -r line; do
-              line="${line%%#*}"
+            while IFS= read -r raw_line; do
+              # 保存原始行用于正则表达式
+              original_line="$raw_line"
+              # 处理注释
+              line="${raw_line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
+              # 移除属性标记
               line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
@@ -158,12 +172,18 @@ jobs:
                 echo "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$outfile"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
                 echo "  - $line" >> "$outfile"
-              elif [[ "$line" == regexp:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regexp:}" >> "$outfile"
-              elif [[ "$line" == regex:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regex:}" >> "$outfile"
+              elif [[ "$line" == regexp:* ]] || [[ "$line" == regex:* ]]; then
+                # 从原始行提取正则表达式，保留所有反斜杠
+                if [[ "$line" == regexp:* ]]; then
+                  regex_pattern="${original_line#*regexp:}"
+                else
+                  regex_pattern="${original_line#*regex:}"
+                fi
+                # 移除注释和属性标记
+                regex_pattern="${regex_pattern%%#*}"
+                regex_pattern="${regex_pattern%%@*}"
+                regex_pattern="$(trim "$regex_pattern")"
+                echo "  - DOMAIN-REGEX,$regex_pattern" >> "$outfile"
               else
                 echo "  - DOMAIN-SUFFIX,$line" >> "$outfile"
               fi
@@ -216,9 +236,11 @@ jobs:
               return 0
             fi
 
-            while IFS= read -r line; do
-              raw="$line"
-              line="${line%%#*}"
+            while IFS= read -r raw_line; do
+              # 保存完整的原始行
+              original_full="$raw_line"
+              # 处理注释但保留原始内容
+              line="${raw_line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
 
@@ -228,12 +250,14 @@ jobs:
                 continue
               fi
 
-              if [[ "$raw" == *@cn* ]]; then
+              # 决定目标文件
+              if [[ "$original_full" == *@cn* ]]; then
                 target="$outfile_cn"
               else
                 target="$outfile_global"
               fi
 
+              # 移除属性标记
               line="${line%%@*}"
 
               if [[ "$line" == full:* ]]; then
@@ -244,12 +268,18 @@ jobs:
                 echo "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$target"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
                 echo "  - $line" >> "$target"
-              elif [[ "$line" == regexp:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regexp:}" >> "$target"
-              elif [[ "$line" == regex:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regex:}" >> "$target"
+              elif [[ "$line" == regexp:* ]] || [[ "$line" == regex:* ]]; then
+                # 从原始行提取正则表达式，保留所有反斜杠
+                if [[ "$line" == regexp:* ]]; then
+                  regex_pattern="${original_full#*regexp:}"
+                else
+                  regex_pattern="${original_full#*regex:}"
+                fi
+                # 移除注释和属性标记
+                regex_pattern="${regex_pattern%%#*}"
+                regex_pattern="${regex_pattern%%@*}"
+                regex_pattern="$(trim "$regex_pattern")"
+                echo "  - DOMAIN-REGEX,$regex_pattern" >> "$target"
               else
                 echo "  - DOMAIN-SUFFIX,$line" >> "$target"
               fi
@@ -359,10 +389,14 @@ jobs:
               return 0
             fi
 
-            while IFS= read -r line; do
-              line="${line%%#*}"
+            while IFS= read -r raw_line; do
+              # 保存原始行用于正则表达式
+              original_line="$raw_line"
+              # 处理注释
+              line="${raw_line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
+              # 移除属性标记
               line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
@@ -376,14 +410,18 @@ jobs:
                 echo "  - DOMAIN-KEYWORD,${line#keyword:}"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
                 echo "  - $line"
-              elif [[ "$line" == regexp:* ]]; then
-                # 提取正则表达式内容并保持反斜杠
-                regex_content="${line#regexp:}"
-                printf "  - DOMAIN-REGEX,%s\n" "$regex_content"
-              elif [[ "$line" == regex:* ]]; then
-                # 提取正则表达式内容并保持反斜杠
-                regex_content="${line#regex:}"
-                printf "  - DOMAIN-REGEX,%s\n" "$regex_content"
+              elif [[ "$line" == regexp:* ]] || [[ "$line" == regex:* ]]; then
+                # 从原始行提取正则表达式，保留所有反斜杠
+                if [[ "$line" == regexp:* ]]; then
+                  regex_pattern="${original_line#*regexp:}"
+                else
+                  regex_pattern="${original_line#*regex:}"
+                fi
+                # 移除注释和属性标记
+                regex_pattern="${regex_pattern%%#*}"
+                regex_pattern="${regex_pattern%%@*}"
+                regex_pattern="$(trim "$regex_pattern")"
+                echo "  - DOMAIN-REGEX,$regex_pattern"
               else
                 echo "  - DOMAIN-SUFFIX,$line"
               fi
