@@ -45,7 +45,10 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-              line="${line%%@*}"  # 去掉标签（写入时保留反斜杠）
+
+              # 去掉 @ 标签并再次 trim，防止尾部残留空格
+              line="${line%%@*}"
+              line="$(trim "$line")"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -76,10 +79,9 @@ jobs:
             marker_start="### BEGIN AUTO $entry (do not edit)"
             marker_end="### END AUTO $entry"
 
-            # 生成新块到临时文件
+            # 生成新块到临时文件（**不**在开头写入空行）
             tmp_block="$(mktemp)"
-            printf '%s\n' "" > "$tmp_block"
-            printf '%s\n' "$marker_start" >> "$tmp_block"
+            printf '%s\n' "$marker_start" > "$tmp_block"
             printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')" >> "$tmp_block"
             convert_list_to_rules "$entry" >> "$tmp_block"
             printf '%s\n' "$marker_end" >> "$tmp_block"
@@ -95,8 +97,19 @@ jobs:
               mv "$tmp_file" "$ad_file"
             fi
 
-            # 追加新块
-            cat "$tmp_block" >> "$ad_file"
+            # 在追加之前，确保文件与块之间只有一个换行分隔
+            if [ ! -s "$ad_file" ]; then
+              # 目标文件为空，直接追加
+              cat "$tmp_block" >> "$ad_file"
+            else
+              # 检查最后一个字节是否为 '\n'
+              last_char=$(tail -c 1 "$ad_file" || true)
+              if [ "$last_char" != "" ] && [ "$last_char" != $'\n' ]; then
+                printf '\n' >> "$ad_file"
+              fi
+              cat "$tmp_block" >> "$ad_file"
+            fi
+
             rm -f "$tmp_block"
             echo "Updated $entry block in $ad_file"
           done
@@ -151,7 +164,10 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-              line="${line%%@*}"  # 去掉标签（保留反斜杠原样）
+
+              # 去掉 @ 标签并再次 trim，防止尾部残留空格
+              line="${line%%@*}"
+              line="$(trim "$line")"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -249,7 +265,9 @@ jobs:
                 target="$outfile_global"
               fi
 
-              line="${line%%@*}"  # 去掉标签（保留反斜杠）
+              # 去掉 @ 标签并再次 trim，防止尾部残留空格
+              line="${line%%@*}"
+              line="$(trim "$line")"
 
               if [[ "$line" == full:* ]]; then
                 printf '%s\n' "  - DOMAIN,${line#full:}" >> "$target"
@@ -386,7 +404,10 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
+
+              # 去掉 @ 标签并再次 trim，防止尾部残留空格
               line="${line%%@*}"
+              line="$(trim "$line")"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -413,17 +434,16 @@ jobs:
           echo "Updating HK Relay rules in $hk_file (replace marker block if present)..."
           touch "$hk_file"
 
-          # 生成新的 HK Relay 块
+          # 生成新的 HK Relay 块（不在开头写入多余空行）
           hk_tmp="$(mktemp)"
-          printf '%s\n' "" > "$hk_tmp"
-          printf '%s\n' "$marker_start" >> "$hk_tmp"
+          printf '%s\n' "$marker_start" > "$hk_tmp"
           printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')" >> "$hk_tmp"
           for entry in mytvsuper viu rthk now; do
             convert_list_to_rules "$entry" >> "$hk_tmp"
           done
           printf '%s\n' "$marker_end" >> "$hk_tmp"
 
-          # 删除旧块（如果存在），再追加新块
+          # 删除旧块（如果存在），再追加新块（保证只有单个换行分隔）
           if [ -f "$hk_file" ]; then
             tmp_file="$(mktemp)"
             awk -v s="$marker_start" -v e="$marker_end" '
@@ -433,7 +453,17 @@ jobs:
             ' "$hk_file" > "$tmp_file"
             mv "$tmp_file" "$hk_file"
           fi
-          cat "$hk_tmp" >> "$hk_file"
+
+          if [ ! -s "$hk_file" ]; then
+            cat "$hk_tmp" >> "$hk_file"
+          else
+            last_char=$(tail -c 1 "$hk_file" || true)
+            if [ "$last_char" != "" ] && [ "$last_char" != $'\n' ]; then
+              printf '\n' >> "$hk_file"
+            fi
+            cat "$hk_tmp" >> "$hk_file"
+          fi
+
           rm -f "$hk_tmp"
           echo "HK Relay rules updated in $hk_file"
 
