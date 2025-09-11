@@ -264,7 +264,6 @@ jobs:
           urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
-            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/lancidr.txt"
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
           )
 
