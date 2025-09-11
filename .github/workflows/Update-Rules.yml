@@ -37,49 +37,67 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-              line="${line%%@*}"  # 去掉标签（写入时保留反斜杠）
+              line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
                 convert_list_to_rules "$sub"
               elif [[ "$line" == full:* ]]; then
-                printf '%s\n' "  - DOMAIN,${line#full:}"
+                echo "  - DOMAIN,${line#full:}"
               elif [[ "$line" == domain:* ]]; then
-                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}"
+                echo "  - DOMAIN-SUFFIX,${line#domain:}"
               elif [[ "$line" == keyword:* ]]; then
-                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}"
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
-                printf '%s\n' "  - $line"
+                echo "  - $line"
               elif [[ "$line" == regexp:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}"
+                # 保持原始的正则表达式，不做任何修改
+                echo "  - DOMAIN-REGEX,${line#regexp:}"
               elif [[ "$line" == regex:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}"
+                # 保持原始的正则表达式，不做任何修改
+                echo "  - DOMAIN-REGEX,${line#regex:}"
               else
-                printf '%s\n' "  - DOMAIN-SUFFIX,$line"
+                echo "  - DOMAIN-SUFFIX,$line"
               fi
             done < "$tmp_file"
           }
 
-          echo "Appending AD rules to $ad_file (guarded by markers)..."
+          echo "Updating AD rules in $ad_file (guarded by markers)..."
           touch "$ad_file"
 
+          # 创建临时文件存储新内容
+          tmp_ad_file="$(mktemp)"
+          
+          # 复制标记之前的内容（如果文件存在）
+          if [[ -f "$ad_file" ]]; then
+            marker_start="### BEGIN AUTO"
+            # 如果找到标记，只保留标记之前的内容
+            if grep -Fq "$marker_start" "$ad_file"; then
+              sed "/$marker_start/,\$d" "$ad_file" > "$tmp_ad_file"
+            else
+              # 如果没有标记，保留整个文件
+              cp "$ad_file" "$tmp_ad_file"
+            fi
+          fi
+
+          # 添加所有自动生成的规则
           for entry in category-httpdns-cn google-ads baidu-ads umeng-ads adjust-ads tencent-ads alibaba-ads sina-ads; do
             marker_start="### BEGIN AUTO $entry (do not edit)"
             marker_end="### END AUTO $entry"
 
-            if grep -Fq "$marker_start" "$ad_file"; then
-              echo "Markers for $entry found, skip appending"
-            else
-              {
-                printf '%s\n' ""
-                printf '%s\n' "$marker_start"
-                printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
-                convert_list_to_rules "$entry"
-                printf '%s\n' "$marker_end"
-              } >> "$ad_file"
-              echo "Appended $entry rules to $ad_file"
-            fi
+            {
+              echo ""
+              echo "$marker_start"
+              echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+              convert_list_to_rules "$entry"
+              echo "$marker_end"
+            } >> "$tmp_ad_file"
+            echo "Updated $entry rules"
           done
+
+          # 替换原文件
+          mv "$tmp_ad_file" "$ad_file"
+          echo "AD rules updated in $ad_file"
 
       - name: Download and Convert Domain Lists
         shell: bash
@@ -124,7 +142,7 @@ jobs:
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
-              line="${line%%@*}"  # 去掉标签（保留反斜杠原样）
+              line="${line%%@*}"
 
               if [[ "$line" == include:* ]]; then
                 sub="$(trim "${line#include:}")"
@@ -133,27 +151,29 @@ jobs:
               fi
 
               if [[ "$line" == full:* ]]; then
-                printf '%s\n' "  - DOMAIN,${line#full:}" >> "$outfile"
+                echo "  - DOMAIN,${line#full:}" >> "$outfile"
               elif [[ "$line" == domain:* ]]; then
-                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}" >> "$outfile"
+                echo "  - DOMAIN-SUFFIX,${line#domain:}" >> "$outfile"
               elif [[ "$line" == keyword:* ]]; then
-                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$outfile"
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$outfile"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
-                printf '%s\n' "  - $line" >> "$outfile"
+                echo "  - $line" >> "$outfile"
               elif [[ "$line" == regexp:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}" >> "$outfile"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regexp:}" >> "$outfile"
               elif [[ "$line" == regex:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}" >> "$outfile"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regex:}" >> "$outfile"
               else
-                printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$outfile"
+                echo "  - DOMAIN-SUFFIX,$line" >> "$outfile"
               fi
             done < "$tmp_file"
           }
 
           for entry in "${!entries[@]}"; do
             outfile="Rules/Auto/${entries[$entry]}"
-            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile"
-            printf '%s\n' "payload:" >> "$outfile"
+            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile"
+            echo "payload:" >> "$outfile"
             declare -A visited=()
             fetch_and_parse "$entry" "$outfile"
             tmp="$(mktemp)"
@@ -208,29 +228,30 @@ jobs:
                 continue
               fi
 
-              # 判断是否带 @cn（使用 raw 判断原始标签）
               if [[ "$raw" == *@cn* ]]; then
                 target="$outfile_cn"
               else
                 target="$outfile_global"
               fi
 
-              line="${line%%@*}"  # 去掉标签（保留反斜杠）
+              line="${line%%@*}"
 
               if [[ "$line" == full:* ]]; then
-                printf '%s\n' "  - DOMAIN,${line#full:}" >> "$target"
+                echo "  - DOMAIN,${line#full:}" >> "$target"
               elif [[ "$line" == domain:* ]]; then
-                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}" >> "$target"
+                echo "  - DOMAIN-SUFFIX,${line#domain:}" >> "$target"
               elif [[ "$line" == keyword:* ]]; then
-                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$target"
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$target"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
-                printf '%s\n' "  - $line" >> "$target"
+                echo "  - $line" >> "$target"
               elif [[ "$line" == regexp:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}" >> "$target"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regexp:}" >> "$target"
               elif [[ "$line" == regex:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}" >> "$target"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regex:}" >> "$target"
               else
-                printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$target"
+                echo "  - DOMAIN-SUFFIX,$line" >> "$target"
               fi
             done < "$tmp_file"
           }
@@ -240,10 +261,10 @@ jobs:
             outfile_global="Rules/Auto/${base_name}.txt"
             outfile_cn="Rules/Auto/${base_name}CN.txt"
 
-            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_global"
-            printf '%s\n' "payload:" >> "$outfile_global"
-            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_cn"
-            printf '%s\n' "payload:" >> "$outfile_cn"
+            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_global"
+            echo "payload:" >> "$outfile_global"
+            echo "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_cn"
+            echo "payload:" >> "$outfile_cn"
 
             declare -A visited=()
             fetch_and_parse_split "$entry" "$outfile_cn" "$outfile_global"
@@ -325,8 +346,6 @@ jobs:
 
           base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
           hk_file="Rules/HK Relay.txt"
-          marker_start="### BEGIN AUTO HK Relay (do not edit)"
-          marker_end="### END AUTO HK Relay"
 
           trim() { echo "$1" | xargs; }
 
@@ -350,40 +369,59 @@ jobs:
                 sub="$(trim "${line#include:}")"
                 convert_list_to_rules "$sub"
               elif [[ "$line" == full:* ]]; then
-                printf '%s\n' "  - DOMAIN,${line#full:}"
+                echo "  - DOMAIN,${line#full:}"
               elif [[ "$line" == domain:* ]]; then
-                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}"
+                echo "  - DOMAIN-SUFFIX,${line#domain:}"
               elif [[ "$line" == keyword:* ]]; then
-                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}"
+                echo "  - DOMAIN-KEYWORD,${line#keyword:}"
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
-                printf '%s\n' "  - $line"
+                echo "  - $line"
               elif [[ "$line" == regexp:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regexp:}"
               elif [[ "$line" == regex:* ]]; then
-                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}"
+                # 保持原始的正则表达式
+                echo "  - DOMAIN-REGEX,${line#regex:}"
               else
-                printf '%s\n' "  - DOMAIN-SUFFIX,$line"
+                echo "  - DOMAIN-SUFFIX,$line"
               fi
             done < "$tmp_file"
           }
 
-          echo "Appending HK Relay entries to $hk_file (guarded by markers)..."
+          echo "Updating HK Relay rules in $hk_file (guarded by markers)..."
           touch "$hk_file"
 
-          if grep -Fq "$marker_start" "$hk_file"; then
-            echo "Markers found, skip appending to $hk_file"
-          else
-            {
-              printf '%s\n' ""
-              printf '%s\n' "$marker_start"
-              printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
-              for entry in mytvsuper viu rthk now; do
-                convert_list_to_rules "$entry"
-              done
-              printf '%s\n' "$marker_end"
-            } >> "$hk_file"
-            echo "HK Relay rules appended to $hk_file"
+          # 创建临时文件存储新内容
+          tmp_hk_file="$(mktemp)"
+          
+          # 复制标记之前的内容（如果文件存在）
+          if [[ -f "$hk_file" ]]; then
+            marker_start="### BEGIN AUTO HK Relay"
+            # 如果找到标记，只保留标记之前的内容
+            if grep -Fq "$marker_start" "$hk_file"; then
+              sed "/$marker_start/,\$d" "$hk_file" > "$tmp_hk_file"
+            else
+              # 如果没有标记，保留整个文件
+              cp "$hk_file" "$tmp_hk_file"
+            fi
           fi
+
+          # 添加自动生成的规则
+          marker_start="### BEGIN AUTO HK Relay (do not edit)"
+          marker_end="### END AUTO HK Relay"
+          {
+            echo ""
+            echo "$marker_start"
+            echo "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+            for entry in mytvsuper viu rthk now; do
+              convert_list_to_rules "$entry"
+            done
+            echo "$marker_end"
+          } >> "$tmp_hk_file"
+
+          # 替换原文件
+          mv "$tmp_hk_file" "$hk_file"
+          echo "HK Relay rules updated in $hk_file"
 
       - name: Generate Rules/System/ChinaASN.txt from ASN-China
         shell: bash
@@ -415,7 +453,7 @@ jobs:
           fi
 
           {
-            printf '%s\n' "payload:"
+            echo "payload:"
             sed 's/\r$//' "$TMP" \
               | sed 's/[[:space:]]*\/\/.*$//' \
               | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
