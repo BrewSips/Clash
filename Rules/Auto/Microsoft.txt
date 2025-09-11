@@ -1,4 +1,4 @@
-# Last update: 2025-09-11 04:05 UTC
+# Last update: 2025-09-11 04:09 UTC
 payload:
   - DOMAIN-SUFFIX,azure
   - DOMAIN-SUFFIX,aadrm.com
@@ -117,7 +117,7 @@ payload:
   - DOMAIN-SUFFIX,thegithubshop.com
   - DOMAIN-SUFFIX,blob.core.windows.net
   - DOMAIN,github-cloud.s3.amazonaws.com
-  - DOMAIN-REGEX,^github-production-release-asset-[0-9a-zA-Z]{6}.s3.amazonaws.com$
+  - DOMAIN-REGEX,^github-production-release-asset-[0-9a-zA-Z]{6}\.s3\.amazonaws\.com$
   - DOMAIN-SUFFIX,adaptivecards.io
   - DOMAIN-SUFFIX,api-extractor.com
   - DOMAIN-SUFFIX,apisof.net

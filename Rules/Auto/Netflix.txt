@@ -1,4 +1,4 @@
-# Last update: 2025-09-11 04:05 UTC
+# Last update: 2025-09-11 04:09 UTC
 payload:
   - DOMAIN-SUFFIX,fast.com
   - DOMAIN-SUFFIX,netflix.ca
@@ -23,8 +23,8 @@ payload:
   - DOMAIN-SUFFIX,netflixdnstest8.com
   - DOMAIN-SUFFIX,netflixdnstest9.com
   - DOMAIN-SUFFIX,netflixdnstest10.com
-  - DOMAIN-REGEX,(^|.)apiproxy-device-prod-nlb-.+.amazonaws.com$
-  - DOMAIN-REGEX,(^|.)apiproxy-website-nlb-prod-.+.amazonaws.com$
-  - DOMAIN-REGEX,(^|.)dualstack.apiproxy-.+.amazonaws.com$
-  - DOMAIN-REGEX,(^|.)dualstack.ichnaea-web-.+.amazonaws.com$
+  - DOMAIN-REGEX,(^|\.)apiproxy-device-prod-nlb-.+\.amazonaws\.com$
+  - DOMAIN-REGEX,(^|\.)apiproxy-website-nlb-prod-.+\.amazonaws\.com$
+  - DOMAIN-REGEX,(^|\.)dualstack\.apiproxy-.+\.amazonaws\.com$
+  - DOMAIN-REGEX,(^|\.)dualstack\.ichnaea-web-.+\.amazonaws\.com$
   - DOMAIN,netflix.com.edgesuite.net

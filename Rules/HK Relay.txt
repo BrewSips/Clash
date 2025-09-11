@@ -24,13 +24,14 @@ payload:
 
 
 
+
 ### BEGIN AUTO HK Relay (do not edit)
-# Generated at: 2025-09-11 04:05 UTC
+# Generated at: 2025-09-11 04:09 UTC
   - DOMAIN-SUFFIX,mytvsuper.com
   - DOMAIN-SUFFIX,tvb.com
   - DOMAIN-SUFFIX,viu.tv
   - DOMAIN,api.viu.now.com
-  - DOMAIN-REGEX,^ewcdn[0-9]+.nowe.com$
+  - DOMAIN-REGEX,^ewcdn[0-9]+\.nowe\.com$
   - DOMAIN-SUFFIX,viu.com
   - DOMAIN,dfp6rglgjqszk.cloudfront.net
   - DOMAIN,d1k2us671qcoau.cloudfront.net
