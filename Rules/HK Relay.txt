@@ -20,9 +20,10 @@ payload:
   #- DOMAIN,sns.ap-southeast-1.amazonaws.com
   #- DOMAIN,mobileanalytics.us-east-1.amazonaws.com
 
+
 ### BEGIN AUTO HK Relay (do not edit)
-# Generated at: 2025-09-10 21:58 UTC
-  #- DOMAIN-SUFFIX,mytvsuper.com
+# Generated at: 2025-09-11 03:42 UTC
+  - DOMAIN-SUFFIX,mytvsuper.com
   - DOMAIN-SUFFIX,tvb.com
   - DOMAIN-SUFFIX,viu.tv
   - DOMAIN,api.viu.now.com
