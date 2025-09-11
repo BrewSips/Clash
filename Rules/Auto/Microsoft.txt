@@ -1,4 +1,4 @@
-# Last update: 2025-09-11 05:00 UTC
+# Last update: 2025-09-11 05:09 UTC
 payload:
   - DOMAIN-SUFFIX,azure
   - DOMAIN-SUFFIX,aadrm.com
@@ -323,7 +323,7 @@ payload:
   - DOMAIN-SUFFIX,centralvalidation.com
   - DOMAIN-SUFFIX,ch9.ms
   - DOMAIN-SUFFIX,charticulator.com
-  - DOMAIN-SUFFIX,clarity.ms 
+  - DOMAIN-SUFFIX,clarity.ms
   - DOMAIN-SUFFIX,cloudapp.net
   - DOMAIN-SUFFIX,cloudappsecurity.com
   - DOMAIN-SUFFIX,cortanaanalytics.com
@@ -435,7 +435,7 @@ payload:
   - DOMAIN-SUFFIX,msturing.org
   - DOMAIN-SUFFIX,msudalosti.com
   - DOMAIN-SUFFIX,mymicrosoft.com
-  - DOMAIN-SUFFIX,nelreports.net 
+  - DOMAIN-SUFFIX,nelreports.net
   - DOMAIN-SUFFIX,nextechafrica.net
   - DOMAIN-SUFFIX,nxta.org
   - DOMAIN-SUFFIX,o365weve-dev.com

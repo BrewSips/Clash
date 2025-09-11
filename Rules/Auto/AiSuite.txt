@@ -1,4 +1,4 @@
-# Last update: 2025-09-11 05:00 UTC
+# Last update: 2025-09-11 05:09 UTC
 payload:
   - DOMAIN-SUFFIX,anthropic.com
   - DOMAIN-SUFFIX,claude.ai
@@ -44,9 +44,9 @@ payload:
   - DOMAIN,openaicomproductionae4b.blob.core.windows.net
   - DOMAIN,production-openaicom-storage.azureedge.net
   - DOMAIN-REGEX,^chatgpt-async-webps-prod-\S+-\d+\.webpubsub\.azure\.com$
-  - DOMAIN,o33249.ingest.sentry.io 
-  - DOMAIN,openaicom.imgix.net 
-  - DOMAIN,browser-intake-datadoghq.com 
+  - DOMAIN,o33249.ingest.sentry.io
+  - DOMAIN,openaicom.imgix.net
+  - DOMAIN,browser-intake-datadoghq.com
   - DOMAIN-SUFFIX,chatgpt.livekit.cloud
   - DOMAIN-SUFFIX,host.livekit.cloud
   - DOMAIN-SUFFIX,turn.livekit.cloud

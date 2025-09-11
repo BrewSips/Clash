@@ -1,4 +1,4 @@
-# Last update: 2025-09-11 05:00 UTC
+# Last update: 2025-09-11 05:09 UTC
 payload:
   - DOMAIN,apple-tv-plus-press.apple.com
   - DOMAIN,hls-amt.itunes.apple.com
