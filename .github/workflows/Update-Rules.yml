@@ -534,12 +534,8 @@ jobs:
             done
           fi
 
-      - name: Force add new files
-              run: |
-                git add -f Rules/** Stash/**
-
-            - name: Commit & push if changed
-              uses: stefanzweifel/git-auto-commit-action@v5
-              with:
-                commit_message: "Update Data"
-                file_pattern: Rules/**,Stash/**
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update Data"
+          file_pattern: Rules/**,Stash/**
