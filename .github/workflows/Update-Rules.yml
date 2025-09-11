@@ -1,0 +1,432 @@
+name: Update Rules
+
+on:
+  workflow_dispatch: {}
+  schedule:
+    - cron: "30 2 * * *" # UTC 每天 02:30
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Append AD Rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+          ad_file="Rules/AD Man.txt"
+
+          trim() { echo "$1" | xargs; }
+
+          convert_list_to_rules() {
+            local name="$1"
+            local url="$base_url/$name"
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+              line="${line%%@*}"  # 去掉标签（写入时保留反斜杠）
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                convert_list_to_rules "$sub"
+              elif [[ "$line" == full:* ]]; then
+                printf '%s\n' "  - DOMAIN,${line#full:}"
+              elif [[ "$line" == domain:* ]]; then
+                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}"
+              elif [[ "$line" == keyword:* ]]; then
+                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                printf '%s\n' "  - $line"
+              elif [[ "$line" == regexp:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}"
+              elif [[ "$line" == regex:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}"
+              else
+                printf '%s\n' "  - DOMAIN-SUFFIX,$line"
+              fi
+            done < "$tmp_file"
+          }
+
+          echo "Appending AD rules to $ad_file (guarded by markers)..."
+          touch "$ad_file"
+
+          for entry in category-httpdns-cn sina-ads google-ads; do
+            marker_start="### BEGIN AUTO $entry (do not edit)"
+            marker_end="### END AUTO $entry"
+
+            if grep -Fq "$marker_start" "$ad_file"; then
+              echo "Markers for $entry found, skip appending"
+            else
+              {
+                printf '%s\n' ""
+                printf '%s\n' "$marker_start"
+                printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+                convert_list_to_rules "$entry"
+                printf '%s\n' "$marker_end"
+              } >> "$ad_file"
+              echo "Appended $entry rules to $ad_file"
+            fi
+          done
+
+      - name: Download and Convert Domain Lists
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Auto
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+
+          declare -A entries=(
+            ["google"]="Google.txt"
+            ["apple-tvplus"]="AppleTV.txt"
+            ["disney"]="DisneyPlus.txt"
+            ["netflix"]="Netflix.txt"
+            ["hbo"]="HBO.txt"
+            ["tiktok"]="TikTok.txt"
+            ["category-ai-!cn"]="AiSuite.txt"
+            ["private"]="Private.txt"
+          )
+
+          trim() { echo "$1" | xargs; }
+
+          fetch_and_parse() {
+            local name="$1"
+            local outfile="$2"
+
+            if [[ -n "${visited[$name]+x}" ]]; then
+              return
+            fi
+            visited[$name]=1
+
+            local url="$base_url/$name"
+            echo "Fetching $name ..."
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+              line="${line%%@*}"  # 去掉标签（保留反斜杠原样）
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                fetch_and_parse "$sub" "$outfile"
+                continue
+              fi
+
+              if [[ "$line" == full:* ]]; then
+                printf '%s\n' "  - DOMAIN,${line#full:}" >> "$outfile"
+              elif [[ "$line" == domain:* ]]; then
+                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}" >> "$outfile"
+              elif [[ "$line" == keyword:* ]]; then
+                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$outfile"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                printf '%s\n' "  - $line" >> "$outfile"
+              elif [[ "$line" == regexp:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}" >> "$outfile"
+              elif [[ "$line" == regex:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}" >> "$outfile"
+              else
+                printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$outfile"
+              fi
+            done < "$tmp_file"
+          }
+
+          for entry in "${!entries[@]}"; do
+            outfile="Rules/Auto/${entries[$entry]}"
+            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile"
+            printf '%s\n' "payload:" >> "$outfile"
+            declare -A visited=()
+            fetch_and_parse "$entry" "$outfile"
+            tmp="$(mktemp)"
+            awk '!seen[$0]++' "$outfile" > "$tmp"
+            mv "$tmp" "$outfile"
+            echo "Saved $outfile"
+          done
+
+      - name: Download and Convert Apple & Microsoft
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Auto
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+
+          declare -A entries=(
+            ["apple"]="Apple"
+            ["microsoft"]="Microsoft"
+          )
+
+          trim() { echo "$1" | xargs; }
+
+          fetch_and_parse_split() {
+            local name="$1"
+            local outfile_cn="$2"
+            local outfile_global="$3"
+
+            if [[ -n "${visited[$name]+x}" ]]; then
+              return
+            fi
+            visited[$name]=1
+
+            local url="$base_url/$name"
+            echo "Fetching $name ..."
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              raw="$line"
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                fetch_and_parse_split "$sub" "$outfile_cn" "$outfile_global"
+                continue
+              fi
+
+              # 判断是否带 @cn（使用 raw 判断原始标签）
+              if [[ "$raw" == *@cn* ]]; then
+                target="$outfile_cn"
+              else
+                target="$outfile_global"
+              fi
+
+              line="${line%%@*}"  # 去掉标签（保留反斜杠）
+
+              if [[ "$line" == full:* ]]; then
+                printf '%s\n' "  - DOMAIN,${line#full:}" >> "$target"
+              elif [[ "$line" == domain:* ]]; then
+                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}" >> "$target"
+              elif [[ "$line" == keyword:* ]]; then
+                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}" >> "$target"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                printf '%s\n' "  - $line" >> "$target"
+              elif [[ "$line" == regexp:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}" >> "$target"
+              elif [[ "$line" == regex:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}" >> "$target"
+              else
+                printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$target"
+              fi
+            done < "$tmp_file"
+          }
+
+          for entry in "${!entries[@]}"; do
+            base_name="${entries[$entry]}"
+            outfile_global="Rules/Auto/${base_name}.txt"
+            outfile_cn="Rules/Auto/${base_name}CN.txt"
+
+            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_global"
+            printf '%s\n' "payload:" >> "$outfile_global"
+            printf '%s\n' "# Last update: $(date '+%Y-%m-%d %H:%M %Z')" > "$outfile_cn"
+            printf '%s\n' "payload:" >> "$outfile_cn"
+
+            declare -A visited=()
+            fetch_and_parse_split "$entry" "$outfile_cn" "$outfile_global"
+
+            for f in "$outfile_global" "$outfile_cn"; do
+              tmp="$(mktemp)"
+              awk '!seen[$0]++' "$f" > "$tmp"
+              mv "$tmp" "$f"
+              echo "Saved $f"
+            done
+          done
+
+      - name: Download Rules into Rules/System
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/System
+
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/direct.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/cncidr.txt"
+          )
+
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/System/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+
+            filesize=$(stat -c%s "Rules/System/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/System/$name.tmp"
+              continue
+            fi
+
+            mv "Rules/System/$name.tmp" "Rules/System/$name"
+            echo "Successfully downloaded $name"
+          done
+
+      - name: Download Rules into Rules/Text
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules/Text
+
+          urls=(
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/proxy.txt"
+            "https://raw.githubusercontent.com/Loyalsoldier/surge-rules/release/direct.txt"
+          )
+
+          for u in "${urls[@]}"; do
+            name="$(basename "$u")"
+            echo "Downloading $name from $u"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$u" -o "Rules/Text/$name.tmp"; then
+              echo "Warning: Failed to download $u"
+              continue
+            fi
+
+            filesize=$(stat -c%s "Rules/Text/$name.tmp")
+            if [ "$filesize" -gt 10485760 ]; then
+              echo "Warning: File $name is too large ($filesize bytes), skipping"
+              rm "Rules/Text/$name.tmp"
+              continue
+            fi
+
+            mv "Rules/Text/$name.tmp" "Rules/Text/$name"
+            echo "Successfully downloaded $name"
+          done
+
+      - name: Append HK Relay Rules
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p Rules
+
+          base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
+          hk_file="Rules/HK Relay.txt"
+          marker_start="### BEGIN AUTO HK Relay (do not edit)"
+          marker_end="### END AUTO HK Relay"
+
+          trim() { echo "$1" | xargs; }
+
+          convert_list_to_rules() {
+            local name="$1"
+            local url="$base_url/$name"
+            local tmp_file
+            tmp_file="$(mktemp)"
+            if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
+              echo "Warning: Failed to fetch $name" >&2
+              return 0
+            fi
+
+            while IFS= read -r line; do
+              line="${line%%#*}"
+              line="$(trim "$line")"
+              [ -z "$line" ] && continue
+              line="${line%%@*}"
+
+              if [[ "$line" == include:* ]]; then
+                sub="$(trim "${line#include:}")"
+                convert_list_to_rules "$sub"
+              elif [[ "$line" == full:* ]]; then
+                printf '%s\n' "  - DOMAIN,${line#full:}"
+              elif [[ "$line" == domain:* ]]; then
+                printf '%s\n' "  - DOMAIN-SUFFIX,${line#domain:}"
+              elif [[ "$line" == keyword:* ]]; then
+                printf '%s\n' "  - DOMAIN-KEYWORD,${line#keyword:}"
+              elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
+                printf '%s\n' "  - $line"
+              elif [[ "$line" == regexp:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regexp:}"
+              elif [[ "$line" == regex:* ]]; then
+                printf '%s\n' "  - DOMAIN-REGEX,${line#regex:}"
+              else
+                printf '%s\n' "  - DOMAIN-SUFFIX,$line"
+              fi
+            done < "$tmp_file"
+          }
+
+          echo "Appending HK Relay entries to $hk_file (guarded by markers)..."
+          touch "$hk_file"
+
+          if grep -Fq "$marker_start" "$hk_file"; then
+            echo "Markers found, skip appending to $hk_file"
+          else
+            {
+              printf '%s\n' ""
+              printf '%s\n' "$marker_start"
+              printf '%s\n' "# Generated at: $(date '+%Y-%m-%d %H:%M %Z')"
+              for entry in mytvsuper viu rthk now; do
+                convert_list_to_rules "$entry"
+              done
+              printf '%s\n' "$marker_end"
+            } >> "$hk_file"
+            echo "HK Relay rules appended to $hk_file"
+          fi
+
+      - name: Generate Rules/System/ChinaASN.txt from ASN-China
+        shell: bash
+        run: |
+          set -euo pipefail
+          URL="https://raw.githubusercontent.com/missuo/ASN-China/main/ASN.China.list"
+          OUT="Rules/System/ChinaASN.txt"
+          TMP="$(mktemp)"
+          mkdir -p "$(dirname "$OUT")"
+
+          echo "Downloading ASN-China list from $URL"
+          if ! curl -fsSL --connect-timeout 10 --max-time 60 "$URL" -o "$TMP"; then
+            echo "Warning: Failed to download ASN-China list"
+            exit 1
+          fi
+
+          filesize=$(stat -c%s "$TMP")
+          if [ "$filesize" -gt 5242880 ]; then
+            echo "Warning: ASN-China list is too large ($filesize bytes), skipping processing"
+            rm "$TMP"
+            exit 1
+          fi
+
+          if ! grep -q "IP-ASN" "$TMP"; then
+            echo "Warning: ASN-China list format seems invalid, skipping processing"
+            head -n 10 "$TMP"
+            rm "$TMP"
+            exit 1
+          fi
+
+          {
+            printf '%s\n' "payload:"
+            sed 's/\r$//' "$TMP" \
+              | sed 's/[[:space:]]*\/\/.*$//' \
+              | grep -E '^[[:space:]]*IP-ASN,[0-9]+' \
+              | awk '{print "  - " $0}'
+          } > "$OUT"
+
+          rm "$TMP"
+          echo "Successfully generated ChinaASN.txt"
+
+      - name: Commit & push if changed
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Update Data"
+          file_pattern: Rules/**
