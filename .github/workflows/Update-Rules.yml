@@ -21,7 +21,13 @@ jobs:
           base_url="https://raw.githubusercontent.com/v2fly/domain-list-community/master/data"
           ad_file="Rules/AD Man.txt"
 
-          trim() { echo "$1" | xargs; }
+          # safe trim (pure bash) — 保留反斜杠，不调用 echo/xargs
+          trim() {
+            local var="$1"
+            var="${var#"${var%%[![:space:]]*}"}"
+            var="${var%"${var##*[![:space:]]}"}"
+            printf '%s' "$var"
+          }
 
           convert_list_to_rules() {
             local name="$1"
@@ -30,10 +36,12 @@ jobs:
             tmp_file="$(mktemp)"
             if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
               echo "Warning: Failed to fetch $name" >&2
+              rm -f "$tmp_file"
               return 0
             fi
 
             while IFS= read -r line; do
+              raw="$line"
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
@@ -58,6 +66,7 @@ jobs:
                 printf '%s\n' "  - DOMAIN-SUFFIX,$line"
               fi
             done < "$tmp_file"
+            rm -f "$tmp_file"
           }
 
           echo "Updating AD rules in $ad_file (replace marker blocks if present)..."
@@ -111,7 +120,12 @@ jobs:
             ["private"]="Private.txt"
           )
 
-          trim() { echo "$1" | xargs; }
+          trim() {
+            local var="$1"
+            var="${var#"${var%%[![:space:]]*}"}"
+            var="${var%"${var##*[![:space:]]}"}"
+            printf '%s' "$var"
+          }
 
           fetch_and_parse() {
             local name="$1"
@@ -128,10 +142,12 @@ jobs:
             tmp_file="$(mktemp)"
             if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
               echo "Warning: Failed to fetch $name" >&2
+              rm -f "$tmp_file"
               return 0
             fi
 
             while IFS= read -r line; do
+              raw="$line"
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
@@ -159,6 +175,7 @@ jobs:
                 printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$outfile"
               fi
             done < "$tmp_file"
+            rm -f "$tmp_file"
           }
 
           for entry in "${!entries[@]}"; do
@@ -186,7 +203,12 @@ jobs:
             ["microsoft"]="Microsoft"
           )
 
-          trim() { echo "$1" | xargs; }
+          trim() {
+            local var="$1"
+            var="${var#"${var%%[![:space:]]*}"}"
+            var="${var%"${var##*[![:space:]]}"}"
+            printf '%s' "$var"
+          }
 
           fetch_and_parse_split() {
             local name="$1"
@@ -204,6 +226,7 @@ jobs:
             tmp_file="$(mktemp)"
             if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
               echo "Warning: Failed to fetch $name" >&2
+              rm -f "$tmp_file"
               return 0
             fi
 
@@ -244,6 +267,7 @@ jobs:
                 printf '%s\n' "  - DOMAIN-SUFFIX,$line" >> "$target"
               fi
             done < "$tmp_file"
+            rm -f "$tmp_file"
           }
 
           for entry in "${!entries[@]}"; do
@@ -339,7 +363,12 @@ jobs:
           marker_start="### BEGIN AUTO HK Relay (do not edit)"
           marker_end="### END AUTO HK Relay"
 
-          trim() { echo "$1" | xargs; }
+          trim() {
+            local var="$1"
+            var="${var#"${var%%[![:space:]]*}"}"
+            var="${var%"${var##*[![:space:]]}"}"
+            printf '%s' "$var"
+          }
 
           convert_list_to_rules() {
             local name="$1"
@@ -348,10 +377,12 @@ jobs:
             tmp_file="$(mktemp)"
             if ! curl -fsSL --connect-timeout 10 --max-time 60 "$url" -o "$tmp_file"; then
               echo "Warning: Failed to fetch $name" >&2
+              rm -f "$tmp_file"
               return 0
             fi
 
             while IFS= read -r line; do
+              raw="$line"
               line="${line%%#*}"
               line="$(trim "$line")"
               [ -z "$line" ] && continue
@@ -376,6 +407,7 @@ jobs:
                 printf '%s\n' "  - DOMAIN-SUFFIX,$line"
               fi
             done < "$tmp_file"
+            rm -f "$tmp_file"
           }
 
           echo "Updating HK Relay rules in $hk_file (replace marker block if present)..."
