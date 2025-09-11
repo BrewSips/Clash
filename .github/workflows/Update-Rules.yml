@@ -377,11 +377,13 @@ jobs:
               elif [[ "$line" == DOMAIN-WILDCARD,* ]]; then
                 echo "  - $line"
               elif [[ "$line" == regexp:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regexp:}"
+                # 提取正则表达式内容并保持反斜杠
+                regex_content="${line#regexp:}"
+                printf "  - DOMAIN-REGEX,%s\n" "$regex_content"
               elif [[ "$line" == regex:* ]]; then
-                # 保持原始的正则表达式
-                echo "  - DOMAIN-REGEX,${line#regex:}"
+                # 提取正则表达式内容并保持反斜杠
+                regex_content="${line#regex:}"
+                printf "  - DOMAIN-REGEX,%s\n" "$regex_content"
               else
                 echo "  - DOMAIN-SUFFIX,$line"
               fi
