@@ -23,8 +23,9 @@ payload:
 
 
 
+
 ### BEGIN AUTO HK Relay (do not edit)
-# Generated at: 2025-09-11 03:57 UTC
+# Generated at: 2025-09-11 04:05 UTC
   - DOMAIN-SUFFIX,mytvsuper.com
   - DOMAIN-SUFFIX,tvb.com
   - DOMAIN-SUFFIX,viu.tv
