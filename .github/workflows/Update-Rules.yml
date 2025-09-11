@@ -314,6 +314,7 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p Rules/System
+          mkdir -p Stash/System
 
           urls=(
             "https://raw.githubusercontent.com/Loyalsoldier/clash-rules/release/proxy.txt"
@@ -337,7 +338,8 @@ jobs:
             fi
 
             mv "Rules/System/$name.tmp" "Rules/System/$name"
-            echo "Successfully downloaded $name"
+            cp "Rules/System/$name" "Stash/System/$name"
+            echo "Successfully downloaded and copied $name"
           done
 
       - name: Download Rules into Stash/Text
