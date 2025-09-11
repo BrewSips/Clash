@@ -23,25 +23,6 @@ payload:
   - DOMAIN,sdkconfig.ad.xiaomi.com
 # 以下为自动添加内容
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ### BEGIN AUTO category-httpdns-cn (do not edit)
 # Generated at: 2025-09-11 04:09 UTC
   - DOMAIN-SUFFIX,httpdns-api.aliyuncs.com 
