@@ -63,7 +63,7 @@ jobs:
           echo "Appending AD rules to $ad_file (guarded by markers)..."
           touch "$ad_file"
 
-          for entry in category-httpdns-cn umeng-ads adjust-ads alibaba-ads tencent-ads netease-ads baidu-ads sina-ads google-ads; do
+          for entry in category-httpdns-cn umeng-ads adjust-ads jd-ads alibaba-ads tencent-ads baidu-ads sina-ads google-ads apple-ads; do
             marker_start="### BEGIN AUTO $entry (do not edit)"
             marker_end="### END AUTO $entry"
 
