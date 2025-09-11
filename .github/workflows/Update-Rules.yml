@@ -3,7 +3,7 @@ name: Update Rules
 on:
   workflow_dispatch: {}
   schedule:
-    - cron: "30 2 * * *" # UTC 每天 02:30
+    - cron: "30 2 * * 1" # UTC 每天 02:30
 
 jobs:
   build:
