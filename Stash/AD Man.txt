@@ -23,7 +23,7 @@ payload:
   - DOMAIN,sdkconfig.ad.xiaomi.com
 # 以下为自动添加内容
 ### BEGIN AUTO category-httpdns-cn (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,httpdns-api.aliyuncs.com
   - DOMAIN-SUFFIX,httpdns-sc.aliyuncs.com
   - DOMAIN-SUFFIX,httpdns.alicdn.com
@@ -74,7 +74,7 @@ payload:
   - DOMAIN-SUFFIX,httpdns.zybang.com
 ### END AUTO category-httpdns-cn
 ### BEGIN AUTO google-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,2mdn-cn.net
   - DOMAIN-SUFFIX,2mdn.net
   - DOMAIN-SUFFIX,admob-cn.com
@@ -121,7 +121,7 @@ payload:
   - DOMAIN,analytics.google.com
 ### END AUTO google-ads
 ### BEGIN AUTO baidu-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,a.baidu.com
   - DOMAIN-SUFFIX,ad.duapps.com
   - DOMAIN-SUFFIX,ad.player.baidu.com
@@ -280,21 +280,21 @@ payload:
   - DOMAIN-SUFFIX,zzy1.quyaoya.com
 ### END AUTO baidu-ads
 ### BEGIN AUTO umeng-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,alog.umeng.com
   - DOMAIN-SUFFIX,alog.umengcloud.com
   - DOMAIN-SUFFIX,w.cnzz.com
   - DOMAIN-SUFFIX,z.gds.cnzz.com
 ### END AUTO umeng-ads
 ### BEGIN AUTO adjust-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,adjust.com
   - DOMAIN-SUFFIX,adjust.net.in
   - DOMAIN-SUFFIX,adjust.io
   - DOMAIN-SUFFIX,adjust.world
 ### END AUTO adjust-ads
 ### BEGIN AUTO tencent-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,ad.qq.com
   - DOMAIN-SUFFIX,ad.qun.qq.com
   - DOMAIN-SUFFIX,adfilter.imtt.qq.com
@@ -333,7 +333,7 @@ payload:
   - DOMAIN-SUFFIX,wit.qq.com
 ### END AUTO tencent-ads
 ### BEGIN AUTO alibaba-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,a.alimama.cn
   - DOMAIN-SUFFIX,acjs.aliyun.com
   - DOMAIN-SUFFIX,adash-c.m.taobao.com
@@ -434,7 +434,7 @@ payload:
   - DOMAIN-SUFFIX,yiliao.hupan.com
 ### END AUTO alibaba-ads
 ### BEGIN AUTO sina-ads (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,2016.sina.cn
   - DOMAIN-SUFFIX,ad.sina.com.cn
   - DOMAIN-SUFFIX,adbox.sina.com.cn

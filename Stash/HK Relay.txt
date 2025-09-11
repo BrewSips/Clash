@@ -21,7 +21,7 @@ payload:
   #- DOMAIN,mobileanalytics.us-east-1.amazonaws.com
 # 以下为自动添加内容
 ### BEGIN AUTO HK Relay (do not edit)
-# Generated at: 2025-09-11 08:31 UTC
+# Generated at: 2025-09-11 08:49 UTC
   - DOMAIN-SUFFIX,mytvsuper.com
   - DOMAIN-SUFFIX,tvb.com
   - DOMAIN-SUFFIX,viu.tv
