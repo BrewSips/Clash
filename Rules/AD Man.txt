@@ -121,7 +121,7 @@ payload:
   - DOMAIN-SUFFIX,marketingplatform.google.com 
   - DOMAIN-SUFFIX,urchin.com 
   - DOMAIN,analytics.google.com 
-  - DOMAIN-REGEX,^adservice\.google\.([a-z]{2}|com?)(\.[a-z]{2})?$ 
+  #- DOMAIN-REGEX,^adservice\.google\.([a-z]{2}|com?)(\.[a-z]{2})?$ 
 ### END AUTO google-ads
 
 ### BEGIN AUTO baidu-ads (do not edit)
