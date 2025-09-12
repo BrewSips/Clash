@@ -11,9 +11,9 @@ payload:
 # HK01
   #- DOMAIN,ads.pubmatic.com
 # HOY
-  #- DOMAIN,algoad.hoy.tv
-  #- DOMAIN,adscreative.hoy.tv
-  #- DOMAIN,display-algoad.hoy.tv
+  - DOMAIN,algoad.hoy.tv
+  - DOMAIN,adscreative.hoy.tv
+  - DOMAIN,display-algoad.hoy.tv
 # 央视影音
   #- DOMAIN,galaxy.bjcathay.com
 # 小米电视
