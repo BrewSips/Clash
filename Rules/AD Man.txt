@@ -4,21 +4,21 @@ payload:
 # TVB  
   - DOMAIN,mai.tvb.com
 # VIU
-  - DOMAIN,ad.crwdcntrl.net
-  - DOMAIN,bcp.crwdcntrl.net
-  - DOMAIN,wd.adcolony.com
-  - DOMAIN,adc3-launch.adcolony.com
+  #- DOMAIN,ad.crwdcntrl.net
+  #- DOMAIN,bcp.crwdcntrl.net
+  #- DOMAIN,wd.adcolony.com
+  #- DOMAIN,adc3-launch.adcolony.com
 # HK01
-  - DOMAIN,ads.pubmatic.com
+  #- DOMAIN,ads.pubmatic.com
 # HOY
-  - DOMAIN,algoad.hoy.tv
-  - DOMAIN,adscreative.hoy.tv
-  - DOMAIN,display-algoad.hoy.tv
+  #- DOMAIN,algoad.hoy.tv
+  #- DOMAIN,adscreative.hoy.tv
+  #- DOMAIN,display-algoad.hoy.tv
 # 央视影音
-  - DOMAIN,galaxy.bjcathay.com
+  #- DOMAIN,galaxy.bjcathay.com
 # 小米电视
-  - DOMAIN,adx.v.mitvos.com
-  - DOMAIN,api.ad.xiaomi.com
-  - DOMAIN,config.ptmi.gitv.tv
-  - DOMAIN,sdkconfig.ad.xiaomi.com
+  #- DOMAIN,adx.v.mitvos.com
+  #- DOMAIN,api.ad.xiaomi.com
+  #- DOMAIN,config.ptmi.gitv.tv
+  #- DOMAIN,sdkconfig.ad.xiaomi.com
 # 以下为自动添加内容
