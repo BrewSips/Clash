@@ -15,8 +15,8 @@ payload:
   - DOMAIN,adscreative.hoy.tv
   - DOMAIN,display-algoad.hoy.tv
 # 联合早报
-  - DOMAIN,sdk.e.qq.com
-  - DOMAIN,mi.gdt.qq.com
+  #- DOMAIN,sdk.e.qq.com
+  #- DOMAIN,mi.gdt.qq.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 小米电视
