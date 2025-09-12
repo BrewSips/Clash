@@ -3,13 +3,6 @@ payload:
 ####
 # TVB  
   - DOMAIN,mai.tvb.com
-# VIU
-  #- DOMAIN,ad.crwdcntrl.net
-  #- DOMAIN,bcp.crwdcntrl.net
-  #- DOMAIN,wd.adcolony.com
-  #- DOMAIN,adc3-launch.adcolony.com
-# HK01
-  #- DOMAIN,ads.pubmatic.com
 # HOY
   - DOMAIN,algoad.hoy.tv
   - DOMAIN,adscreative.hoy.tv
