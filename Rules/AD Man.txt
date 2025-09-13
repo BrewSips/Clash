@@ -1,6 +1,8 @@
 payload:
   # > AD Man
 ####
+# Google
+  - DOMAIN-KEYWORD,doubleclick
 # TVB  
   - DOMAIN,mai.tvb.com
 # VIU
@@ -14,11 +16,13 @@ payload:
   - DOMAIN,algoad.hoy.tv
   - DOMAIN,adscreative.hoy.tv
   - DOMAIN,display-algoad.hoy.tv
+# 腾讯科技
+  - DOMAIN,sdk.e.qq.com
+  - DOMAIN-SUFFIX,gdt.qq.com
 # 央视影音
   - DOMAIN,galaxy.bjcathay.com
 # 小米电视
   - DOMAIN,adx.v.mitvos.com
-  - DOMAIN,api.ad.xiaomi.com
   - DOMAIN,config.ptmi.gitv.tv
-  - DOMAIN,sdkconfig.ad.xiaomi.com
+  - DOMAIN-SUFFIX,ad.xiaomi.com
 # 以下为自动添加内容
