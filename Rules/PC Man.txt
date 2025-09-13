@@ -1,4 +1,4 @@
 payload:
   # > PC Man
 ####
-  - DOMAIN-SUFFIX,pandora.xiaomi.com
+  - DOMAIN,milink.pandora.xiaomi.com
