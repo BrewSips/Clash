@@ -1,6 +1,11 @@
 payload:
   # > HK Relay
 ####
+  - GeoSite,rhhk
+  - GeoSite,viu
+  - GeoSite,now
+  - GeoSite,tvb
+  - GeoSite,mytvsuper
 # RTHK
   #- DOMAIN-KEYWORD,rthk
 # TVB
