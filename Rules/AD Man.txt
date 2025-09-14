@@ -1,8 +1,9 @@
 payload:
   # > AD Man
 ####
-# Google
-  - DOMAIN-KEYWORD,doubleclick
+# GeoSite
+  - GeoSite,Baidu-Ads
+  - GeoSite,Google-Ads
 # TVB  
   - DOMAIN,mai.tvb.com
 # VIU
