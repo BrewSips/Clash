@@ -2,4 +2,4 @@ payload:
   # > US End
 ####
 # Qobuz
-  - DOMAIN-SUFFIX,qobuz.com
+  - Domain-Suffix,qobuz.com
