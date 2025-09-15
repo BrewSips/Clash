@@ -4,5 +4,6 @@ payload:
 - GeoSite,Private
 - GeoSite,Apple@CN
 - GeoSite,Microsoft@CN
+- GeoSite,Category-Ai-CN
 - GeoSite,GeoLocation-CN
 - GeoSite,GeoLocation-!CN@CN
