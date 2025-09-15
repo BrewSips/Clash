@@ -1,4 +1,2 @@
 payload:
-  # > TikTok
-####
 - GeoSite,TikTok
