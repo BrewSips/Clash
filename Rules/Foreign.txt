@@ -1,1 +1,4 @@
+payload:
+  # > Foreign
+####
 - GeoSite,GeoLocation-!CN,Proxy
