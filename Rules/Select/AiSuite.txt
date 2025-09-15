@@ -1,4 +1,2 @@
 payload:
-  # > AiSuite.txt
-####
 - GeoSite,Category-Ai-!CN
