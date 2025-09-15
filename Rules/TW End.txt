@@ -2,3 +2,8 @@ payload:
   # > TW End
 ####
 - GeoSite,Google
+- GeoSite,Apple-TvPlus
+- GeoSite,Disney
+- GeoSite,Netflix
+- GeoSite,HBO
+- GeoSite,Category-Ai-!CN
