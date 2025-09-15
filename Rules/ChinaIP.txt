@@ -1,2 +1,5 @@
+payload:
+  # > ChinaIP
+####
 - GeoIP,lan,DIRECT
 - GeoIP,cn,DIRECT
