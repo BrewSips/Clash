@@ -1,6 +1,4 @@
 payload:
-  # > HK Relay
-####
 - GeoSite,rhhk
 - GeoSite,viu
 - GeoSite,now
