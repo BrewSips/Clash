@@ -25,4 +25,3 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain,config.ptmi.gitv.tv
 - Domain-Suffix,ad.xiaomi.com
-# 以下为自动添加内容
