@@ -1,4 +1,5 @@
 payload:
   # > AiSuite.txt
 ####
+- Domain-Suffix,doubao.com
 - GeoSite,Category-Ai-!CN
