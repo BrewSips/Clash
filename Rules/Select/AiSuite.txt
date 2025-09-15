@@ -1,5 +1,6 @@
 payload:
   # > AiSuite.txt
 ####
+- Domain-Suffix,moonshot.cn,DIRECT
 - Domain-Suffix,doubao.com,DIRECT
 - GeoSite,Category-Ai-!CN
