@@ -1,6 +1,4 @@
 payload:
-  # > China
-####
 - GeoSite,Private,DIRECT
 - GeoSite,Apple@CN,DIRECT
 - GeoSite,Microsoft@CN,DIRECT
