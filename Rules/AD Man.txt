@@ -2,27 +2,27 @@ payload:
   # > AD Man
 ####
 # Google
-  - Domain-Keyword,doubleclick
+- Domain-Keyword,doubleclick
 # TVB  
-  - Domain,mai.tvb.com
+- Domain,mai.tvb.com
 # VIU
-  - Domain,ad.crwdcntrl.net
-  - Domain,bcp.crwdcntrl.net
-  - Domain,wd.adcolony.com
-  - Domain,adc3-launch.adcolony.com
+- Domain,ad.crwdcntrl.net
+- Domain,bcp.crwdcntrl.net
+- Domain,wd.adcolony.com
+- Domain,adc3-launch.adcolony.com
 # HK01
-  - Domain,ads.pubmatic.com
+- Domain,ads.pubmatic.com
 # HOY
-  - Domain,algoad.hoy.tv
-  - Domain,adscreative.hoy.tv
-  - Domain,display-algoad.hoy.tv
+- Domain,algoad.hoy.tv
+- Domain,adscreative.hoy.tv
+- Domain,display-algoad.hoy.tv
 # 腾讯科技
-  - Domain,sdk.e.qq.com
-  - Domain-Suffix,gdt.qq.com
+- Domain,sdk.e.qq.com
+- Domain-Suffix,gdt.qq.com
 # 央视影音
-  - Domain,galaxy.bjcathay.com
+- Domain,galaxy.bjcathay.com
 # 小米电视
-  - Domain,adx.v.mitvos.com
-  - Domain,config.ptmi.gitv.tv
-  - Domain-Suffix,ad.xiaomi.com
+- Domain,adx.v.mitvos.com
+- Domain,config.ptmi.gitv.tv
+- Domain-Suffix,ad.xiaomi.com
 # 以下为自动添加内容
