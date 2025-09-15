@@ -1,3 +1,4 @@
 payload:
   # > OT Relay
 ####
+- GeoSite,Category-Ai-!CN
