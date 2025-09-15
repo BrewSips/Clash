@@ -1,3 +1,8 @@
 payload:
   # > China
 ####
+- GeoSite,Private,DIRECT
+- GeoSite,Apple@CN,DIRECT
+- GeoSite,Microsoft@CN,DIRECT
+- GeoSite,GeoLocation-CN,DIRECT
+- GeoSite,GeoLocation-!CN@CN,DIRECT
