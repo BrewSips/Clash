@@ -1,4 +1,2 @@
 payload:
-  # > AppleTV
-####
 - GeoSite,Apple-TvPlus
