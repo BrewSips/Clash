@@ -1,5 +1,8 @@
-  - GeoSite,Private
-  - GeoSite,Apple@CN
-  - GeoSite,Microsoft@CN
-  - GeoSite,GeoLocation-CN
-  - GeoSite,GeoLocation-!CN@CN
+payload:
+  # > China
+####
+- GeoSite,Private
+- GeoSite,Apple@CN
+- GeoSite,Microsoft@CN
+- GeoSite,GeoLocation-CN
+- GeoSite,GeoLocation-!CN@CN
