@@ -6,4 +6,3 @@ payload:
 - GeoSite,Disney
 - GeoSite,Netflix
 - GeoSite,HBO
-- GeoSite,Category-Ai-!CN
