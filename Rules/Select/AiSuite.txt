@@ -1,5 +1,5 @@
 payload:
   # > AiSuite.txt
 ####
-- GeoSite,Category-Ai-CN,DIRECT
+- GeoSite,Category-Ai-CN
 - GeoSite,Category-Ai-!CN
