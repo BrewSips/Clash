@@ -1,2 +1,2 @@
 payload:
-- GeoSite,GeoLocation-!CN,Proxy
+- GeoSite,GeoLocation-!CN
