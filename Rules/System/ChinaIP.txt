@@ -1,3 +1,3 @@
 payload:
-- GeoIP,lan,DIRECT
-- GeoIP,cn,DIRECT
+- GeoIP,LAN
+- GeoIP,CN
