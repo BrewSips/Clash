@@ -1,4 +1,5 @@
 payload:
+- GeoSite,Private
 #- GeoSite,Apple@CN
 #- GeoSite,Google@CN
 #- GeoSite,Microsoft@CN
