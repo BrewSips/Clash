@@ -1,3 +1,3 @@
 payload:
 - GeoIP,LAN
-- GeoIP,CN
+- GeoIP,CN,no-resolve
