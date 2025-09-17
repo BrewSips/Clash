@@ -1,3 +1,2 @@
 payload:
 - Domain,time.android.com
-- Domain,api.roonlabs.net
