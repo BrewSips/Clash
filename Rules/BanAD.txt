@@ -1,7 +1,8 @@
 payload:
-- GeoSite,category-ads-all
+#- GeoSite,category-ads-all
 - Domain,mai.tvb.com
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
 - Domain,galaxy.bjcathay.com
+- Domain-Keyword,doubleclick
