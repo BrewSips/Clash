@@ -1,7 +1,20 @@
 payload:
-- GeoSite,category-ads-all
+# Google
+- Domain-Keyword,doubleclick
+# TVB  
 - Domain,mai.tvb.com
+# HOY
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
+# 联合早报
+- Domain,sdk.e.qq.com
+- Domain-Suffix,gdt.qq.com
+# 央视影音
 - Domain,galaxy.bjcathay.com
+# 小米电视
+- Domain,adx.v.mitvos.com
+- Domain,config.ptmi.gitv.tv
+- Domain-Suffix,ad.xiaomi.com
+# 以下为自动添加的内容
+# - GeoSite,category-ads-all
