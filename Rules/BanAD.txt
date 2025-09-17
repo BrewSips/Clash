@@ -10,7 +10,6 @@ payload:
 - Domain,display-algoad.hoy.tv
 # 联合早报
 - Domain,sdk.e.qq.com
-- Domain,mi.gdt.qq.com
 - Domain-Suffix,gdt.qq.com
 # 央视影音
 - Domain,galaxy.bjcathay.com
