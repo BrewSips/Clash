@@ -1,4 +1,5 @@
 payload:
+- GeoSite,category-httpdns-cn
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
@@ -17,5 +18,3 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain,config.ptmi.gitv.tv
 - Domain-Suffix,ad.xiaomi.com
-# 以下为自动添加的内容
-# - GeoSite,category-ads-all
