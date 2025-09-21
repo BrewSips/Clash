@@ -1,5 +1,4 @@
 payload:
-- GeoSite,category-httpdns-cn
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
