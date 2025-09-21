@@ -1,3 +1,4 @@
 payload:
+- GeoIP,Private
 - GeoIP,LAN
 - GeoIP,CN
