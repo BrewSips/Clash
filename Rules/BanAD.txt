@@ -1,5 +1,4 @@
 payload:
-- Domain-Suffix,jpush.cn
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
@@ -16,5 +15,4 @@ payload:
 - Domain,galaxy.bjcathay.com
 # 小米电视
 - Domain,adx.v.mitvos.com
-- Domain,config.ptmi.gitv.tv
 - Domain-Suffix,ad.xiaomi.com
