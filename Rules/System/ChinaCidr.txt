@@ -1,5 +1,4 @@
 payload:
-- GeoSite,GeoLocation-!CN@CN
 - GeoSite,Private
 - GeoIP,LAN
 - GeoIP,CN
