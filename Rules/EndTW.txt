@@ -1,2 +1,2 @@
 payload:
-- Domain-Suffix,uhbnow.com
+- Domain-Suffix,uhdnow.com
