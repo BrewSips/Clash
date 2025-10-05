@@ -1,0 +1,10 @@
+  2022:
+    type: http
+    path: "./proxy_provider/2022"
+    url: https://dler.cloud/subscribe/BrewsipsToken?protocols=ss2022&info=true&area=hk+tw+sg+us&provider=clash&match=AC|Max|Std|Pro|Ultra|Plus&nomatch=>
+    interval: 28800
+  Base:
+    type: http
+    path: "./proxy_provider/Base"
+    url: https://dler.cloud/subscribe/BrewsipsToken?protocols=ss&info=true&provider=clash&match=AC.*>|Max.*>|Std.*>|Pro.*>|Ultra.*>|Plus.*>|BGP.*>
+    interval: 28800
