@@ -18,6 +18,7 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
 # 红果短剧
+- Domain-Keyword,misc-lq.fqnovel.com
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Keyword,reading-ad.qznovelvod.com
 - Domain-Keyword,iosreadingvideo.qznovelvod.com
