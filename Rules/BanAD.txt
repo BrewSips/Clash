@@ -17,3 +17,5 @@ payload:
 # 小米电视
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
+# Other
+- Domain-Keyword,ad.qznovelvod.com
