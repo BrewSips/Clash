@@ -18,4 +18,6 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
 # Other
-- Domain-Keyword,ad.qznovelvod.com
+- Domain-Keyword,ad-sign.byteimg.com
+- Domain-Keyword,reading-ad.qznovelvod.com
+- Domain-Keyword,iosreadingvideo.qznovelvod.com
