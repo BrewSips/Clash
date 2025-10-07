@@ -3,6 +3,7 @@ payload:
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
+- Domain-Keyword,ads-pa.clients6.google.com
 # TVB  
 - Domain,mai.tvb.com
 # HOY
