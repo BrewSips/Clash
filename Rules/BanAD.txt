@@ -18,6 +18,8 @@ payload:
 # 小米电视
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
+# 小红书
+- DOMAIN-REGEX,^ads-.*\.xhscdn\.com$
 # 红果短剧
 - Domain,ads3-normal-lq.zijieapi.com
 - Domain-Keyword,misc-lq.fqnovel.com
