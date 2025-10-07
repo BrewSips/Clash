@@ -1,9 +1,6 @@
 payload:
-- GeoSite,category-httpdns-cn
 # Google
-- Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
-- Domain,ogads-pa.clients6.google.com
 # TVB  
 - Domain,mai.tvb.com
 # HOY
