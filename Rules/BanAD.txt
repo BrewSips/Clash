@@ -3,7 +3,7 @@ payload:
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,ads-pa.clients6.google.com
+- Domain,ogads-pa.clients6.google.com
 # TVB  
 - Domain,mai.tvb.com
 # HOY
@@ -19,6 +19,7 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
 # 红果短剧
+- Domain,ads3-normal-lq.zijieapi.com
 - Domain-Keyword,misc-lq.fqnovel.com
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Keyword,reading-ad.qznovelvod.com
