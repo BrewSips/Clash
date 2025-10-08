@@ -3,5 +3,5 @@ payload:
 - GeoSite,viu
 - GeoSite,now
 - GeoSite,tvb
-- GeoSite,rhhk
+- GeoSite,rthk
 - GeoSite,mytvsuper
