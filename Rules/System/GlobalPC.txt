@@ -1,3 +1,3 @@
 payload:
-- Geosite,TLS-!CN
+- Geosite,TLD-!CN
 - GeoSite,GeoLocation-!CN
