@@ -15,6 +15,7 @@ payload:
 - Domain-Suffix,gdt.qq.com
 # 香港01
 - Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
 # 央视影音
 - Domain,galaxy.bjcathay.com
 # 小米电视
