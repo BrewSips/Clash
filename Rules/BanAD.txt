@@ -1,6 +1,9 @@
 payload:
 # Google
+- Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
+- Domain-Keyword,l.doubleclick
+- Domain-Keyword,googlesyndication
 # TVB  
 - Domain,mai.tvb.com
 # HOY
