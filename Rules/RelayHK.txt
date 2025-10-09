@@ -7,4 +7,6 @@ payload:
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # HOY
+- Domain,distrib.noisypeak.com
+- Domain,edge.media.seaovers.live
 - Domain-Keyword,live-stream.hoy.tv
