@@ -6,3 +6,5 @@ payload:
 - GeoSite,mytvsuper
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
+# HOY
+- Domain-Suffix,live-stream.hoy.tv
