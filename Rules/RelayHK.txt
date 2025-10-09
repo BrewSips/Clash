@@ -4,3 +4,5 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,mytvsuper
+# Viu
+- Domain,d3o7oi00quuwqu.cloudfront.net
