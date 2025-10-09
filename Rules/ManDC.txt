@@ -1,2 +1,2 @@
 payload:
-#- GeoSite,Category-NTP@CN
+- GeoSite,Category-NTP@CN
