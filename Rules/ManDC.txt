@@ -1,1 +1,2 @@
 payload:
+- GeoSite,Category-NTP@CN
