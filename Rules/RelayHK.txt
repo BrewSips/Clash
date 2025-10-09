@@ -4,7 +4,7 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,mytvsuper
-# Viu
-- Domain,d3o7oi00quuwqu.cloudfront.net
 # HOY
 - Domain-Suffix,hoy.tv
+# Viu
+- Domain,d3o7oi00quuwqu.cloudfront.net
