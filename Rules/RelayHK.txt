@@ -4,9 +4,10 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,mytvsuper
+# Viu
+- Domain,d3o7oi00quuwqu.cloudfront.net
 # HOY
 - Domain-Suffix,hoy.tv
 - Domain,distrib.noisypeak.com
 - Domain,edge.media.seaovers.live
-# Viu
-- Domain,d3o7oi00quuwqu.cloudfront.net
+- Domain,e46fa4a445464f8a9150fa7d510eb85c.mediatailor.us-west-2.amazonaws.com
