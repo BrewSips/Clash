@@ -4,7 +4,6 @@ payload:
 - Domain-Keyword,g.doubleclick
 - Domain-Keyword,l.doubleclick
 - Domain-Keyword,googlesyndication
-- Domain,ogads-pa.clients6.google.com
 # TVB  
 - Domain,mai.tvb.com
 # HOY
