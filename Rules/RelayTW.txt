@@ -1,2 +1,2 @@
 payload:
-- GeoSite,Category-NTP
+- Domain,time.android.com
