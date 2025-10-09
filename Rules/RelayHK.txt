@@ -8,3 +8,5 @@ payload:
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # HOY
 - Domain-Suffix,hoy.tv
+- Domain,distrib.noisypeak.com
+- Domain,edge.media.seaovers.live
