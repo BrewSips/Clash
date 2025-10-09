@@ -7,4 +7,4 @@ payload:
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # HOY
-- Domain-Keyword,live-stream.hoy.tv
+- Domain-Suffix,hoy.tv
