@@ -2,6 +2,3 @@ payload:
 - GeoSite,TikTok
 - GeoSite,Wikimedia
 - GeoSite,Category-Ai-!CN
-- Domain,time.android.com
-- Domain,time.windows.com
-- And,(Dst-Port,123),(Domain-Suffix,apple.com)
