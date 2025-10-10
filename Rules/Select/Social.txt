@@ -1,0 +1,3 @@
+- GeoSite,TikTok
+- GeoSite,Wikimedia
+- GeoSite,Category-Ai-!CN
