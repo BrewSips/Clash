@@ -1,2 +1,2 @@
 payload:
-- Domain,www.qobuz.com
+- Domain-Suffix,qobuz.com
