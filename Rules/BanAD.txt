@@ -1,12 +1,18 @@
 payload:
 # Google
+- Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
+- Domain,ogads-pa.clients6.google.com
+- Domain,pagead2.googlesyndication.com
 # TVB  
 - Domain,mai.tvb.com
 # HOY
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
+# 香港 01
+- Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
 # 联合早报
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
