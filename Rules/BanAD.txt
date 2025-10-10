@@ -22,9 +22,9 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
 # 小红书
-- DOMAIN-REGEX,^ads-.*\.xhscdn\.com$
+#- DOMAIN-REGEX,^ads-.*\.xhscdn\.com$
 # 红果短剧
-- Domain,ads3-normal-lq.zijieapi.com
+#- Domain,ads3-normal-lq.zijieapi.com
 - Domain-Keyword,misc-lq.fqnovel.com
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Keyword,reading-ad.qznovelvod.com
