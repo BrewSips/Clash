@@ -1,3 +1,0 @@
-payload:
-- GeoSite,Bing
-- GeoSite,Category-AI-!CN
