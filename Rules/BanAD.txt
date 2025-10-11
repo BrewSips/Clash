@@ -12,7 +12,7 @@ payload:
 - Domain,display-algoad.hoy.tv
 # 香港 01
 - Domain,ads.pubmatic.com
-- Domain.oi-ow.pubmatic.com
+- Domain,oi-ow.pubmatic.com
 # 联合早报
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
