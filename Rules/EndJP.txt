@@ -1,3 +1,2 @@
 payload:
 - Domain,jp.iqos.com
-- Domain,rfc.uhdnow.com
