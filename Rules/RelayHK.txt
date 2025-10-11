@@ -1,2 +1,2 @@
 payload:
-GeoSite,Bing
+- GeoSite,Bing
