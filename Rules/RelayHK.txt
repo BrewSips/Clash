@@ -1,4 +1,5 @@
 payload:
+- GeoSite,Bing
 - GeoSite,viu
 - GeoSite,now
 - GeoSite,tvb
