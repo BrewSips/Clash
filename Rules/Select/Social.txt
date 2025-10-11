@@ -1,5 +1,0 @@
-payload:
-- GeoSite,Bing
-- GeoSite,TikTok
-- GeoSite,Wikimedia
-- GeoSite,Category-Ai-!CN
