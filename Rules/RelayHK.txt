@@ -1,10 +1,11 @@
 payload:
-- GeoSite,Bing
 - GeoSite,viu
 - GeoSite,now
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,mytvsuper
+# Bing
+- Domain,www.bing.com
 # HOY
 - Domain-Suffix,hoy.tv
 # Viu
