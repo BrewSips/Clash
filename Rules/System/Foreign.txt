@@ -1,4 +1,3 @@
 payload:
 - GeoSite,TLD-!CN
 - GeoSite,GeoLocation-!CN
-#- AND,((NOT,((DST-PORT,123))),(OR,(Geosite,TLD-!CN),(GeoSite,GeoLocation-!CN)))
