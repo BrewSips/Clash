@@ -1,0 +1,12 @@
+payload:
+- GeoSite,viu
+- GeoSite,now
+- GeoSite,tvb
+- GeoSite,rthk
+- GeoSite,mytvsuper
+# HOY
+- Domain-Suffix,hoy.tv
+# Viu
+- Domain,d3o7oi00quuwqu.cloudfront.net
+# 凤凰秀
+- Domain,dsa-mfp.fengshows.cn
