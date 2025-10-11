@@ -8,3 +8,5 @@ payload:
 - Domain-Suffix,hoy.tv
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
+# 凤凰秀
+- Domain,dsa-mfp.fengshows.cn
