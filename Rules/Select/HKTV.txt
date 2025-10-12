@@ -7,8 +7,4 @@ payload:
 # HOY
 - Domain-Suffix,hoy.tv
 # Viu
-- Domain,prd.jwpltx.com
-- Domain,entitlements.jwplayer.com
 - Domain,d3o7oi00quuwqu.cloudfront.net
-# 凤凰秀
-- Domain,dsa-mfp.fengshows.cn
