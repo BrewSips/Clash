@@ -6,6 +6,7 @@ payload:
 - Domain,pagead2.googlesyndication.com
 # TVB  
 - Domain,mai.tvb.com
+- Domain,mytvsuperlimited.sc.omtrdc.net
 # HOY
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
