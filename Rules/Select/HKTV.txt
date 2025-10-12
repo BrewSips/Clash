@@ -3,7 +3,6 @@ payload:
 - GeoSite,now
 - GeoSite,tvb
 - GeoSite,rthk
-# HOY
-- Domain-Suffix,hoy.tv
+- GeoSite,icable
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
