@@ -1,2 +1,2 @@
 payload:
-- Domain,jp.iqos.com
+- Domain-Suffix,iqos.com
