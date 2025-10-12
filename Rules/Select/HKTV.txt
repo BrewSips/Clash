@@ -6,8 +6,6 @@ payload:
 - GeoSite,mytvsuper
 # HOY
 - Domain-Suffix,hoy.tv
-# TVB
-- Domain,sniper.redsoapp.com
 # Viu
 - Domain,prd.jwpltx.com
 - Domain,entitlements.jwplayer.com
