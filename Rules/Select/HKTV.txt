@@ -3,7 +3,6 @@ payload:
 - GeoSite,now
 - GeoSite,tvb
 - GeoSite,rthk
-- GeoSite,mytvsuper
 # HOY
 - Domain-Suffix,hoy.tv
 # Viu
