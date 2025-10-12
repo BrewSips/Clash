@@ -4,10 +4,10 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,mytvsuper
-# TVB
-#- Domain-Keyword,mytvsuper
 # HOY
 - Domain-Suffix,hoy.tv
+# TVB
+- Domain-Keyword,mytvsuper
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # 凤凰秀
