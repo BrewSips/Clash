@@ -8,6 +8,7 @@ payload:
 - Domain,mai.tvb.com
 - Domain,dpm.demdex.net
 - Domain,assets.adobedtm.com
+- Domain,sniper.redsoapp.com
 - Domain,loada.leadstecgz.com
 - Domain,mytvsuperlimited.sc.omtrdc.net
 # HOY
