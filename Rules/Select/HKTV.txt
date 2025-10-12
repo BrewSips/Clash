@@ -6,6 +6,8 @@ payload:
 - GeoSite,mytvsuper
 # HOY
 - Domain-Suffix,hoy.tv
+# TVB
+- Domain,sniper.redsoapp.com
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # 凤凰秀
