@@ -5,7 +5,7 @@ payload:
 - GeoSite,rthk
 - GeoSite,mytvsuper
 # TVB
-- Domain-Keyword,mytvsuper
+#- Domain-Keyword,mytvsuper
 # HOY
 - Domain-Suffix,hoy.tv
 # Viu
