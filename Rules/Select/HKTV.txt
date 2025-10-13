@@ -7,3 +7,5 @@ payload:
 - GeoSite,icable
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
+# TVB
+- Domain,mytvsuperlimited.sc.omtrdc.net
