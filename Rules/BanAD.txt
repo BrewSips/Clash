@@ -1,9 +1,9 @@
 payload:
 # Google
-- Domain,ad.doubleclick.net
+#- Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
-- Domain,ogads-pa.clients6.google.com
-- Domain,pagead2.googlesyndication.com
+#- Domain,ogads-pa.clients6.google.com
+#- Domain,pagead2.googlesyndication.com
 # TVB  
 - Domain,mai.tvb.com
 #- Domain,dpm.demdex.net
