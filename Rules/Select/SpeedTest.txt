@@ -1,1 +1,2 @@
+payload:
 - GeoSite,category-speedtest
