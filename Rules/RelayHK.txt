@@ -1,3 +1,1 @@
 payload:
-- GeoSite,Bing
-- Domain-Suffix,msn.com
