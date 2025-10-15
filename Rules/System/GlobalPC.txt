@@ -1,4 +1,3 @@
 payload:
-- GeoSite,Google
 - GeoSite,TLD-!CN
 - GeoSite,GeoLocation-!CN
