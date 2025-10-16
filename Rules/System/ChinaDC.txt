@@ -1,4 +1,5 @@
 payload:
+- Dst-Port,123
 - GeoSite,Private
 - GeoSite,Apple
 - GeoSite,TLD-CN
