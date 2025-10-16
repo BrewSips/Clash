@@ -1,4 +1,6 @@
 payload:
+- GeoSite,Alibaba-ADS
+- GeoSite,Tencent-ADS
 # Google
 - Domain,ad.doubleclick.net
 - Domain-Keyword,g.doubleclick
