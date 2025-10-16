@@ -1,2 +1,3 @@
 payload:
+- Domain,time.android.com
 - Domain,dsa-mfp.fengshows.cn
