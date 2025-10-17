@@ -4,8 +4,6 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,icable
-# Qobuz
-- Domain-Suffix,qobuz.com
 # fengshows
 - Domain,dsa-mfp.fengshows.cn
 # Viu
