@@ -75,7 +75,7 @@ jobs:
           echo "Updating AD rules in $ad_file (replace marker blocks if present)..."
           touch "$ad_file"
 
-          for entry in category-httpdns-cn google-ads baidu-ads umeng-ads adjust-ads tencent-ads alibaba-ads sina-ads; do
+          for entry in category-httpdns-cn tencent-ads alibaba-ads sina-ads; do
             marker_start="### BEGIN AUTO $entry (do not edit)"
             marker_end="### END AUTO $entry"
 
