@@ -1,4 +1,5 @@
 payload:
+- GeiSite,Sina-ADS
 - GeoSite,Alibaba-ADS
 - GeoSite,Tencent-ADS
 # Google
