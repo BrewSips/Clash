@@ -4,6 +4,8 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,icable
+# 凤凰秀
+- Domain,dsa-mfp.fengshows.cn
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
