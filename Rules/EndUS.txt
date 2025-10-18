@@ -1,2 +1,2 @@
 payload:
-- Domain,static.qobuz.com
+- Domain-Keyword,Qobuz
