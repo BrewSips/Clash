@@ -1,2 +1,2 @@
 payload:
-- Domain-Keyword,Qobuz
+- Domain-Keyword,qobuz
