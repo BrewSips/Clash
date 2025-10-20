@@ -4,10 +4,6 @@ payload:
 - GeoSite,tvb
 - GeoSite,rthk
 - GeoSite,icable
-# iill
-- Domain-Suffix,iill.top
-# Fengshows
-- Domain,dsa-mfp.fengshows.cn
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
