@@ -1,3 +1,2 @@
 payload:
-- Domain,api.viu.tv
-- Domain,api.viu.now.com
+- Domain-Suffix,nowe.com
