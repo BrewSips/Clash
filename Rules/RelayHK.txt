@@ -1,2 +1,2 @@
 payload:
-- Domain,static.viu.tv
+- Domain,api.viu.tv
