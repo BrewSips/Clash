@@ -1,3 +1,4 @@
 payload:
+- GeoSite,HiNet
 - GeoSite,TikTok
 - GeoSite,Wikimedia
