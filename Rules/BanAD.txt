@@ -6,6 +6,9 @@ payload:
 - Domain,pagead2.googlesyndication.com
 # TVB  
 - Domain,mai.tvb.com
+# Viu
+- Domain,prd.jwpltx.com
+- Domain,entitlements.jwplayer.com
 # HOY
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
