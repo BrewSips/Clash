@@ -1,2 +1,13 @@
 payload:
 - GeoSite,Bing
+- GeoSite,viu
+- GeoSite,now
+- GeoSite,tvb
+- GeoSite,rthk
+- GeoSite,icable
+# Viu
+- Domain,d3o7oi00quuwqu.cloudfront.net
+# TVB
+- Domain,mytvsuperlimited.sc.omtrdc.net
+# RTHK
+- DOMAIN-REGEX,^rthktv\d+-live\.akamaized\.net$
