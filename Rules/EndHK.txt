@@ -1,8 +1,11 @@
 payload:
 - GeoSite,TVB
+- GeoSite,HKT
+- GeoSite,HKBN
 - GeoSite,RTHK
 - GeoSite,PCCW
 - GeoSite,iCable
+- GeoSite,SmarTone
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
