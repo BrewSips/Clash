@@ -1,9 +1,8 @@
 payload:
-- GeoSite,viu
-- GeoSite,now
-- GeoSite,tvb
-- GeoSite,rthk
-- GeoSite,icable
+- GeoSite,TVB
+- GeoSite,RTHK
+- GeoSite,PCCW
+- GeoSite,iCable
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
