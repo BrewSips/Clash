@@ -5,7 +5,7 @@ payload:
 - GeoSite,rthk
 - GeoSite,icable
 # iill
-- Domain,tv.iill.top
+- Domain-Suffix,iill.top
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
