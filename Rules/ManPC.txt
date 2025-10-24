@@ -1,3 +1,0 @@
-payload:
-# FengShow
-- Domain,dsa-mfp.fengshows.cn
