@@ -6,6 +6,8 @@ payload:
 - GeoSite,PCCW
 - GeoSite,iCable
 - GeoSite,SmarTone
+# Time
+- Domain,time.android.com
 # FengShow
 - Domain,dsa-mfp.fengshows.cn
 # Viu
