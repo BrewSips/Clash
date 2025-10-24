@@ -5,6 +5,8 @@ payload:
 - GeoSite,RTHK
 - GeoSite,iCable
 - GeoSite,SmarTone
+# FengShow
+- Domain,dsa-mfp.fengshows.cn
 # Viu
 - Domain,d3o7oi00quuwqu.cloudfront.net
 # TVB
