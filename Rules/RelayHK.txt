@@ -2,3 +2,4 @@ payload:
 # iill
 - Domain,tv.iill.top
 # Viu
+- DOMAIN-REGEX,^ewcdn\d+\.nowe\.com$
