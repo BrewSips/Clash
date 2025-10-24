@@ -3,6 +3,7 @@ payload:
 - GeoSite,HKT
 - GeoSite,HKBN
 - GeoSite,RTHK
+- GeoSite,PCCW
 - GeoSite,iCable
 - GeoSite,SmarTone
 # FengShow
