@@ -1,4 +1,3 @@
 payload:
-- GeoSite,PCCW
 # iill
 - Domain,tv.iill.top
