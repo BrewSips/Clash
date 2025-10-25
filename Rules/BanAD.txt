@@ -24,3 +24,4 @@ payload:
 # 小米电视
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
+- Domain,milink.pandora.xiaomi.com
