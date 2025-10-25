@@ -1,5 +1,5 @@
 payload:
-- GeoSite,Apple
-- GeoSite,Google
-- GeoSite,Microsoft
+#- GeoSite,Apple
+#- GeoSite,Google
+#- GeoSite,Microsoft
 - GeoSite,GeoLocation-!CN
