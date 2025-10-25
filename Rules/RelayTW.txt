@@ -1,4 +1,4 @@
 payload:
-- GeoSite,openai
+- GeoSite,OpenAI
 - GeoSite,TikTok
 - GeoSite,Wikimedia
