@@ -1,9 +1,9 @@
 payload:
 # Google
 - Domain,ad.doubleclick.net
-- Domain-Keyword,g.doubleclick
 - Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
+- Domain-Keyword,g.doubleclick
 # TVB  
 - Domain,mai.tvb.com
 # Viu
@@ -23,5 +23,6 @@ payload:
 - Domain,galaxy.bjcathay.com
 # 小米电视
 - Domain,adx.v.mitvos.com
-- Domain-Suffix,ad.xiaomi.com
+- Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
+- Domain-Suffix,ad.xiaomi.com
