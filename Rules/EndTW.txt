@@ -1,4 +1,1 @@
 payload:
-- GeoSite,HiNet
-- GeoSite,Anthropic
-- GeoSite,Google-DeepMind
