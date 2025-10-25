@@ -1,18 +1,1 @@
 payload:
-- GeoSite,TVB
-- GeoSite,HKT
-- GeoSite,HKBN
-- GeoSite,RTHK
-- GeoSite,PCCW
-- GeoSite,iCable
-- GeoSite,SmarTone
-# Time
-- Domain,time.android.com
-# FengShow
-- Domain,dsa-mfp.fengshows.cn
-# Viu
-- Domain,d3o7oi00quuwqu.cloudfront.net
-# TVB
-- Domain,mytvsuperlimited.sc.omtrdc.net
-# RTHK
-- DOMAIN-REGEX,^rthktv\d+-live\.akamaized\.net$
