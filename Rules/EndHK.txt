@@ -15,4 +15,4 @@ payload:
 # TVB
 - Domain,mytvsuperlimited.sc.omtrdc.net
 # RTHK
-- DOMAIN-REGEX,^rthktv\d+-live\.akamaized\.net$
+- Domain-Regex,^rthktv\d+-live\.akamaized\.net$
