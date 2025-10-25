@@ -3,4 +3,4 @@ payload:
 - Domain,tv.iill.top
 # ViuTV
 - Domain,api.viu.now.com
-- DOMAIN-REGEX,^ewcdn\d+\.nowe\.com$
+- Domain-Regex,^ewcdn\d+\.nowe\.com$
