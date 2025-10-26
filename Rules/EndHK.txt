@@ -1,6 +1,5 @@
 payload:
 - GeoSite,TVB
-- GeoSite,HKT
 - GeoSite,HKBN
 - GeoSite,RTHK
 - GeoSite,PCCW
