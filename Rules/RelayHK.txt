@@ -1,20 +1,6 @@
 payload:
-- GeoSite,TVB
-- GeoSite,HKBN
-- GeoSite,RTHK
-- GeoSite,PCCW
-- GeoSite,iCable
-- GeoSite,SmarTone
-# FengShow
-- Domain,dsa-mfp.fengshows.cn
-# Viu
-- Domain,d3o7oi00quuwqu.cloudfront.net
-# TVB
-- Domain,mytvsuperlimited.sc.omtrdc.net
-# RTHK
-- Domain-Regex,^rthktv\d+-live\.akamaized\.net$
 # iill
-#- Domain,tv.iill.top
+- Domain-Suffix,iill.top
 # ViuTV
-#- Domain,api.viu.now.com
-#- Domain-Regex,^ewcdn\d+\.nowe\.com$
+- Domain,api.viu.now.com
+- Domain-Regex,^ewcdn\d+\.nowe\.com$
