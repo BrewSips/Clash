@@ -1,6 +1,1 @@
 payload:
-# iill
-#- Domain-Suffix,iill.top
-# ViuTV
-#- Domain,api.viu.now.com
-#- Domain-Regex,^ewcdn\d+\.nowe\.com$
