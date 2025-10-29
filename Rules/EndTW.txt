@@ -1,6 +1,5 @@
 payload:
-- GeoSite,TikTok
 - GeoSite,HiNet
-- GeoSite,OpenAI
+- GeoSite,TikTok
 - GeoSite,Anthropic
 - GeoSite,Google-DeepMind
