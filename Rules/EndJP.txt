@@ -1,3 +1,0 @@
-payload:
-# iQos
-- Domain,jp.iqos.com
