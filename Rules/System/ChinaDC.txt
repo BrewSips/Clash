@@ -1,3 +1,4 @@
 payload:
 - GeoSite,Private
-- GeoSite,CN
+- GeoSite,TLD-CN
+- GeoSite,GeoLocation-CN
