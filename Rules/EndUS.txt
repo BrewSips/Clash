@@ -1,6 +1,4 @@
 payload:
-# Meta
-- Domain-Suffix,meta.ai
-- Domain-Suffix,meta.com
+- GeoSite,Meta
 # Qobuz
 - Domain-Suffix,qobuz.com
