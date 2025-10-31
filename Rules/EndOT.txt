@@ -1,3 +1,7 @@
 payload:
+- GeoSite,TikTok
+- GeoSite,OpenAI
+- GeoSite,Anthropic
+- GeoSite,Google-DeepMind
 # iQos
 - Domain,jp.iqos.com
