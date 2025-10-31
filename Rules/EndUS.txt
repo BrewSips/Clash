@@ -1,5 +1,6 @@
 payload:
 # Meta
 - Domain-Suffix,meta.ai
+- Domain-Suffix,meta.com
 # Qobuz
 - Domain-Suffix,qobuz.com
