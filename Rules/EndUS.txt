@@ -1,4 +1,4 @@
 payload:
-- GeoSite,Meta
+#- GeoSite,Meta
 # Qobuz
-- Domain-Suffix,qobuz.com
+#- Domain-Suffix,qobuz.com
