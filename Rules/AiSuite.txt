@@ -1,3 +1,4 @@
+payload:
 - GeoSite,OpenAI
 - GeoSite,Anthropic
 - GeoSite,Google-DeepMind
