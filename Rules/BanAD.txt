@@ -1,4 +1,7 @@
 payload:
+- GeoSite,Sina-ADS
+- GeoSite,Alibaba-ADS
+- GeoSite,Tencent-ADS
 # Google
 - Domain,ad.doubleclick.net
 - Domain,ogads-pa.clients6.google.com
