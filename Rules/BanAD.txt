@@ -1,15 +1,13 @@
 payload:
 - GeoSite,Sina-ADS
-- GeoSite,Baidu-ADS
-- GeoSite,Google-ADS
 - GeoSite,Alibaba-ADS
 - GeoSite,Tencent-ADS
 # Google
-#- Domain,ad.doubleclick.net
-#- Domain,ogads-pa.clients6.google.com
-#- Domain,pagead2.googlesyndication.com
-#- Domain-Keyword,g.doubleclick
-#- Domain-Keyword,l.doubleclick
+- Domain,ad.doubleclick.net
+- Domain,ogads-pa.clients6.google.com
+- Domain,pagead2.googlesyndication.com
+- Domain-Keyword,g.doubleclick
+- Domain-Keyword,l.doubleclick
 # TVB  
 - Domain,mai.tvb.com
 # Viu
