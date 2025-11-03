@@ -1,10 +1,11 @@
 payload:
 - GeoSite,TVB
-- GeoSite,HKBN
+- GeoSite,Viu
+#- GeoSite,HKBN
 - GeoSite,RTHK
-- GeoSite,PCCW
+#- GeoSite,PCCW
 - GeoSite,iCable
-- GeoSite,SmarTone
+#- GeoSite,SmarTone
 # FengShow
 - Domain,dsa-mfp.fengshows.cn
 # Viu
