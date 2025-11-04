@@ -1,5 +1,7 @@
 payload:
 - GeoSite,OpenAI
+- GeoSite,Anthropic
+- GeoSite,Google-Deepmind
 # iQos
 - Domain,jp.iqos.com
 # Qobuz
