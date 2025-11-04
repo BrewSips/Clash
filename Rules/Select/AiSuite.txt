@@ -1,2 +1,2 @@
 payload:
-- GeoSite,Category-AI-!CN
+- GeoSite,OpenAI
