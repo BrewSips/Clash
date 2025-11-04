@@ -1,5 +1,6 @@
 payload:
 - GeoSite,Viu
+- GeoSite,Now
 - GeoSite,RTHK
 - GeoSite,CableTV
 - GeoSite,MyTVSuper
