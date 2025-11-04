@@ -8,10 +8,8 @@ payload:
 # TVB  
 - Domain,mai.tvb.com
 # Viu
-- Domain,prd.jwpltx.com
 - Domain,wd.adcolony.com
 - Domain,adc3-launch.adcolony.com
-- Domain,entitlements.jwplayer.com
 # HOY
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
