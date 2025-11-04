@@ -1,7 +1,7 @@
 payload:
 - GeoSite,Private
 - GeoSite,TLD-CN
-- GeoSite,Apple
+- GeoSite,Apple@CN
 - GeoSite,Google@CN
 - GeoSite,Micrsoft@CN
 - GeoSite,GeoLocation-CN
