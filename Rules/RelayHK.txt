@@ -4,6 +4,8 @@ payload:
 - GeoSite,RTHK
 - GeoSite,CableTV
 - GeoSite,MyTVSuper
+# iill
+- Domain,tv.iill.top
 # FengShow
 - Domain,dsa-mfp.fengshows.cn
 # Viu
