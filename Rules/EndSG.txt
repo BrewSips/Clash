@@ -1,2 +1,3 @@
 payload:
+- Domain,cdn-media.brightline.tv
 - Domain-Suffix,prd.media.max.com
