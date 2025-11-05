@@ -1,1 +1,3 @@
 payload:
+- Domain,register.mediamelon.com
+- Domain,beacons-new.mediamelon.com
