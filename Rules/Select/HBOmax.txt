@@ -1,5 +1,2 @@
 payload:
 - GeoSite,HBO
-- Domain-Suffix,mediamelon.com
-- Domain,sdk.iad-01.braze.com
-- Domain,out053a3bejgh7t0phqa0csou.litix.io
