@@ -5,8 +5,3 @@ payload:
 #
 - Domain,jp.iqos.com
 - Domain-Suffix,qobuz.com
-#
-- Domain,register.mediamelon.com
-- Domain,beacons-new.mediamelon.com
-- Domain,cdn-media.brightline.tv
-- Domain-Suffix,prd.media.max.com
