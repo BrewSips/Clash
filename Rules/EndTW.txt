@@ -1,10 +1,4 @@
 payload:
 - GeoSite,TikTok
-- GeoSite,Disney
-- GeoSite,YouTube
-- GeoSite,Netflix
-- GeoSite,Apple-TvPlus
-#
 - Domain-Suffix,cdn.hinet.net
-#
 - Domain-Suffix,prd.api.discomax.com
