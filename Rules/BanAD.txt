@@ -1,28 +1,27 @@
 payload:
-# Google
 - Domain,ad.doubleclick.net
 - Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,g.doubleclick
 - Domain-Keyword,l.doubleclick
-# TVB  
+#
 - Domain,mai.tvb.com
-# Viu
+#
 - Domain,wd.adcolony.com
 - Domain,adc3-launch.adcolony.com
-# HOY
+#
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
-# 香港 01
+#
 - Domain,ads.pubmatic.com
 - Domain,oi-ow.pubmatic.com
-# 联合早报
+#
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
-# 央视影音
+#
 - Domain,galaxy.bjcathay.com
-# 小米电视
+#
 - Domain,adx.v.mitvos.com
 - Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
