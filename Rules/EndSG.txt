@@ -1,2 +1,2 @@
 payload:
-- Domain,akm.asia.prd.media.max.com
+- Domain-Suffix,prd.media.max.com
