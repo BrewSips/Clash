@@ -1,2 +1,3 @@
 payload:
-- GeoSite,HBO
+#- GeoSite,HBO
+- Domain,default.any-any.prd.api.discomax.com
