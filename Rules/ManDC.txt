@@ -1,5 +1,4 @@
 payload:
-- Dst-Port,123
 - IP-Cidr,17.249.0.0/16
 - IP-Cidr,17.252.0.0/16
 - IP-Cidr,17.57.144.0/22
