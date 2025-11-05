@@ -1,6 +1,3 @@
 payload:
 - GeoSite,TikTok
-- GeoSite,OpenAI
-- GeoSite,Anthropic
-- GeoSite,Google-Deepmind
 - Domain-Suffix,cdn.hinet.net
