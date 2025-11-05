@@ -1,5 +1,6 @@
 payload:
 - GeoSite,TikTok
+- GeoSite,Disney
 - GeoSite,YouTube
 - GeoSite,Netflix
 - Domain-Suffix,cdn.hinet.net
