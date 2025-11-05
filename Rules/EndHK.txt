@@ -7,9 +7,6 @@ payload:
 #
 - Domain,tv.iill.top
 #
-- Domain,cdn-media.brightline.tv
-- Domain-Suffix,prd.media.max.com
-#
 - Domain,dsa-mfp.fengshows.cn
 - Domain,d3o7oi00quuwqu.cloudfront.net
 - Domain,mytvsuperlimited.sc.omtrdc.net
