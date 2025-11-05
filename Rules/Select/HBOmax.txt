@@ -1,2 +1,3 @@
 payload:
 - GeoSite,HBO
+- Domain-Suffix,mediamelon.com
