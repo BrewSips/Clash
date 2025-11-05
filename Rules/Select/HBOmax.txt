@@ -1,3 +1,2 @@
 payload:
-#- GeoSite,HBO
 - Domain-Suffix,prd.api.discomax.com
