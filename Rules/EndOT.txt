@@ -1,10 +1,7 @@
 payload:
-- GeoSite,HBO
-#
 - GeoSite,OpenAI
 - GeoSite,Anthropic
 - GeoSite,Google-Deepmind
 #
 - Domain,jp.iqos.com
-#
 - Domain-Suffix,qobuz.com
