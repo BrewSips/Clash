@@ -6,19 +6,3 @@ payload:
 - Domain,jp.iqos.com
 # Qobuz
 - Domain-Suffix,qobuz.com
-######
-- GeoSite,Viu
-- GeoSite,Now
-- GeoSite,RTHK
-- GeoSite,CableTV
-- GeoSite,MyTVSuper
-# iill
-- Domain,tv.iill.top
-# FengShow
-- Domain,dsa-mfp.fengshows.cn
-# Viu
-- Domain,d3o7oi00quuwqu.cloudfront.net
-# TVB
-- Domain,mytvsuperlimited.sc.omtrdc.net
-# RTHK
-- Domain-Regex,^rthktv\d+-live\.akamaized\.net$
