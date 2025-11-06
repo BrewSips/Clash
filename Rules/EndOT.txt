@@ -4,3 +4,6 @@ payload:
 #
 - Domain,cdn-media.brightline.tv
 - Domain-Suffix,prd.media.max.com
+- Domain,register.mediamelon.com
+- Domain,beacons-new.mediamelon.com
+- Domain,out053a3bejgh7t0phqa0csou.litix.io
