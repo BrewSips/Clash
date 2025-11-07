@@ -3,7 +3,6 @@ payload:
 - Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,l.doubleclick
 #
 - Domain,mai.tvb.com
 #
@@ -19,6 +18,8 @@ payload:
 #
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
+#
+- Domain,advapi.nfnews.com
 #
 - Domain,galaxy.bjcathay.com
 #
