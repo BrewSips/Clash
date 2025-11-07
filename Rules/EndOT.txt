@@ -1,3 +1,2 @@
 payload:
-- Domain,jp.iqos.com
 - Domain-Suffix,qobuz.com
