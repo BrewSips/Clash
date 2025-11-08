@@ -1,3 +1,2 @@
 payload:
-- GeoSite,TikTok
 - Domain,jp.iqos.com
