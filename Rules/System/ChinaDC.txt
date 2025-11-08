@@ -1,4 +1,5 @@
 payload:
 - GeoSite,private
+- GeoSite,Apple
 - GeoSite,tld-cn
 - GeoSite,geolocation-cn
