@@ -1,8 +1,8 @@
 payload:
 - GeoSite,private
 - GeoSite,tld-cn
-- GeoSite,apple@cn
-- GeoSite,google@cn
-- GeoSite,microsoft@cn
+#- GeoSite,apple@cn
+#- GeoSite,google@cn
+#- GeoSite,microsoft@cn
 - GeoSite,geolocation-cn
 - GeoSite,geolocation-!cn@cn
