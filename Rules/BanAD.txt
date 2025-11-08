@@ -1,8 +1,11 @@
 payload:
+- GeoSite,category-httpdns-cn
+#
 - Domain,ad.doubleclick.net
 - Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,g.doubleclick
+- Domain-Keyword,l.doubleclick
 #
 - Domain,mai.tvb.com
 #
