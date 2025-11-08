@@ -2,4 +2,3 @@ payload:
 - GeoSite,private
 - GeoSite,tld-cn
 - GeoSite,geolocation-cn
-- GeoSite,geolocation-!cn@cn
