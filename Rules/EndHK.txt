@@ -1,9 +1,9 @@
 payload:
-- GeoSite,Viu
-- GeoSite,Now
-- GeoSite,RTHK
-- GeoSite,CableTV
-- GeoSite,MyTVSuper
+- GeoSite,viu
+- GeoSite,now
+- GeoSite,rthk
+- GeoSite,cabletv
+- GeoSite,mytvsuper
 #
 - Domain,tv.iill.top
 #
