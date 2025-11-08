@@ -1,2 +1,2 @@
 payload:
-- GeoSite,HBO
+- GeoSite,hbo
