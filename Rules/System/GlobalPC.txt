@@ -1,2 +1,2 @@
 payload:
-- GeoSite,GeoLocation-!CN
+- GeoSite,geolocation-!cn
