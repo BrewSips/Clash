@@ -5,4 +5,4 @@ payload:
 #- GeoSite,google@cn
 #- GeoSite,microsoft@cn
 - GeoSite,geolocation-cn
-- GeoSite,geolocation-!cn@cn
+#- GeoSite,geolocation-!cn@cn
