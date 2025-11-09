@@ -10,5 +10,3 @@ payload:
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
 #
 - Domain,tv.iill.top
-#
-- Domain,fengshows.oss-cn-hongkong.aliyuncs.com
