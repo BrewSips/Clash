@@ -10,5 +10,5 @@ payload:
 #- Domain-Keyword,fengshows
 #
 - Domain,d3o7oi00quuwqu.cloudfront.net
-- Domain,mytvsuperlimited.sc.omtrdc.net
+#- Domain,mytvsuperlimited.sc.omtrdc.net
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
