@@ -9,5 +9,6 @@ payload:
 #
 - Domain,d3o7oi00quuwqu.cloudfront.net
 - Domain,mytvsuperlimited.sc.omtrdc.net
-- Domain,fengshows.oss-cn-hongkong.aliyuncs.com
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
+#
+- Domain,fengshows.oss-cn-hongkong.aliyuncs.com
