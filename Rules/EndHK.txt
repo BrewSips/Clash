@@ -5,10 +5,10 @@ payload:
 - GeoSite,cabletv
 - GeoSite,mytvsuper
 #
-- Domain,tv.iill.top
-#
 - Domain,d3o7oi00quuwqu.cloudfront.net
 - Domain,mytvsuperlimited.sc.omtrdc.net
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
+#
+- Domain,tv.iill.top
 #
 - Domain,fengshows.oss-cn-hongkong.aliyuncs.com
