@@ -7,8 +7,7 @@ payload:
 #
 - Domain,tv.iill.top
 #
-#- Domain-Keyword,fengshows
-#
 - Domain,d3o7oi00quuwqu.cloudfront.net
-#- Domain,mytvsuperlimited.sc.omtrdc.net
+- Domain,mytvsuperlimited.sc.omtrdc.net
+- Domain,fengshows.oss-cn-hongkong.aliyuncs.com
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
