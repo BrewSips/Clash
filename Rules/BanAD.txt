@@ -1,4 +1,5 @@
 payload:
+- GeoSite,category-httpdns-cn
 #
 - Domain,ad.doubleclick.net
 - Domain,ogads-pa.clients6.google.com
