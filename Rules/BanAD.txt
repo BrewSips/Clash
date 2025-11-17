@@ -1,4 +1,7 @@
 payload:
+- GeoSite,sina-ads
+- GeoSite,tencent-ads
+- GeoSite,alibaba-ads
 - GeoSite,category-httpdns-cn
 #
 - Domain,ad.doubleclick.net
@@ -18,8 +21,8 @@ payload:
 - Domain,ads.pubmatic.com
 - Domain,oi-ow.pubmatic.com
 #
-- Domain,sdk.e.qq.com
-- Domain-Suffix,gdt.qq.com
+#- Domain,sdk.e.qq.com
+#- Domain-Suffix,gdt.qq.com
 #
 - Domain,advapi.nfnews.com
 #
