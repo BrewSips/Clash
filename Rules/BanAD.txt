@@ -10,8 +10,8 @@ payload:
 #
 - Domain,mai.tvb.com
 #
-#- Domain,adx.v.mitvos.com
-#- Domain,config.ptmi.gitv.tv
+- Domain,adx.v.mitvos.com
+- Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
 #- Domain-Suffix,ad.xiaomi.com
 #
