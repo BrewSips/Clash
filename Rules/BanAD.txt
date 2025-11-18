@@ -1,5 +1,6 @@
 payload:
 - GeoSite,category-ads
+- GeoSite,category-httpdns-cn
 #
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
@@ -34,4 +35,3 @@ payload:
 #- GeoSite,tencent-ads
 #- GeoSite,alibaba-ads
 #- GeoSite,facebook-ads
-#- GeoSite,category-httpdns-cn
