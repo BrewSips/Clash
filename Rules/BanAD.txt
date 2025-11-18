@@ -1,25 +1,30 @@
 payload:
-- GeoSite,category-ads
+- GeoSite,sina-ads
+- GeoSite,umeng-ads
+- GeoSite,baidu-ads
+- GeoSite,google-ads
+- GeoSite,tencent-ads
+- GeoSite,alibaba-ads
 - GeoSite,category-httpdns-cn
+#
+- Domain,mai.tvb.com
 #
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
 #
-- Domain,galaxy.bjcathay.com
+- Domain,wd.adcolony.com
+- Domain,adc3-launch.adcolony.com
 #
-- Domain,mai.tvb.com
+- Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
+#
+- Domain,galaxy.bjcathay.com
 #
 - Domain,adx.v.mitvos.com
 - Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
-#- Domain-Suffix,ad.xiaomi.com
-#
-#- Domain,wd.adcolony.com
-#- Domain,adc3-launch.adcolony.com
-#
-#- Domain,ads.pubmatic.com
-#- Domain,oi-ow.pubmatic.com
+- Domain-Suffix,ad.xiaomi.com
 #
 #- Domain,sdk.e.qq.com
 #- Domain-Suffix,gdt.qq.com
@@ -28,10 +33,3 @@ payload:
 #- Domain,ogads-pa.clients6.google.com
 #- Domain,pagead2.googlesyndication.com
 #- Domain-Keyword,g.doubleclick
-#
-#- GeoSite,sina-ads
-#- GeoSite,baidu-ads
-#- GeoSite,google-ads
-#- GeoSite,tencent-ads
-#- GeoSite,alibaba-ads
-#- GeoSite,facebook-ads
