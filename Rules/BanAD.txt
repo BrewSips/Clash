@@ -4,12 +4,8 @@ payload:
 - GeoSite,google-ads
 - GeoSite,tencent-ads
 - GeoSite,alibaba-ads
+- GeoSite,facebook-ads
 - GeoSite,category-httpdns-cn
-#
-#- Domain,ad.doubleclick.net
-#- Domain,ogads-pa.clients6.google.com
-#- Domain,pagead2.googlesyndication.com
-#- Domain-Keyword,g.doubleclick
 #
 - Domain,mai.tvb.com
 #
@@ -23,14 +19,17 @@ payload:
 - Domain,ads.pubmatic.com
 - Domain,oi-ow.pubmatic.com
 #
-#- Domain,sdk.e.qq.com
-#- Domain-Suffix,gdt.qq.com
-#
-- Domain,advapi.nfnews.com
-#
 - Domain,galaxy.bjcathay.com
 #
 - Domain,adx.v.mitvos.com
 - Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
 - Domain-Suffix,ad.xiaomi.com
+#
+#- Domain,sdk.e.qq.com
+#- Domain-Suffix,gdt.qq.com
+#
+#- Domain,ad.doubleclick.net
+#- Domain,ogads-pa.clients6.google.com
+#- Domain,pagead2.googlesyndication.com
+#- Domain-Keyword,g.doubleclick
