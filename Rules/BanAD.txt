@@ -1,5 +1,7 @@
 payload:
 - GeoSite,sina-ads
+- GeoSite,baidu-ads
+- GeoSite,google-ads
 - GeoSite,tencent-ads
 - GeoSite,alibaba-ads
 - GeoSite,category-httpdns-cn
