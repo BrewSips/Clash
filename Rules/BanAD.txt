@@ -12,7 +12,7 @@ payload:
 #
 #- Domain,adx.v.mitvos.com
 #- Domain,config.ptmi.gitv.tv
-#- Domain,milink.pandora.xiaomi.com
+- Domain,milink.pandora.xiaomi.com
 #- Domain-Suffix,ad.xiaomi.com
 #
 #- Domain,wd.adcolony.com
