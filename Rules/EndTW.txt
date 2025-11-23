@@ -1,3 +1,3 @@
 payload:
 - GeoSite,tiktok
-- Domain-Keyword,hinet.net
+- Domain-Suffix,cdn.hinet.net
