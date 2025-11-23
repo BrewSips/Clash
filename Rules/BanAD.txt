@@ -5,7 +5,6 @@ payload:
 - GeoSite,google-ads
 - GeoSite,tencent-ads
 - GeoSite,alibaba-ads
-- GeoSite,ximalaya-ads
 - GeoSite,category-httpdns-cn
 #
 - Domain,mai.tvb.com
