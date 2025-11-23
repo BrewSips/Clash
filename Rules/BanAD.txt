@@ -7,6 +7,9 @@ payload:
 #- GeoSite,alibaba-ads
 #- GeoSite,category-httpdns-cn
 #
+#- Domain,ads.pubmatic.com
+#- Domain,oi-ow.pubmatic.com
+#
 - Domain,mai.tvb.com
 #
 - Domain,algoad.hoy.tv
@@ -15,9 +18,6 @@ payload:
 #
 - Domain,wd.adcolony.com
 - Domain,adc3-launch.adcolony.com
-#
-- Domain,ads.pubmatic.com
-- Domain,oi-ow.pubmatic.com
 #
 - Domain,galaxy.bjcathay.com
 #
