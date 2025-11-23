@@ -1,3 +1,2 @@
 payload:
 - Domain,b.bdstatic.com
-- Domain-Keyword,fengshows
