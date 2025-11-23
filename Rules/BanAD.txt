@@ -7,8 +7,8 @@ payload:
 #- GeoSite,alibaba-ads
 #- GeoSite,category-httpdns-cn
 #
-#- Domain,ads.pubmatic.com
 #- Domain,oi-ow.pubmatic.com
+- Domain,ads.pubmatic.com
 #
 - Domain,mai.tvb.com
 #
