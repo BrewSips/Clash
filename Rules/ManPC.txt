@@ -1,2 +1,2 @@
 payload:
-- Domain-Keyword,miguvideo
+- Domain-Suffix,miguvideo.com
