@@ -7,7 +7,7 @@ payload:
 #- GeoSite,alibaba-ads
 #- GeoSite,category-httpdns-cn
 #
-#- Domain,oi-ow.pubmatic.com
+- Domain,oi-ow.pubmatic.com
 - Domain,ads.pubmatic.com
 #
 - Domain,mai.tvb.com
@@ -37,4 +37,3 @@ payload:
 - Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,l.doubleclick
