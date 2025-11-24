@@ -1,8 +1,8 @@
 payload:
-- GeoSite,baidu-ads
-- GeoSite,google-ads
-- GeoSite,tencent-ads
-- GeoSite,alibaba-ads
+#- GeoSite,baidu-ads
+#- GeoSite,google-ads
+#- GeoSite,tencent-ads
+#- GeoSite,alibaba-ads
 #
 - Domain,mai.tvb.com
 #
@@ -20,18 +20,17 @@ payload:
 - Domain,milink.pandora.xiaomi.com
 - Domain-Suffix,ad.xiaomi.com
 #
-#- Domain,sdk.e.qq.com
-#- Domain-Suffix,gdt.qq.com
+- Domain,sdk.e.qq.com
+- Domain-Suffix,gdt.qq.com
 #
-#- Domain,oi-ow.pubmatic.com
-#- Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
+- Domain,ads.pubmatic.com
 #
-#- Domain,als.baidu.com
-#- Domain,afd.baidu.com
-#- Domain,nsclick.baidu.com
+- Domain,als.baidu.com
+- Domain,afd.baidu.com
+- Domain,nsclick.baidu.com
 #
-#- Domain,ad.doubleclick.net
-#- Domain,ogads-pa.clients6.google.com
-#- Domain,pagead2.googlesyndication.com
-#- Domain-Keyword,g.doubleclick
-#- Domain-Keyword,l.doubleclick
+- Domain,ad.doubleclick.net
+- Domain,ogads-pa.clients6.google.com
+- Domain,pagead2.googlesyndication.com
+- Domain-Keyword,g.doubleclick
