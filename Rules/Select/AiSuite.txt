@@ -1,3 +1,2 @@
 payload:
 - GeoSite,category-ai-!cn
-- Domain,one.google.com
