@@ -10,8 +10,8 @@ payload:
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
 #
-- Domain,wd.adcolony.com
-- Domain,adc3-launch.adcolony.com
+#- Domain,wd.adcolony.com
+#- Domain,adc3-launch.adcolony.com
 #
 - Domain,galaxy.bjcathay.com
 #
@@ -23,14 +23,14 @@ payload:
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-- Domain,oi-ow.pubmatic.com
-- Domain,ads.pubmatic.com
+#- Domain,oi-ow.pubmatic.com
+#- Domain,ads.pubmatic.com
 #
 - Domain,als.baidu.com
 - Domain,afd.baidu.com
 - Domain,nsclick.baidu.com
 #
-- Domain,ad.doubleclick.net
-- Domain,ogads-pa.clients6.google.com
-- Domain,pagead2.googlesyndication.com
+#- Domain,ad.doubleclick.net
+#- Domain,ogads-pa.clients6.google.com
+#- Domain,pagead2.googlesyndication.com
 - Domain-Keyword,g.doubleclick
