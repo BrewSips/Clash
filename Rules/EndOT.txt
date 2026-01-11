@@ -1,3 +1,2 @@
 payload:
-- GeoSite,google
 - Domain-Suffix,qobuz.com=
