@@ -1,1 +1,2 @@
 payload:
+- Domain,ntd-tgc.cdn.hinet.net
