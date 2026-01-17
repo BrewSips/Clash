@@ -1,2 +1,2 @@
 payload:
-- Domain-Suffix,edgeware.tvb.com
+- Domain-Regex,^hk\d+-edge\d+-\d+\.edgeware\.tvb\.com$
