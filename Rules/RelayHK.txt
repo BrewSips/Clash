@@ -1,3 +1,11 @@
 payload:
-#- Domain-Regex,^hk\d+-edge\d+-\d+\.edgeware\.tvb\.com$
-- Domain-Suffix,edgeware.tvb.com
+- GeoSite,viu
+- GeoSite,now
+- GeoSite,rthk
+- GeoSite,cabletv
+- GeoSite,mytvsuper
+#
+- Domain,d3o7oi00quuwqu.cloudfront.net
+- Domain-Regex,^rthktv\d+-live\.akamaized\.net$
+#
+- Domain-Suffix,iill.top
