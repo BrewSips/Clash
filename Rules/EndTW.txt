@@ -1,3 +1,4 @@
 payload:
+- GeoSite,google
 - GeoSite,tiktok
 - Domain-Suffix,cdn.hinet.net
