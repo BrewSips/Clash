@@ -3,6 +3,7 @@ payload:
 - GeoSite,now
 - GeoSite,rthk
 - GeoSite,cabletv
+- GeoSite,mytvsuper
 #
 - Domain,d3o7oi00quuwqu.cloudfront.net
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
