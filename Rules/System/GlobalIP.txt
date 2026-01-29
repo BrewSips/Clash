@@ -1,6 +1,0 @@
-payload:
-- GeoIP,tor,no-resolve
-- GeoIP,google,no-resolve
-- GeoIP,twitter,no-resolve
-- GeoIP,facebook,no-resolve
-- GeoIP,telegram,no-resolve
