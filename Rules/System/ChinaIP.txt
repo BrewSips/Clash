@@ -1,4 +1,4 @@
 payload:
-- GeoIP,private
-- GeoIP,lan
-- GeoIP,cn
+- GeoIP,private,no-resolve
+- GeoIP,lan,no-resolve
+- GeoIP,cn,no-resolve
