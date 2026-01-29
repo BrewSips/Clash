@@ -1,1 +1,6 @@
-
+payload:
+- GeoIP,tor
+- GeoIP,google
+- GeoIP,twitter
+- GeoIP,facebook
+- GeoIP,telegram
