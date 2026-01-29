@@ -1,0 +1,7 @@
+
+- GeoSite,twitter
+- GeoSite,facebook
+- GeoSite,telegram
+- GeoIP,twitter,no-resolve
+- GeoIP,facebook,no-resolve
+- GeoIP,telegram,no-resolve
