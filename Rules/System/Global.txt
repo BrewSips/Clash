@@ -1,2 +1,7 @@
 payload:
+- GeoSite,tor
+- GeoSite,google
+- GeoSite,twitter
+- GeoSite,facebook
+- GeoSite,telegram
 - GeoSite,geolocation-!cn
