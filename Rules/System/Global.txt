@@ -1,8 +1,4 @@
 payload:
-- GeoSite,tor
 - GeoSite,google
-- GeoSite,twitter
-- GeoSite,facebook
-- GeoSite,telegram
+- GeoIP,google,no-resolve
 - GeoSite,geolocation-!cn
-- GeoIP,tor,no-resolve
