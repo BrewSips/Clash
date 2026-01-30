@@ -1,4 +1,5 @@
 payload:
+- GeoSite,tiktok
 - GeoSite,twitter
 - GeoSite,facebook
 - GeoSite,telegram
