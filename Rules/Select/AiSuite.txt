@@ -2,4 +2,4 @@ payload:
 #- GeoSite,category-ai-!cn
 - GeoSite,openai
 - GeoSite,anthropic
-- GeoSite,google-deepmind
+#- GeoSite,google-deepmind
