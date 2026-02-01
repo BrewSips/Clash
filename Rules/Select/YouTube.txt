@@ -1,2 +1,3 @@
 payload:
-- GeoSite,YouTube
+- GeoSite,google
+- GeoIP,google,no-resolve
