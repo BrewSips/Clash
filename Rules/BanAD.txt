@@ -1,9 +1,11 @@
 payload:
 - Domain,mai.tvb.com
 #
-- Domain,algoad.hoy.tv
-- Domain,adscreative.hoy.tv
-- Domain,display-algoad.hoy.tv
+- Domain,adc3-launch.adcolony.com
+#
+#- Domain,algoad.hoy.tv
+#- Domain,adscreative.hoy.tv
+#- Domain,display-algoad.hoy.tv
 - Domain,hoytv-display.algoad.hkai.io
 #
 - Domain,galaxy.bjcathay.com
@@ -12,6 +14,8 @@ payload:
 - Domain,config.ptmi.gitv.tv
 - Domain,milink.pandora.xiaomi.com
 - Domain-Suffix,ad.xiaomi.com
+#
+- Domain,ads5-normal.zijieapi.com
 #
 - Domain,sdk.e.qq.com
 - Domain-Suffix,gdt.qq.com
