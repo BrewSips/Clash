@@ -4,6 +4,7 @@ payload:
 - Domain,algoad.hoy.tv
 - Domain,adscreative.hoy.tv
 - Domain,display-algoad.hoy.tv
+- Domain,hoytv-display.algoad.hkai.io
 #
 - Domain,galaxy.bjcathay.com
 #
