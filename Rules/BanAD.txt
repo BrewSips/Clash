@@ -8,6 +8,8 @@ payload:
 #- Domain,display-algoad.hoy.tv
 - Domain,hoytv-display.algoad.hkai.io
 #
+- Domain,pages-fast.m.taobao.com
+#
 - Domain,galaxy.bjcathay.com
 #
 - Domain,adx.v.mitvos.com
