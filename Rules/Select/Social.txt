@@ -1,8 +1,8 @@
 payload:
 - GeoSite,tiktok
 - GeoSite,twitter
-- GeoIP,twitter
+#- GeoIP,twitter
 - GeoSite,facebook
-- GeoIP,facebook
+#- GeoIP,facebook
 - GeoSite,telegram
-- GeoIP,telegram
+#- GeoIP,telegram
