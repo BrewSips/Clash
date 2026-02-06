@@ -1,3 +1,4 @@
 payload:
 - GeoSite,private
 - GeoSite,cn
+- GeoIP,cn
