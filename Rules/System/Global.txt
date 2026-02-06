@@ -1,4 +1,2 @@
 payload:
-- GeoSite,google
-#- GeoIP,google
 - GeoSite,geolocation-!cn
