@@ -4,12 +4,7 @@ payload:
 #
 - Domain,adc3-launch.adcolony.com
 #
-#- Domain,algoad.hoy.tv
-#- Domain,adscreative.hoy.tv
-#- Domain,display-algoad.hoy.tv
 - Domain,hoytv-display.algoad.hkai.io
-#
-#- Domain,pages-fast.m.taobao.com
 #
 - Domain,galaxy.bjcathay.com
 #
