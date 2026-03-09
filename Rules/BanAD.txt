@@ -15,7 +15,7 @@ payload:
 #
 - Domain,ads5-normal.zijieapi.com
 #
-- Domain,sdk.e.qq.com
+- Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
 - Domain,als.baidu.com
