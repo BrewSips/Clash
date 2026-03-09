@@ -1,28 +1,19 @@
 payload:
 - GeoSite,category-ads
 #
-#- Domain,mai.tvb.com
-#
+- Domain,mai.tvb.com
+- Domain,galaxy.bjcathay.com
+- Domain,pages-fast.m.taobao.com
+- Domain,hoytv-display.algoad.hkai.io
 #- Domain,adc3-launch.adcolony.com
-#
-#- Domain,hoytv-display.algoad.hkai.io
-#
-#- Domain,galaxy.bjcathay.com
-#
 #- Domain,adx.v.mitvos.com
 #- Domain,config.ptmi.gitv.tv
 #- Domain,milink.pandora.xiaomi.com
 #- Domain-Suffix,ad.xiaomi.com
-#
 #- Domain,ads5-normal.zijieapi.com
-#
 #- Domain-Suffix,e.qq.com
 #- Domain-Suffix,gdt.qq.com
-#
 #- Domain,als.baidu.com
 #- Domain,afd.baidu.com
 #- Domain,nsclick.baidu.com
-#
 #- Domain-Keyword,g.doubleclick
-#
-#- Domain,pages-fast.m.taobao.com
