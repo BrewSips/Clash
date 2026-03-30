@@ -25,3 +25,5 @@ payload:
 - Domain,nsclick.baidu.com
 #
 - Domain-Keyword,g.doubleclick
+- Domain,www.googleadservices.com
+- Domain,ogads-pa.clients6.google.com
