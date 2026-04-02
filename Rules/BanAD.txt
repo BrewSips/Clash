@@ -16,10 +16,10 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,tradplusad.com
-- Domain,pages-fast.m.taobao.com
-- Domain,ads5-normal.zijieapi.com
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,tradplusad.com
+#- Domain,pages-fast.m.taobao.com
+#- Domain,ads5-normal.zijieapi.com
 #
 - Domain,als.baidu.com
 - Domain,afd.baidu.com
