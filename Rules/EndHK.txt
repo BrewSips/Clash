@@ -8,5 +8,5 @@ payload:
 - Domain,d3o7oi00quuwqu.cloudfront.net
 - Domain-Regex,^rthktv\d+-live\.akamaized\.net$
 #
-- Domain-Suffix,iill.top
+#- Domain-Suffix,iill.top
 - Domain-Suffix,edgeware.tvb.com
