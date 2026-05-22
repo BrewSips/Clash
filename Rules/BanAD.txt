@@ -13,6 +13,7 @@ payload:
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
+- Domain-Suffix,ssad.qq.com
 #
 - Domain,galaxy.bjcathay.com
 #
