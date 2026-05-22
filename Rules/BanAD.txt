@@ -25,6 +25,8 @@ payload:
 - Domain,afd.baidu.com
 - Domain,nsclick.baidu.com
 #
+- Domain,advapi.nfnews.com
+#
 - Domain,adpai.thepaper.cn
 #
 - Domain-Keyword,g.doubleclick
