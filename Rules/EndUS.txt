@@ -1,1 +1,2 @@
 payload:
+- Domain,fitbitvestibuleshim-pa.googleapis.com
