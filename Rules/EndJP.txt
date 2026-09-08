@@ -1,2 +1,3 @@
 payload:
 - Domain,jp.iqos.com
+- Domain,fitbitvestibuleshim-pa.googleapis.com
