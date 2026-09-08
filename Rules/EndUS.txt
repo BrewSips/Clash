@@ -1,2 +1,2 @@
 payload:
-#- Domain,fitbitvestibuleshim-pa.googleapis.com
+- Domain,fitbitvestibuleshim-pa.googleapis.com
