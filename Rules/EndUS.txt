@@ -1,5 +1,5 @@
 payload:
-- Domain,fitbitvestibuleshim-pa.googleapis.com
-- GeoSite,google-deepmind
-#- GeoSite,google
+#- Domain,fitbitvestibuleshim-pa.googleapis.com
+#- GeoSite,google-deepmind
 #- GeoSite,category-ai-!cn
+- GeoSite,google
