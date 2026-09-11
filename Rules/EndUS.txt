@@ -1,4 +1,4 @@
 payload:
-#- Domain,fitbitvestibuleshim-pa.googleapis.com
-- GeoSite,google
-- GeoSite,category-ai-!cn
+- Domain,fitbitvestibuleshim-pa.googleapis.com
+#- GeoSite,google
+#- GeoSite,category-ai-!cn
