@@ -1,2 +1,3 @@
 payload:
-- Domain,fitbitvestibuleshim-pa.googleapis.com
+- GeoSite,google
+#- Domain,fitbitvestibuleshim-pa.googleapis.com
