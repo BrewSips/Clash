@@ -1,6 +1,5 @@
 payload:
 #- Domain,fitbitvestibuleshim-pa.googleapis.com
-#- GeoSite,google-deepmind
-#- GeoSite,category-ai-!cn
 - GeoSite,google
+- GeoSite,category-ai-!cn
 - Domain-Suffix,qobuz.com
