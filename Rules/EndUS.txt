@@ -3,3 +3,4 @@ payload:
 #- GeoSite,google-deepmind
 #- GeoSite,category-ai-!cn
 - GeoSite,google
+- Domain-Suffix,qobuz.com
