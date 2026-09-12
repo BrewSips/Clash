@@ -1,2 +1,2 @@
 payload:
-- GeoSite,tidal,Tidal
+- GeoSite,tidal
