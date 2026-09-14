@@ -1,5 +1,6 @@
 payload:
 - Domain-Suffix,qobuz.com
-#- Domain,fitbitvestibuleshim-pa.googleapis.com
+- Domain,robinfrontend-pa.googleapis.com
+- Domain,fitbitvestibuleshim-pa.googleapis.com
 #- GeoSite,google
 #- GeoSite,category-ai-!cn
