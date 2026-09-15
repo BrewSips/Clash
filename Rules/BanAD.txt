@@ -30,4 +30,10 @@ payload:
 #
 - Domain,adpai.thepaper.cn
 #
-- Domain-Keyword,g.doubleclick
+- Domain-Keyword,doubleclick
+- Domain-Keyword,googleadsserving
+- Domain-Keyword,googlesyndication
+#
+- Domain,ads.pubmatic.com
+- Domain,ads.vungle.com
+- Domain-Keyword,ads-services
