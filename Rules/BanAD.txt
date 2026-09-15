@@ -33,6 +33,10 @@ payload:
 #
 - Domain-Keyword,g.doubleclick
 - Domain-Keyword,ad.doubleclick
+- Domain-Keyword,ads.linkedin
+- Domain-Keyword,adtrafficquality.google
+- Domain,ogads-pa.clients6.google.com
+- Domain-Keyword,ads-services
 #- Domain-Keyword,googleadsserving
 #- Domain-Keyword,googlesyndication
 #
