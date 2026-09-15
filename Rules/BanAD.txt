@@ -1,5 +1,5 @@
 payload:
-- GeoSite,category-ads
+#- GeoSite,category-ads
 #
 - Domain,mai.tvb.com
 #
@@ -14,7 +14,6 @@ payload:
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 - Domain-Suffix,ssad.qq.com
-- Domain-Suffix,ugdtimg.com
 #
 - Domain,galaxy.bjcathay.com
 #
@@ -35,9 +34,9 @@ payload:
 #- Domain-Keyword,googleadsserving
 #- Domain-Keyword,googlesyndication
 #
-- Domain-Suffix,admob.com
-- Domain-Suffix,vungle.com
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,tradplusad.com
+#- Domain-Suffix,admob.com
+#- Domain-Suffix,vungle.com
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,tradplusad.com
 - Domain-Keyword,adservices
 - Domain-Keyword,ads-services
