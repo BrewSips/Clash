@@ -34,6 +34,6 @@ payload:
 - Domain-Keyword,googleadsserving
 - Domain-Keyword,googlesyndication
 #
-- Domain,ads.pubmatic.com
-- Domain,ads.vungle.com
+- Domain-Suffix,vungle.com
+- Domain-Suffix,pubmatic.com
 - Domain-Keyword,ads-services
