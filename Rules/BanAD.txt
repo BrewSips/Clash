@@ -23,9 +23,9 @@ payload:
 #- Domain,pages-fast.m.taobao.com
 #- Domain,ads5-normal.zijieapi.com
 #
-#- Domain,als.baidu.com
-#- Domain,afd.baidu.com
-#- Domain,nsclick.baidu.com
+- Domain,als.baidu.com
+- Domain,afd.baidu.com
+- Domain,nsclick.baidu.com
 #
 #- Domain,advapi.nfnews.com
 #
@@ -33,10 +33,10 @@ payload:
 #
 - Domain-Keyword,g.doubleclick
 - Domain-Keyword,ad.doubleclick
-- Domain-Keyword,ads.linkedin
-- Domain-Keyword,adtrafficquality.google
-- Domain,ogads-pa.clients6.google.com
-- Domain-Keyword,ads-services
+#- Domain-Keyword,ads.linkedin
+#- Domain-Keyword,adtrafficquality.google
+#- Domain,ogads-pa.clients6.google.com
+#- Domain-Keyword,ads-services
 #- Domain-Keyword,googleadsserving
 #- Domain-Keyword,googlesyndication
 #
