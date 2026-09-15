@@ -1,2 +1,2 @@
 payload:
-#- Domain-Suffix,cdn.hinet.net
+- Domain-Suffix,cdn.hinet.net
