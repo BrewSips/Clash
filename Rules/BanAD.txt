@@ -17,9 +17,9 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
-- Domain-Suffix,vungle.com
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,tradplusad.com
+#- Domain-Suffix,vungle.com
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,tradplusad.com
 #- Domain,pages-fast.m.taobao.com
 #- Domain,ads5-normal.zijieapi.com
 #
@@ -32,12 +32,8 @@ payload:
 #- Domain,adpai.thepaper.cn
 #
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,googleadsserving
-- Domain-Keyword,googlesyndication
+#- Domain-Keyword,googleadsserving
+#- Domain-Keyword,googlesyndication
 #
-#- Domain-Suffix,admob.com
-#- Domain-Suffix,vungle.com
-#- Domain-Suffix,pubmatic.com
-#- Domain-Suffix,tradplusad.com
-- Domain-Keyword,adservices
-- Domain-Keyword,ads-services
+#- Domain-Keyword,adservices
+#- Domain-Keyword,ads-services
