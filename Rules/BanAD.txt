@@ -19,6 +19,13 @@ payload:
 - Domain,afd.baidu.com
 - Domain,nsclick.baidu.com
 #
+- Domain,view.adjust.com
+- Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
+- Domain,event.tradplusad.com
+- Domain,bidder.tradplusad.com
+- Domain-Suffix,ads.vungle.com
+#
 #- Domain,advapi.nfnews.com
 #
 #- Domain,adpai.thepaper.cn
