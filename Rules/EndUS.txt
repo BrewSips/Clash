@@ -1,4 +1,5 @@
 payload:
+- GeoSite,google
 - Domain-Suffix,qobuz.com
-- Domain,robinfrontend-pa.googleapis.com
-- Domain,fitbitvestibuleshim-pa.googleapis.com
+#- Domain,robinfrontend-pa.googleapis.com
+#- Domain,fitbitvestibuleshim-pa.googleapis.com
