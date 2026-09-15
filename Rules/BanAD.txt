@@ -27,3 +27,6 @@ payload:
 - Domain-Suffix,pubmatic.com
 - Domain-Suffix,tradplusad.com
 - Domain-Suffix,ads.vungle.com
+#
+- Domain-Regex,^.*ad.*\.byteimg\.com$
+- Domain-Regex,^.*ad.*\.zijieapi\.com$
