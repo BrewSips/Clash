@@ -6,10 +6,10 @@ payload:
 - Domain,hoytv-display.algoad.hkai.io
 - Domain,adc3-launch.adcolony.com
 #
-- Domain,adx.v.mitvos.com
-- Domain,config.ptmi.gitv.tv
-- Domain,milink.pandora.xiaomi.com
-- Domain-Suffix,ad.xiaomi.com
+#- Domain,adx.v.mitvos.com
+#- Domain,config.ptmi.gitv.tv
+#- Domain,milink.pandora.xiaomi.com
+#- Domain-Suffix,ad.xiaomi.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
@@ -22,13 +22,13 @@ payload:
 #- Domain,pages-fast.m.taobao.com
 #- Domain,ads5-normal.zijieapi.com
 #
-- Domain,als.baidu.com
-- Domain,afd.baidu.com
-- Domain,nsclick.baidu.com
+#- Domain,als.baidu.com
+#- Domain,afd.baidu.com
+#- Domain,nsclick.baidu.com
 #
-- Domain,advapi.nfnews.com
+#- Domain,advapi.nfnews.com
 #
-- Domain,adpai.thepaper.cn
+#- Domain,adpai.thepaper.cn
 #
 - Domain-Keyword,g.doubleclick
 #- Domain-Keyword,googleadsserving
