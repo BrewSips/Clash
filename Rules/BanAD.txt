@@ -1,5 +1,5 @@
 payload:
-#- GeoSite,category-ads
+- GeoSite,category-ads
 #
 - Domain,mai.tvb.com
 #
