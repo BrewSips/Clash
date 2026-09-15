@@ -37,3 +37,5 @@ payload:
 #- Domain-Suffix,vungle.com
 #- Domain-Suffix,pubmatic.com
 #- Domain-Keyword,ads-services
+- Domain,media.admob.com
+- Domain-Keyword,ads-services
