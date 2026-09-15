@@ -32,6 +32,7 @@ payload:
 #- Domain,adpai.thepaper.cn
 #
 - Domain-Keyword,g.doubleclick
+- Domain-Keyword,ad.doubleclick
 #- Domain-Keyword,googleadsserving
 #- Domain-Keyword,googlesyndication
 #
