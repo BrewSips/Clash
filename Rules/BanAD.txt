@@ -1,6 +1,9 @@
 payload:
 #- GeoSite,category-ads
 #
+- Domain-Keyword,g.doubleclick
+- Domain-Keyword,ad.doubleclick
+#
 - Domain,mai.tvb.com
 #
 - Domain,hoytv-display.algoad.hkai.io
@@ -19,6 +22,3 @@ payload:
 #- Domain,advapi.nfnews.com
 #
 #- Domain,adpai.thepaper.cn
-#
-- Domain-Keyword,g.doubleclick
-- Domain-Keyword,ad.doubleclick
