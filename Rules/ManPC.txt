@@ -1,3 +1,2 @@
 payload:
-- Domain-Suffix,fengshows.cn
-- Domain-Suffix,ifengimg.com
+- Domain,dsa-mfp.fengshows.cn
