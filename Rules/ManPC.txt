@@ -1,2 +1,2 @@
 payload:
-- Domain-Suffix,fengshows.cn
+- Domain-Keyword,fengshows
