@@ -28,7 +28,5 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Suffix,ads.vungle.com
 #
-- Domain,dsa-mfp.fengshows.cn
-#
 - Domain-Regex,^.*ad.*\.byteimg\.com$
 - Domain-Regex,^.*ad.*\.zijieapi\.com$
