@@ -1,3 +1,4 @@
 payload:
 - GeoSite,tiktok
+- GeoSite,google
 - GeoSite,category-ai-!cn
