@@ -1,3 +1,4 @@
 payload:
+- GeoSite,google
 #- Domain,robinfrontend-pa.googleapis.com
 #- Domain,fitbitvestibuleshim-pa.googleapis.com
