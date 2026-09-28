@@ -5,8 +5,8 @@ payload:
 - GeoSite,cabletv
 - GeoSite,mytvsuper
 #
-- Domain,d3o7oi00quuwqu.cloudfront.net
+- Domain-Keyword,rthk
 #
 - Domain-Suffix,edgeware.tvb.com
 #
-- Domain-Keyword,rthk
+- Domain,d3o7oi00quuwqu.cloudfront.net
