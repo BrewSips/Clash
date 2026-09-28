@@ -10,4 +10,5 @@ payload:
 - Domain-Suffix,edgeware.tvb.com
 - Domain-Suffix,mediatech-ssc.net
 #
+- Domain,d2e7d1zclofwnl.cloudfront.net
 - Domain,d3o7oi00quuwqu.cloudfront.net
