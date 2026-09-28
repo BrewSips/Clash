@@ -9,4 +9,4 @@ payload:
 #
 - Domain-Suffix,edgeware.tvb.com
 #
-- Domain-Keyword,rthktv
+- Domain-Keyword,rthk
