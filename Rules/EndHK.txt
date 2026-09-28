@@ -1,16 +1,16 @@
 payload:
-#- GeoSite,viu
-#- GeoSite,now
-#- GeoSite,cabletv
+- GeoSite,viu
+- GeoSite,now
+- GeoSite,cabletv
 #- GeoSite,rthk
 #- GeoSite,mytvsuper
 #
-#- Domain-Keyword,rthk
-#- Domain-Suffix,mediatech-ssc.net
+- Domain-Keyword,rthk
+- Domain-Suffix,mediatech-ssc.net
 #
-#- Domain-Suffix,tvb.com
-#- Domain-Keyword,mytvsuper
+- Domain-Suffix,tvb.com
+- Domain-Keyword,mytvsuper
 #
-#- Domain,licensing.bitmovin.com
-#- Domain,d2e7d1zclofwnl.cloudfront.net
-#- Domain,d3o7oi00quuwqu.cloudfront.net
+- Domain,licensing.bitmovin.com
+- Domain,d2e7d1zclofwnl.cloudfront.net
+- Domain,d3o7oi00quuwqu.cloudfront.net
