@@ -11,5 +11,6 @@ payload:
 - Domain-Suffix,tvb.com
 - Domain-Keyword,mytvsuper
 #
+- Domain,licensing.bitmovin.com
 - Domain,d2e7d1zclofwnl.cloudfront.net
 - Domain,d3o7oi00quuwqu.cloudfront.net
