@@ -9,8 +9,9 @@ payload:
 #- Domain-Suffix,mediatech-ssc.net
 #
 #- Domain-Suffix,tvb.com
-#- Domain-Keyword,mytvsuper
+- Domain-Keyword,mytvsuper
 #
 #- Domain,licensing.bitmovin.com
 #- Domain,d2e7d1zclofwnl.cloudfront.net
+#- Domain,d2anahhhmp1ffz.cloudfront.net
 #- Domain,d3o7oi00quuwqu.cloudfront.net
