@@ -28,5 +28,8 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Suffix,ads.vungle.com
 #
+- Domain,prd.jwpltx.com
+- Domain,entitlements.jwplayer.com
+- Domain-Keyword,youbora
 - Domain-Regex,^.*ad.*\.byteimg\.com$
 - Domain-Regex,^.*ad.*\.zijieapi\.com$
