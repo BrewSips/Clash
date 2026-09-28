@@ -1,15 +1,15 @@
 payload:
 - GeoSite,viu
 - GeoSite,now
-- GeoSite,rthk
 - GeoSite,cabletv
-- GeoSite,mytvsuper
+#- GeoSite,rthk
+#- GeoSite,mytvsuper
 #
 - Domain-Keyword,rthk
-- Domain-Suffix,tvb.com
-#
-- Domain-Suffix,edgeware.tvb.com
 - Domain-Suffix,mediatech-ssc.net
+#
+- Domain-Suffix,tvb.com
+- Domain-Keyword,mytvsuper
 #
 - Domain,d2e7d1zclofwnl.cloudfront.net
 - Domain,d3o7oi00quuwqu.cloudfront.net
