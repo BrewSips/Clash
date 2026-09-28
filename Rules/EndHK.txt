@@ -5,7 +5,13 @@ payload:
 #- GeoSite,rthk
 #- GeoSite,mytvsuper
 #
-#- Domain-Keyword,rthk
+- Domain-Suffix,viu.tv
+- Domain-Suffix,now.com
+- Domain-Suffix,nowe.com
+- Domain-Suffix,d2e7d1zclofwnl.cloudfront.net
+- Domain-Suffix,d2anahhhmp1ffz.cloudfront.net
+#
+- Domain-Keyword,rthk
 #- Domain-Suffix,mediatech-ssc.net
 #
 - Domain-Suffix,tvb.com
