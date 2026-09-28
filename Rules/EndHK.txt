@@ -9,4 +9,4 @@ payload:
 #
 - Domain-Suffix,edgeware.tvb.com
 #
-- Domain-Regex,^rthktv\d+-live\.akamaized\.net$
+- Domain-Keyword,rthktv
