@@ -8,5 +8,6 @@ payload:
 - Domain-Keyword,rthk
 #
 - Domain-Suffix,edgeware.tvb.com
+- Domain-Suffix,mediatech-ssc.net
 #
 - Domain,d3o7oi00quuwqu.cloudfront.net
