@@ -8,7 +8,7 @@ payload:
 #- Domain-Keyword,rthk
 #- Domain-Suffix,mediatech-ssc.net
 #
-#- Domain-Suffix,tvb.com
+- Domain-Suffix,tvb.com
 - Domain-Keyword,mytvsuper
 #
 #- Domain,licensing.bitmovin.com
