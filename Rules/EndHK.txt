@@ -8,9 +8,9 @@ payload:
 #- Domain-Keyword,rthk
 #- Domain-Suffix,mediatech-ssc.net
 #
-- Domain-Suffix,tvb.com
-- Domain-Suffix,mytvsuper.com
-- Domain,tvb-mytvsuper.servicebus.windows.net
+#- Domain-Suffix,tvb.com
+#- Domain-Suffix,mytvsuper.com
+#- Domain,tvb-mytvsuper.servicebus.windows.net
 #
 #- Domain,licensing.bitmovin.com
 #- Domain,d2e7d1zclofwnl.cloudfront.net
