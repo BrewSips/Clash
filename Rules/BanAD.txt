@@ -6,8 +6,9 @@ payload:
 #
 - Domain,mai.tvb.com
 #
+- Domain-Suffix,adcolony.com
+- Domain-Suffixalgoad.hkai.io
 - Domain,hoytv-display.algoad.hkai.io
-- Domain-Keyword,adcolony.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
