@@ -23,8 +23,6 @@ payload:
 - Domain,afd.baidu.com
 - Domain,nsclick.baidu.com
 #
-- Domain-Keyword,jpush
-- Domain-Keyword,umeng
 - Domain-Suffix,adjust.com
 - Domain-Suffix,pubmatic.com
 - Domain-Suffix,tradplusad.com
