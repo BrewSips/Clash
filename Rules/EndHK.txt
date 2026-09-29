@@ -18,6 +18,7 @@ payload:
 - Domain-Suffix,i-cable.com
 #
 - Domain-Keyword,rthk
+- Domain-Regex,^hkg.*\.mediatech-ssc\.net$
 #
 #- Domain,licensing.bitmovin.com
 #- Domain,d2e7d1zclofwnl.cloudfront.net
