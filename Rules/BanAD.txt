@@ -1,9 +1,5 @@
 payload:
 #
-- Domain,dsa-mfp.fengshows.cn
-- Domain-Keyword,-toutiao
-#- Domain-Keyword,pangolin-sdk-toutiao
-#
 - Domain-Keyword,doubleclick
 #
 - Domain,mai.tvb.com
@@ -15,6 +11,9 @@ payload:
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 - Domain-Suffix,ssad.qq.com
+#
+- Domain-Keyword,-toutiao
+- Domain,dsa-mfp.fengshows.cn
 #
 - Domain,galaxy.bjcathay.com
 #
