@@ -5,6 +5,8 @@ payload:
 #- GeoSite,rthk
 #- GeoSite,mytvsuper
 #
+- Domain,fengshows
+#
 - Domain-Suffix,viu.tv
 - Domain-Suffix,viu.com
 - Domain-Suffix,now.com
