@@ -1,9 +1,4 @@
 payload:
-#- GeoSite,viu
-#- GeoSite,now
-#- GeoSite,cabletv
-#- GeoSite,rthk
-#- GeoSite,mytvsuper
 #
 - Domain-Keyword,fengshows
 #
@@ -18,13 +13,5 @@ payload:
 - Domain-Keyword,mytvsuper
 #
 - Domain-Suffix,hoy.tv
-#- Domain-Regex,^icable.*\.amazonaws\.com$
-#- Domain-Suffix,i-cable.com
 #
 - Domain-Keyword,rthk
-#- Domain-Regex,^hkg.*\.mediatech-ssc\.net$
-#
-#- Domain,licensing.bitmovin.com
-#- Domain,d2e7d1zclofwnl.cloudfront.net
-#- Domain,d2anahhhmp1ffz.cloudfront.net
-#- Domain,d3o7oi00quuwqu.cloudfront.net
