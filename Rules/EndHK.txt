@@ -1,7 +1,5 @@
 payload:
 #
-- Domain-Keyword,fengshows
-#
 - Domain-Keyword,rthk
 #
 - Domain-Keyword,mytvsuper
