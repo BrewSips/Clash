@@ -12,7 +12,7 @@ payload:
 - Domain-Suffix,gdt.qq.com
 - Domain-Suffix,ssad.qq.com
 #
-- Domain-Keyword,-toutiao
+#- Domain-Keyword,-toutiao
 - Domain,dsa-mfp.fengshows.cn
 #
 - Domain,galaxy.bjcathay.com
