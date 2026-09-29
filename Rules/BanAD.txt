@@ -1,6 +1,6 @@
 payload:
 #
-- Domain,dsa-mfp.fengshow.cn
+- Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pglstatp-toutiao
 - Domain-Keyword,pangolin-sdk-toutiao
 #
