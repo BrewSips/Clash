@@ -14,6 +14,9 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+- Domain-Suffix,pglstatp-toutiao.com
+- Domain-Suffix,pangolin-sdk-toutiao.com
+#
 #- Domain,advapi.nfnews.com
 #
 #- Domain,adpai.thepaper.cn
