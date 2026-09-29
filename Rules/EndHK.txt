@@ -16,11 +16,11 @@ payload:
 - Domain-Keyword,mytvsuper
 #
 - Domain-Suffix,hoy.tv
-- Domain-Regex,^icable.*\.amazonaws\.com$
+#- Domain-Regex,^icable.*\.amazonaws\.com$
 #- Domain-Suffix,i-cable.com
 #
 - Domain-Keyword,rthk
-- Domain-Regex,^hkg.*\.mediatech-ssc\.net$
+#- Domain-Regex,^hkg.*\.mediatech-ssc\.net$
 #
 #- Domain,licensing.bitmovin.com
 #- Domain,d2e7d1zclofwnl.cloudfront.net
