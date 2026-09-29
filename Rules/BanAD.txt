@@ -9,7 +9,8 @@ payload:
 #- Domain-Suffix,adcolony.com
 #- Domain-Suffix,algoad.hkai.io
 #
-- Domain,sin-api-adx.tradplusad.com
+- Domain,hoytv-display.algoad.hkai.io
+#- Domain,sin-api-adx.tradplusad.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
