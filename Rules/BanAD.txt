@@ -2,34 +2,34 @@ payload:
 #- GeoSite,category-ads
 #
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,ad.doubleclick
+#- Domain-Keyword,ad.doubleclick
 #
 - Domain,mai.tvb.com
 #
-- Domain-Suffix,adcolony.com
-- Domain-Suffix,algoad.hkai.io
+#- Domain-Suffix,adcolony.com
+#- Domain-Suffix,algoad.hkai.io
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 - Domain-Suffix,ssad.qq.com
 #
-- Domain,advapi.nfnews.com
+#- Domain,advapi.nfnews.com
 #
-- Domain,adpai.thepaper.cn
+#- Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
 #
-- Domain,als.baidu.com
-- Domain,afd.baidu.com
-- Domain,nsclick.baidu.com
+#- Domain,als.baidu.com
+#- Domain,afd.baidu.com
+#- Domain,nsclick.baidu.com
 #
-- Domain-Suffix,adjust.com
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,tradplusad.com
-- Domain-Suffix,ads.vungle.com
+#- Domain-Suffix,adjust.com
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,tradplusad.com
+#- Domain-Suffix,ads.vungle.com
 #
-- Domain,prd.jwpltx.com
-- Domain,entitlements.jwplayer.com
-- Domain-Keyword,youbora
-- Domain-Regex,^.*ad.*\.byteimg\.com$
-- Domain-Regex,^.*ad.*\.zijieapi\.com$
+#- Domain,prd.jwpltx.com
+#- Domain,entitlements.jwplayer.com
+#- Domain-Keyword,youbora
+#- Domain-Regex,^.*ad.*\.byteimg\.com$
+#- Domain-Regex,^.*ad.*\.zijieapi\.com$
