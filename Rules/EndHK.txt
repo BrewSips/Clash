@@ -11,12 +11,13 @@ payload:
 - Domain-Suffix,d2e7d1zclofwnl.cloudfront.net
 - Domain-Suffix,d2anahhhmp1ffz.cloudfront.net
 #
-- Domain-Keyword,rthk
-#- Domain-Suffix,mediatech-ssc.net
-#
 - Domain-Suffix,tvb.com
-- Domain-Suffix,mytvsuper.com
-- Domain,tvb-mytvsuper.servicebus.windows.net
+- Domain-Keyword,mytvsuper
+#
+- Domain-Suffix,hoy.tv
+- Domain-Suffix,i-cable.com
+#
+- Domain-Keyword,rthk
 #
 #- Domain,licensing.bitmovin.com
 #- Domain,d2e7d1zclofwnl.cloudfront.net
