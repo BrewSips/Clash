@@ -6,6 +6,7 @@ payload:
 #- GeoSite,mytvsuper
 #
 - Domain-Suffix,viu.tv
+- Domain-Suffix,viu.com
 - Domain-Suffix,now.com
 - Domain-Suffix,nowe.com
 - Domain-Suffix,d2e7d1zclofwnl.cloudfront.net
