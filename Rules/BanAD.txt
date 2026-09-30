@@ -4,15 +4,15 @@ payload:
 #
 - Domain,mai.tvb.com
 #
-#- Domain-Suffix,adcolony.com
+- Domain-Suffix,adcolony.com
 #
-#- Domain-Suffix,algoad.hkai.io
+- Domain-Suffix,algoad.hkai.io
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #- Domain-Suffix,ssad.qq.com
 #
-#- Domain,dsa-mfp.fengshows.cn
+- Domain,dsa-mfp.fengshows.cn
 #- Domain-Keyword,pglstatp-toutiao
 #- Domain-Keyword,pangolin-sdk-toutiao
 #
