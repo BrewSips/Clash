@@ -13,8 +13,8 @@ payload:
 #- Domain-Suffix,ssad.qq.com
 #
 - Domain,dsa-mfp.fengshows.cn
-#- Domain-Keyword,pglstatp-toutiao
-#- Domain-Keyword,pangolin-sdk-toutiao
+- Domain-Keyword,pglstatp-toutiao
+- Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,galaxy.bjcathay.com
 #
