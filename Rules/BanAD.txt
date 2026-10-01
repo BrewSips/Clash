@@ -16,3 +16,6 @@ payload:
 - Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,galaxy.bjcathay.com
+#
+- Domain-Regex,^.*ad.*\.byteimg\.com$
+- Domain-Regex,^.*ad.*\.zijieapi\.com$
