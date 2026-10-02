@@ -25,5 +25,8 @@ payload:
 - Domain-Suffix,ads.vungle.com
 - Domain-Suffix,tradplusad.com
 #
+- Domain-Suffix,innoads.cn
+- Domain-Regex,^.*ads.*\.baidu\.com$
+#
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
