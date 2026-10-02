@@ -19,4 +19,3 @@ payload:
 #
 - Domain-Regex,^.*ad.*\.byteimg\.com$
 - Domain-Regex,^.*ad.*\.zijieapi\.com$
-- Domain-Regex,^.*ep.*\.facebook\.com$
