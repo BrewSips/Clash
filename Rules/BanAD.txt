@@ -1,6 +1,7 @@
 payload:
 #
 - Domain-Keyword,g.doubleclick
+- Domain-Keyword,ad.doubleclick
 #
 - Domain,mai.tvb.com
 #
