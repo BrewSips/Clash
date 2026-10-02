@@ -1,7 +1,6 @@
 payload:
 #
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,ad.doubleclick
 - Domain,pagead2.googlesyndication.com
 #
 - Domain,mai.tvb.com
@@ -28,4 +27,3 @@ payload:
 #
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
-- Domain-Regex,^.*alisc.*\.zijieapi\.com$
