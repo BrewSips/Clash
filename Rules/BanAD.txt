@@ -18,5 +18,5 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+- Domain-Regex,^.*ad.*\.mitvos\.com$
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
-#- Domain-Regex,^.*ad.*\.byteimg\.com$
