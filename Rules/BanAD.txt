@@ -25,10 +25,10 @@ payload:
 - Domain-Suffix,ads.vungle.com
 - Domain-Suffix,tradplusad.com
 #
-- Domain-Suffix,innoads.cn
-- Domain-Suffix,ad.youku.com
-- Domain-Regex,^.*adx.*\.youku\.com$
-- Domain-Regex,^.*adx.*\.adwangmai\.com$
+#- Domain-Suffix,innoads.cn
+#- Domain-Suffix,ad.youku.com
+#- Domain-Regex,^.*adx.*\.youku\.com$
+#- Domain-Regex,^.*adx.*\.adwangmai\.com$
 #
 - Domain-Regex,^.*ads.*\.baidu\.com$
 #
