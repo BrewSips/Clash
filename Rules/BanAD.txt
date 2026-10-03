@@ -14,6 +14,12 @@ payload:
 - Domain-Keyword,pglstatp-toutiao
 - Domain-Keyword,pangolin-sdk-toutiao
 #
+- Domain-Suffix,pubmatic.com
+- Domain-Suffix,adsmoloco.com
+- Domain-Suffix,ads.vungle.com
+- Domain-Suffix,tradplusad.com
+- Domain-Regex,^.*adx.*\.rayjump\.com$
+#
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Regex,^.*ad.*\.byteimg\.com$
