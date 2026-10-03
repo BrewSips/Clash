@@ -22,8 +22,6 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-- Domain-Suffix,umeng.com
-#
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Regex,^.*ad.*\.byteimg\.com$
