@@ -1,10 +1,11 @@
 payload:
 #
-- Domain,ad.doubleclick.net
+- Domain-Keyword,doubleclick
 - Domain,pagead2.googlesyndication.com
-- Domain-Keyword,g.doubleclick
 #
 - Domain,mai.tvb.com
+#
+- Domain,adpai.thepaper.cn
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
