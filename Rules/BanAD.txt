@@ -1,6 +1,6 @@
 payload:
 #
-- Domain-Keyword,doubleclick
+- Domain-Keyword,g.doubleclick
 - Domain,pagead2.googlesyndication.com
 #
 - Domain,mai.tvb.com
