@@ -5,7 +5,7 @@ payload:
 - Domain,pagead2.googlesyndication.com
 #
 - Domain,mai.tvb.com
-- Domain,ads.tvb.com
+- Domain,ads.cdn.tvb.com
 #
 - Domain,adpai.thepaper.cn
 #
