@@ -1,7 +1,6 @@
 payload:
 #
 - Domain-Keyword,g.doubleclick
-- Domain,ad.doubleclick.net
 - Domain,pagead2.googlesyndication.com
 #
 - Domain,mai.tvb.com
@@ -26,8 +25,6 @@ payload:
 - Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
-#
-- Domain-Keyword,ad.10010.com
 #
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
