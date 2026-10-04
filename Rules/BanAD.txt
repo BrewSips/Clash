@@ -25,6 +25,8 @@ payload:
 #
 - Domain,adx.v.mitvos.com
 #
+- Domain-Regex,^.*ads.*\.baidu\.com$
+#
 - Domain-Regex,^.*ads.*\.weibo\.com$
 - Domain-Regex,^.*ads.*\.xhscdn\.com$
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
