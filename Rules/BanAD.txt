@@ -5,6 +5,7 @@ payload:
 - Domain,mai.tvb.com
 #
 - Domain-Suffix,adcolony.com
+- Domain-Suffix,app-ads-services.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
