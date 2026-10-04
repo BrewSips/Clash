@@ -1,6 +1,6 @@
 payload:
 #
-#- Domain,ad.doubleclick.net
+- Domain,ad.doubleclick.net
 #- Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
 #- Domain-Suffix,googleadservices.com
@@ -10,8 +10,8 @@ payload:
 #
 - Domain-Suffix,hkai.io
 #
-#- Domain,prd.jwpltx.com
-#- Domain,entitlements.jwplayer.com
+- Domain,prd.jwpltx.com
+- Domain,entitlements.jwplayer.com
 - Domain-Suffix,adcolony.com
 #- Domain-Suffix,amazon-adsystem.com
 #- Domain-Suffix,app-ads-services.com
