@@ -6,8 +6,6 @@ payload:
 #
 - Domain,mai.tvb.com
 #
-- Domain,adpai.thepaper.cn
-#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
@@ -20,6 +18,8 @@ payload:
 - Domain-Suffix,ads.vungle.com
 - Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
+#
+- Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
 #
