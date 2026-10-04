@@ -28,6 +28,7 @@ payload:
 - Domain,galaxy.bjcathay.com
 #
 - Domain,adx.v.mitvos.com
+- Domain-Suffix,ad.xiaomi.com
 #
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
