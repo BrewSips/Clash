@@ -1,8 +1,8 @@
 payload:
 #
 - Domain-Keyword,g.doubleclick
-- Domain-Keyword,ad.doubleclick
-- Domain,pagead2.googlesyndication.com
+#- Domain-Keyword,ad.doubleclick
+#- Domain,pagead2.googlesyndication.com
 #
 - Domain,mai.tvb.com
 #
@@ -19,7 +19,7 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-- Domain-Regex,^.*ads.*\.twitter\.com$
+#- Domain-Regex,^.*ads.*\.twitter\.com$
 #
 - Domain,adpai.thepaper.cn
 #
@@ -33,5 +33,5 @@ payload:
 - Domain-Regex,^.*ads.*\.(weibo|xhscdn|zijieapi)\.com$
 #
 - Domain-Regex,^.*adx.*\.ubixioe\.com$
-- Domain-Regex,^.*admonitor.*\.(cainiao|aliyuncs)\.com$
-- Domain-Regex,^.*adash.*\.(uc\.cn|taobao\.com|cainiao\.com)$
+#- Domain-Regex,^.*admonitor.*\.(cainiao|aliyuncs)\.com$
+#- Domain-Regex,^.*adash.*\.(uc\.cn|taobao\.com|cainiao\.com)$
