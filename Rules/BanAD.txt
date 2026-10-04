@@ -27,12 +27,8 @@ payload:
 #
 - Domain-Regex,^.*ads.*\.baidu\.com$
 #
-- Domain-Regex,^.*ads.*\.weibo\.com$
-- Domain-Regex,^.*ads.*\.xhscdn\.com$
-- Domain-Regex,^.*ads.*\.zijieapi\.com$
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
+- Domain-Regex,^.*ads.*\.(weibo|xhscdn|zijieapi)\.com$
 #
 - Domain-Regex,^.*adx.*\.ubixioe\.com$
-- Domain-Regex,^.*adash.*\.uc\.cn$
-- Domain-Regex,^.*adash.*\.taobao\.com$
-- Domain-Regex,^.*adash.*\.cainiao\.com$
+- Domain-Regex,^.*adash.*\.(uc\.cn|taobao\.com|cainiao\.com)$
