@@ -1,7 +1,9 @@
 payload:
 #
 - Domain,ad.doubleclick.net
+- Domain,ogads-pa.clients6.google.com
 - Domain,pagead2.googlesyndication.com
+- Domain-Suffix,googleadservices.com
 - Domain-Keyword,g.doubleclick
 #
 - Domain,mai.tvb.com
