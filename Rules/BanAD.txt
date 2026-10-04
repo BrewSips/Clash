@@ -19,6 +19,8 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
+- Domain-Regex,^.*ads.*\.twitter\.com$
+#
 - Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
