@@ -6,7 +6,7 @@ payload:
 #
 - Domain-Suffix,adcolony.com
 #
-- Domain-Regex,^.*hoytv.*\.hkai\.io$
+- Domain-Suffix,hkai.io
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
