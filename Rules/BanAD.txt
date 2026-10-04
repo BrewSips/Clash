@@ -31,5 +31,6 @@ payload:
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 #
 - Domain-Regex,^.*adx.*\.ubixioe\.com$
+- Domain-Regex,^.*adash.*\.uc\.cn$
 - Domain-Regex,^.*adash.*\.taobao\.com$
 - Domain-Regex,^.*adash.*\.cainiao\.com$
