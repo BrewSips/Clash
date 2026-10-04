@@ -2,7 +2,7 @@ payload:
 #
 #- Domain,ad.doubleclick.net
 #- Domain,ogads-pa.clients6.google.com
-#- Domain,pagead2.googlesyndication.com
+- Domain,pagead2.googlesyndication.com
 #- Domain-Suffix,googleadservices.com
 - Domain-Keyword,g.doubleclick
 #
@@ -29,7 +29,7 @@ payload:
 - Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-#- Domain,adpai.thepaper.cn
+- Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
 #
