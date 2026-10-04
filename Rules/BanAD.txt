@@ -31,4 +31,5 @@ payload:
 - Domain-Regex,^.*ads.*\.(weibo|xhscdn|zijieapi)\.com$
 #
 - Domain-Regex,^.*adx.*\.ubixioe\.com$
+- Domain-Regex,^.*admonitor.*\.(cainiao|aliyuncs)\.com$
 - Domain-Regex,^.*adash.*\.(uc\.cn|taobao\.com|cainiao\.com)$
