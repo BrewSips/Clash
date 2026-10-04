@@ -24,5 +24,6 @@ payload:
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Regex,^.*ads.*\.weibo\.com$
+- Domain-Regex,^.*ads.*\.xhscdn\.com$
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
