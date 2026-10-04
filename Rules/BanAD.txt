@@ -28,6 +28,6 @@ payload:
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 #
-- Domain-Regex,^.*adx.*\.ubxioe\.com$
+- Domain-Regex,^.*adx.*\.ubixioe\.com$
 - Domain-Regex,^.*adash.*\.taobao\.com$
 - Domain-Regex,^.*adash.*\.cainiao\.com$
