@@ -20,8 +20,8 @@ payload:
 - Domain-Suffix,gdt.qq.com
 #
 #- Domain,dsa-mfp.fengshows.cn
-- Domain-Keyword,pglstatp-toutiao
-#- Domain-Keyword,pangolin-sdk-toutiao
+#- Domain-Keyword,pglstatp-toutiao
+- Domain-Keyword,pangolin-sdk-toutiao
 #
 #- Domain-Suffix,pubmatic.com
 #- Domain-Suffix,adsmoloco.com
