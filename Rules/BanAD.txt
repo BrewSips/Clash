@@ -1,46 +1,46 @@
 payload:
 #
-- Domain,ad.doubleclick.net
-- Domain,ogads-pa.clients6.google.com
-- Domain,pagead2.googlesyndication.com
-- Domain-Suffix,googleadservices.com
+#- Domain,ad.doubleclick.net
+#- Domain,ogads-pa.clients6.google.com
+#- Domain,pagead2.googlesyndication.com
+#- Domain-Suffix,googleadservices.com
 - Domain-Keyword,g.doubleclick
 #
 - Domain,mai.tvb.com
 #
-- Domain-Suffix,hkai.io
+- Domain-Suffix,algoad.hkai.io
 #
-- Domain,prd.jwpltx.com
-- Domain,entitlements.jwplayer.com
-- Domain-Suffix,adcolony.com
-- Domain-Suffix,amazon-adsystem.com
-- Domain-Suffix,app-ads-services.com
+#- Domain,prd.jwpltx.com
+#- Domain,entitlements.jwplayer.com
+#- Domain-Suffix,adcolony.com
+#- Domain-Suffix,amazon-adsystem.com
+#- Domain-Suffix,app-ads-services.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-- Domain,dsa-mfp.fengshows.cn
+#- Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pglstatp-toutiao
-- Domain-Keyword,pangolin-sdk-toutiao
+#- Domain-Keyword,pangolin-sdk-toutiao
 #
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,adsmoloco.com
-- Domain-Suffix,ads.vungle.com
-- Domain-Suffix,tradplusad.com
-- Domain-Regex,^.*adx.*\.rayjump\.com$
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,adsmoloco.com
+#- Domain-Suffix,ads.vungle.com
+#- Domain-Suffix,tradplusad.com
+#- Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-- Domain,adpai.thepaper.cn
+#- Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
 #
-- Domain,adx.v.mitvos.com
-- Domain-Suffix,ad.xiaomi.com
+#- Domain,adx.v.mitvos.com
+#- Domain-Suffix,ad.xiaomi.com
 #
-- Domain-Regex,^.*ads.*\.zijieapi\.com$
-- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
+#- Domain-Regex,^.*ads.*\.zijieapi\.com$
+#- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 #
-- Domain-Regex,^.*ads.*\.baidu\.com$
-- Domain-Regex,^.*ads.*\.weibo\.com$
-- Domain-Regex,^.*ads.*\.xhscdn\.com$
-- Domain-Regex,^.*adx.*\.ubixioe\.com$
+#- Domain-Regex,^.*ads.*\.baidu\.com$
+#- Domain-Regex,^.*ads.*\.weibo\.com$
+#- Domain-Regex,^.*ads.*\.xhscdn\.com$
+#- Domain-Regex,^.*adx.*\.ubixioe\.com$
 
