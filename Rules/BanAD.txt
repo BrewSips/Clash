@@ -19,7 +19,7 @@ payload:
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-#- Domain,dsa-mfp.fengshows.cn
+- Domain,dsa-mfp.fengshows.cn
 #- Domain-Keyword,pglstatp-toutiao
 - Domain-Keyword,pangolin-sdk-toutiao
 #
@@ -36,8 +36,8 @@ payload:
 #- Domain,adx.v.mitvos.com
 #- Domain-Suffix,ad.xiaomi.com
 #
-- Domain-Regex,^.*ads.*\.zijieapi\.com$
-- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
+#- Domain-Regex,^.*ads.*\.zijieapi\.com$
+#- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 #
 #- Domain-Regex,^.*ads.*\.baidu\.com$
 #- Domain-Regex,^.*ads.*\.weibo\.com$
