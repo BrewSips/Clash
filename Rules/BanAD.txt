@@ -12,6 +12,7 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
+- Domain-Suffix,adsmoloco.com
 - Domain-Suffix,ads.vungle.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
