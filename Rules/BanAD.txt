@@ -25,7 +25,7 @@ payload:
 #
 #- Domain-Suffix,pubmatic.com
 #- Domain-Suffix,adsmoloco.com
-#- Domain-Suffix,ads.vungle.com
+- Domain-Suffix,ads.vungle.com
 #- Domain-Suffix,tradplusad.com
 - Domain-Regex,^.*adx.*\.rayjump\.com$
 #
