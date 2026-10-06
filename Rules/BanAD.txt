@@ -14,5 +14,7 @@ payload:
 #
 - Domain-Keyword,pangolin-sdk-toutiao
 #
+- Domain,event.tradplusad.com
 - Domain,bidder.tradplusad.com
+- Domain-Suffix,ads.vungle.com
 
