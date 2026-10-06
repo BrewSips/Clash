@@ -1,9 +1,5 @@
 payload:
-#- GeoSite,sina@ads
-#- GeoSite,baidu@ads
-#- GeoSite,google@ads
 #
-#- Domain,pagead2.googlesyndication.com
 - Domain-Keyword,ads.g.doubleclick
 #
 - Domain-Suffix,algoad.hkai.io
