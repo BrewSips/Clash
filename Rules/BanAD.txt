@@ -14,7 +14,7 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
-- Domain,ads.pubmatic.com
+- Domain-Suffix,pubmatic.com
 - Domain-Suffix,tradplusad.com
 - Domain-Suffix,adsmoloco.com
 - Domain-Suffix,ads.vungle.com
