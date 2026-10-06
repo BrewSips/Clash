@@ -10,16 +10,12 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
-#- Domain-Keyword,ad-sign.byteimg.com
-#- Domain-Wildcard,ads*.zijieapi.com
-#
 - Domain,adx.v.mitvos.com
 - Domain,api.ad.xiaomi.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-#- Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,ads.pubmatic.com
