@@ -7,12 +7,15 @@ payload:
 #
 - Domain,mai.tvb.com
 #
+- Domain,adpai.thepaper.cn
+#
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Wildcard,ads*.zijieapi.com
 #
-- Domain,adpai.thepaper.cn
+- Domain,adx.v.mitvos.com
+- Domain,api.ad.xiaomi.com
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
