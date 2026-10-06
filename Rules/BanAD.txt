@@ -14,11 +14,11 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
-- Domain-Suffix,pubmatic.com
-- Domain-Suffix,tradplusad.com
-- Domain-Suffix,adsmoloco.com
-- Domain-Suffix,ads.vungle.com
-- Domain-Regex,^.*adx.*\.rayjump\.com$
+#- Domain-Suffix,pubmatic.com
+#- Domain-Suffix,tradplusad.com
+#- Domain-Suffix,adsmoloco.com
+#- Domain-Suffix,ads.vungle.com
+#- Domain-Regex,^.*adx.*\.rayjump\.com$
 #
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 - Domain-Regex,^.*ad-sign.*\.byteimg\.com$
