@@ -9,8 +9,8 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+- Domain-Keyword,ad-sign.byteimg.com
 - Domain-Wildcard,ads*.zijieapi.com
-- Domain-Wildcard,*ad-sign.byteimg.com
 #-Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 #-Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
