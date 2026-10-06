@@ -10,8 +10,8 @@ payload:
 #
 - Domain-Keyword,adashx
 #
-- Domain-Keyword,ad-sign.byteimg.com
-- Domain-Wildcard,ads*.zijieapi.com
+#- Domain-Keyword,ad-sign.byteimg.com
+#- Domain-Wildcard,ads*.zijieapi.com
 #
 - Domain,adx.v.mitvos.com
 - Domain,api.ad.xiaomi.com
