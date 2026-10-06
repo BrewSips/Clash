@@ -9,6 +9,8 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+Domain-Wildcard,ads*.zijieapi.com
+#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
