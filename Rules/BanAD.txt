@@ -6,6 +6,8 @@ payload:
 #
 - Domain-Suffix,algoad.hkai.io
 #
+- Domain,galaxy.bjcathay.com
+#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
@@ -13,10 +15,11 @@ payload:
 - Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,ads.pubmatic.com
-#- Domain-Suffix,tradplusad.com
-#- Domain-Suffix,adsmoloco.com
-#- Domain-Suffix,ads.vungle.com
-#- Domain-Regex,^.*adx.*\.rayjump\.com$
+- Domain-Suffix,tradplusad.com
+- Domain-Suffix,adsmoloco.com
+- Domain-Suffix,ads.vungle.com
+- Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-- Domain,galaxy.bjcathay.com
+- Domain-Regex,^.*ads.*\.zijieapi\.com$
+- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 
