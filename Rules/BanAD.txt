@@ -1,10 +1,13 @@
 payload:
 #
-- Domain-Keyword,g.doubleclick
+- Domain,pubads.g.doubleclick.net
+- Domain,pubads.g.doubleclick-cn.net
+- Domain,googleads.g.doubleclick.net
+- Domain,googleads.g.doubleclick-cn.net
 #
 - Domain,mai.tvb.com
 #
-- Domain-Suffix,algoad.hkai.io
+- Domain,hoytv-display.algoad.hkai.io
 #
 - Domain,galaxy.bjcathay.com
 #
@@ -16,12 +19,13 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
+- Domain,bidder.tradplusad.com
 #- Domain-Suffix,pubmatic.com
 #- Domain-Suffix,tradplusad.com
 #- Domain-Suffix,adsmoloco.com
 #- Domain-Suffix,ads.vungle.com
 #- Domain-Regex,^.*adx.*\.rayjump\.com$
 #
-- Domain-Regex,^.*ads.*\.zijieapi\.com$
-- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
+#- Domain-Regex,^.*ads.*\.zijieapi\.com$
+#- Domain-Regex,^.*ad-sign.*\.byteimg\.com$
 
