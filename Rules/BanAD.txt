@@ -1,13 +1,16 @@
 payload:
+- GeoSite,sina@ads
+- GeoSite,baidu@ads
+- GeoSite,google@ads
 #
-- Domain,pagead2.googlesyndication.com
-- Domain-Keyword,ads.g.doubleclick
+#- Domain,pagead2.googlesyndication.com
+#- Domain-Keyword,ads.g.doubleclick
 #
 - Domain-Suffix,algoad.hkai.io
 #
 - Domain,mai.tvb.com
 #
-- Domain-Keyword,adashx
+#- Domain-Keyword,adashx
 #
 - Domain,galaxy.bjcathay.com
 #
