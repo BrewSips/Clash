@@ -7,7 +7,7 @@ payload:
 #
 - Domain,mai.tvb.com
 #
-- Domain,adpai.thepaper.cn
+- Domain-Keyword,adashx
 #
 - Domain,galaxy.bjcathay.com
 #
