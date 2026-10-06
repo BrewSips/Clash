@@ -13,5 +13,3 @@ payload:
 - Domain-Suffix,nowe.com
 - Domain-Suffix,d2e7d1zclofwnl.cloudfront.net
 - Domain-Suffix,d2anahhhmp1ffz.cloudfront.net
-#
-- Domain-Suffix,fengshows.com
