@@ -12,10 +12,11 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
 #
-- Domain-Suffix,tradplusad.com
-- Domain-Suffix,adsmoloco.com
-- Domain-Suffix,ads.vungle.com
-- Domain-Regex,^.*adx.*\.rayjump\.com$
+- Domain,ads.pubmatic.com
+#- Domain-Suffix,tradplusad.com
+#- Domain-Suffix,adsmoloco.com
+#- Domain-Suffix,ads.vungle.com
+#- Domain-Regex,^.*adx.*\.rayjump\.com$
 #
 - Domain,galaxy.bjcathay.com
 
