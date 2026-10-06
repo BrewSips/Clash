@@ -2,17 +2,6 @@ payload:
 #
 - Domain-Keyword,adashx
 #
-- Domain-Keyword,ads.g.doubleclick
-#
-- Domain-Suffix,algoad.hkai.io
-#
-- Domain,mai.tvb.com
-#
-- Domain,galaxy.bjcathay.com
-#
-- Domain,adx.v.mitvos.com
-- Domain,api.ad.xiaomi.com
-#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
@@ -26,7 +15,14 @@ payload:
 - Domain,event.tradplusad.com
 - Domain,bidder.tradplusad.com
 - Domain-Suffix,ads.vungle.com
-#####
-#-Domain-Regex,^.*ad-sign.*\.byteimg\.com$
-#-Domain-Regex,^.*ads.*\.zijieapi\.com$
-#####
+#
+- Domain-Keyword,ads.g.doubleclick
+#
+- Domain-Suffix,algoad.hkai.io
+#
+- Domain,mai.tvb.com
+#
+- Domain,galaxy.bjcathay.com
+#
+- Domain,adx.v.mitvos.com
+- Domain,api.ad.xiaomi.com
