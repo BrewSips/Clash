@@ -11,8 +11,6 @@ payload:
 #
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Wildcard,ads*.zijieapi.com
-#-Domain-Regex,^.*ad-sign.*\.byteimg\.com$
-#-Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
@@ -25,4 +23,7 @@ payload:
 - Domain,event.tradplusad.com
 - Domain,bidder.tradplusad.com
 - Domain-Suffix,ads.vungle.com
-
+#####
+#-Domain-Regex,^.*ad-sign.*\.byteimg\.com$
+#-Domain-Regex,^.*ads.*\.zijieapi\.com$
+#####
