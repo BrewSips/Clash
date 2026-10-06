@@ -16,8 +16,8 @@ payload:
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-- Domain,dsa-mfp.fengshows.cn
-- Domain-Keyword,pangolin-sdk-toutiao
+#- Domain,dsa-mfp.fengshows.cn
+#- Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,bidder.tradplusad.com
 #- Domain-Suffix,pubmatic.com
