@@ -8,6 +8,8 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+- Domain,adpai.thepaper.cn
+#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
