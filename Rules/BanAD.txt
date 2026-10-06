@@ -9,6 +9,8 @@ payload:
 #
 - Domain,galaxy.bjcathay.com
 #
+- Domain,ad.mcloud.139.com
+#
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Wildcard,ads*.zijieapi.com
 #
