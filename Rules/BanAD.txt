@@ -1,6 +1,6 @@
 payload:
 #
-- Domain-Keyword,adashx
+#- Domain-Keyword,adashx
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
@@ -28,5 +28,5 @@ payload:
 #- Domain-Suffix,ads.vungle.com
 #
 #
-#- Domain-Keyword,ad-sign.byteimg.com
+- Domain-Keyword,ad-sign.byteimg.com
 #- Domain-Regex,^.*ads.*\.zijieapi\.com$
