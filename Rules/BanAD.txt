@@ -2,8 +2,8 @@ payload:
 #
 - Domain-Keyword,adashx
 #
-- Domain-Keyword,ad-sign.byteimg.com
-- Domain-Regex,^.*ads.*\.zijieapi\.com$
+#- Domain-Keyword,ad-sign.byteimg.com
+#- Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
