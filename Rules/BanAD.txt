@@ -27,4 +27,4 @@ payload:
 #- Domain,adpai.thepaper.cn
 #
 - Domain,adx.v.mitvos.com
-- Domain,api.ad.xiaomi.com
+- Domain-Suffix,ad.xiaomi.com
