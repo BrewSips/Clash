@@ -5,6 +5,8 @@ payload:
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
+- Domain,adpai.thepaper.cn
+#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
@@ -19,8 +21,6 @@ payload:
 - Domain,mai.tvb.com
 #
 - Domain,galaxy.bjcathay.com
-#
-#- Domain,adpai.thepaper.cn
 #
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
