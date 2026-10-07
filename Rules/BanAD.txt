@@ -12,13 +12,6 @@ payload:
 - Domain-Suffix,pglstatp-toutiao.com
 - Domain-Keyword,pangolin-sdk-toutiao
 #
-#- Domain,ads.pubmatic.com
-#- Domain,oi-ow.pubmatic.com
-#- Domain,api.tradplusad.com
-#- Domain,event.tradplusad.com
-#- Domain,bidder.tradplusad.com
-#- Domain-Suffix,ads.vungle.com
-#
 - Domain-Keyword,ads.g.doubleclick
 #
 - Domain-Suffix,algoad.hkai.io
@@ -31,3 +24,10 @@ payload:
 #
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
+#
+#- Domain,ads.pubmatic.com
+#- Domain,oi-ow.pubmatic.com
+#- Domain,api.tradplusad.com
+#- Domain,event.tradplusad.com
+#- Domain,bidder.tradplusad.com
+#- Domain-Suffix,ads.vungle.com
