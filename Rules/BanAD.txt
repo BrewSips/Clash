@@ -33,10 +33,11 @@ payload:
 - Domain-Suffix,ad.xiaomi.com
 # CCTV
 - Domain,galaxy.bjcathay.com
-# PP New
-- Domain,adpai.thepaper.cn
 # Alibaba
 - Domain-Keyword,adashx
-# JR New
+#
+- Domain,ads.cup.com.cn
+#- Domain,adpai.thepaper.cn
+#
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
