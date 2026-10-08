@@ -7,6 +7,10 @@ payload:
 #
 - Domain-Suffix,algoad.hkai.io
 #
+- Domain,muf.app-ads-services.com
+- Domain,odf.app-ads-services.com
+- Domain,adc3-launch.adcolony.com
+#
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
@@ -28,3 +32,6 @@ payload:
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Keyword,adashx
+#
+- Domain-Keyword,ad-sign.byteimg.com
+- Domain-Regex,^.*ads.*\.zijieapi\.com$
