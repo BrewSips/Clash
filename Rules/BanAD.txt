@@ -11,10 +11,10 @@ payload:
 #
 #- Domain,ads.pubmatic.com
 #- Domain,oi-ow.pubmatic.com
-- Domain,api.tradplusad.com
+#- Domain,api.tradplusad.com
 #- Domain,event.tradplusad.com
 #- Domain,bidder.tradplusad.com
-#- Domain-Suffix,ads.vungle.com
+- Domain-Suffix,ads.vungle.com
 #
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
