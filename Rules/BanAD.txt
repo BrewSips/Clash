@@ -1,6 +1,11 @@
 payload:
 #
-#- Domain,adpai.thepaper.cn
+- Domain,pagead2.googlesyndication.com
+- Domain-Keyword,ads.g.doubleclick
+#
+- Domain,mai.tvb.com
+#
+- Domain-Suffix,algoad.hkai.io
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
@@ -20,10 +25,6 @@ payload:
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
 #
-- Domain-Suffix,algoad.hkai.io
-#
-- Domain,mai.tvb.com
-#
 - Domain,galaxy.bjcathay.com
 #
-- Domain-Keyword,ads.g.doubleclick
+- Domain-Keyword,adashx
