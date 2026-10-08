@@ -1,6 +1,6 @@
 payload:
 #
-#- Domain,adpai.thepaper.cn
+- Domain,adpai.thepaper.cn
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
