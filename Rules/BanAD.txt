@@ -40,6 +40,4 @@ payload:
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
 - Domain,ads.cup.com.cn
-- Domain,ad.mcloud.139.com
-- Domain-Keyword,ad.10010.com
 #- Domain,adpai.thepaper.cn
