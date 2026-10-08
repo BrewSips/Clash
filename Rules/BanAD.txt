@@ -7,7 +7,7 @@ payload:
 #
 - Domain,dsa-mfp.fengshows.cn
 #- Domain-Suffix,pglstatp-toutiao.com
-#- Domain-Keyword,pangolin-sdk-toutiao
+- Domain-Keyword,pangolin-sdk-toutiao
 #
 - Domain,noti-asia.adsmoloco.com
 #- Domain,ads.pubmatic.com
