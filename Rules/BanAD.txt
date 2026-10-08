@@ -36,8 +36,8 @@ payload:
 # Alibaba
 - Domain-Keyword,adashx
 #
-- Domain,ads.cup.com.cn
-#- Domain,adpai.thepaper.cn
-#
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
+#
+- Domain,ads.cup.com.cn
+#- Domain,adpai.thepaper.cn
