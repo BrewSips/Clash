@@ -9,7 +9,8 @@ payload:
 #- Domain-Suffix,pglstatp-toutiao.com
 - Domain-Keyword,pangolin-sdk-toutiao
 #
-- Domain,ads.pubmatic.com
+- Domain,noti-asia.adsmoloco.com
+#- Domain,ads.pubmatic.com
 #- Domain,oi-ow.pubmatic.com
 #- Domain,api.tradplusad.com
 #- Domain,event.tradplusad.com
