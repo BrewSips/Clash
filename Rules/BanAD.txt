@@ -1,12 +1,12 @@
 payload:
 #
-- Domain,adpai.thepaper.cn
+#- Domain,adpai.thepaper.cn
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
 #
-- Domain,dsa-mfp.fengshows.cn
-- Domain-Suffix,pglstatp-toutiao.com
+#- Domain,dsa-mfp.fengshows.cn
+#- Domain-Suffix,pglstatp-toutiao.com
 - Domain-Keyword,pangolin-sdk-toutiao
 #
 #- Domain,ads.pubmatic.com
@@ -16,8 +16,8 @@ payload:
 #- Domain,bidder.tradplusad.com
 - Domain-Suffix,ads.vungle.com
 #
-- Domain,adx.v.mitvos.com
-- Domain-Suffix,ad.xiaomi.com
+#- Domain,adx.v.mitvos.com
+#- Domain-Suffix,ad.xiaomi.com
 #
 - Domain-Suffix,algoad.hkai.io
 #
