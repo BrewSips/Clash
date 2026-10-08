@@ -1,25 +1,26 @@
 payload:
-#
+# Google Ads
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,ads.g.doubleclick
-#
+# myTV Super
 - Domain,mai.tvb.com
-#
+# HOY TV
 - Domain-Suffix,algoad.hkai.io
-#
+# Speed Test
 - Domain,c.amazon-adsystem.com
 - Domain,muf.app-ads-services.com
 - Domain,odf.app-ads-services.com
+# VIU
 - Domain,wd.adcolony.com
 - Domain,adc3-launch.adcolony.com
-#
+# Zaobao
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
-#
+# Fengshows
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Suffix,pglstatp-toutiao.com
 - Domain-Keyword,pangolin-sdk-toutiao
-#
+# HK01
 - Domain,ads.pubmatic.com
 - Domain,oi-ow.pubmatic.com
 - Domain,api.tradplusad.com
@@ -27,15 +28,15 @@ payload:
 - Domain,bidder.tradplusad.com
 - Domain,noti-asia.adsmoloco.com
 - Domain-Suffix,ads.vungle.com
-#
+# MiTV
 - Domain,adx.v.mitvos.com
 - Domain-Suffix,ad.xiaomi.com
-#
+# CCTV
 - Domain,galaxy.bjcathay.com
-#
+# PP New
 - Domain,adpai.thepaper.cn
-#
+# Alibaba
 - Domain-Keyword,adashx
-#
+# JR New
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
