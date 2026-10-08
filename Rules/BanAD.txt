@@ -1,10 +1,4 @@
 payload:
-- GeoSite,baidu@ads
-- GeoSite,google@ads
-- GeoSite,tencent@ads
-- GeoSite,alibaba@ads
-- GeoSite,sina@ads
-- GeoSite,zhihu@ads
 # Google Ads
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,ads.g.doubleclick
