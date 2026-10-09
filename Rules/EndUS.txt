@@ -1,2 +1,4 @@
 payload:
+- GeoSite,google
+- GeoSite,category-ai-!cn
 - Domain-Suffix,qobuz.com
