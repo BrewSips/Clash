@@ -11,7 +11,7 @@ payload:
 #
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Suffix,pglstatp-toutiao.com
-- Domain-Wildcard,pangolin*toutiao
+- Domain-Wildcard,*pangolin*toutiao*
 #- Domain-Keyword,pangolin-sdk-toutiao
 #- Domain-Keyword,pangolin-dsp-toutiao
 #
