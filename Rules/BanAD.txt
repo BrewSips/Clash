@@ -31,6 +31,8 @@ payload:
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
+- Domain-Suffix,ad.xelements.cn
+#
 - Domain,ads.cup.com.cn
 #
 - Domain-Keyword,adashx
