@@ -1,2 +1,2 @@
 payload:
-- Domain,manpc.txt
+- Domain,brewsips.brewsips
