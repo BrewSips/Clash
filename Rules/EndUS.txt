@@ -1,2 +1,2 @@
 payload:
-- Domain-Suffix,qobuz.com
+- Domain,brewsips.brewsips
