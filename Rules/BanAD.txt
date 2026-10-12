@@ -2,6 +2,8 @@ payload:
 - GeoSite,category-httpdns-cn
 - GeoSite,category-ads
 #
+- Domain,ads.cup.com.cn
+#
 - Domain,dsa-mfp.fengshows.cn
 #
 - Domain-Suffix,algoad.hkai.io
