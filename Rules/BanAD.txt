@@ -1,4 +1,5 @@
 payload:
+- GeoSite,category-httpdns-cn
 #
 - Domain,ad.doubleclick.net
 - Domain,pagead2.googlesyndication.com
@@ -32,7 +33,5 @@ payload:
 - Domain-Regex,^.*ads.*\.zijieapi\.com$
 #
 - Domain,ads.cup.com.cn
-#
-- Domain,adstrategy.biz.weibo.com
 #
 - Domain-Keyword,adashx
