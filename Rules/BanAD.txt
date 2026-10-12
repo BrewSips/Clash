@@ -3,11 +3,11 @@ payload:
 #
 - GeoSite,category-ads
 #
-- Domain,ads.cup.com.cn
-#
-- Domain,dsa-mfp.fengshows.cn
+- Domain,galaxy.bjcathay.com
 #
 - Domain-Suffix,algoad.hkai.io
+#
+- Domain,dsa-mfp.fengshows.cn
 #
 - Domain-Suffix,pubmatic.com
 - Domain-Suffix,adsmoloco.com
