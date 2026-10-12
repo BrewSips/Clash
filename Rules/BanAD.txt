@@ -9,4 +9,4 @@ payload:
 #
 - Domain-Suffix,algoad.hkai.io
 #
-- Domain,noti-asia.adsmoloco.com
+- Domain-Suffix,adsmoloco.com
