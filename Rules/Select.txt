@@ -1,2 +1,2 @@
 payload:
-- Domain,select.txt
+- Domain,brewsips.brewsips
