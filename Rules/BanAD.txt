@@ -8,7 +8,7 @@ payload:
 #
 #- Domain,mai.tvb.com
 #
-#- Domain-Suffix,algoad.hkai.io
+- Domain-Suffix,algoad.hkai.io
 #
 #- Domain-Suffix,e.qq.com
 #- Domain-Suffix,gdt.qq.com
