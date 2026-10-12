@@ -1,6 +1,6 @@
 payload:
 - GeoSite,category-ads
-#- GeoSite,category-httpdns-cn
+- GeoSite,category-httpdns-cn
 #
 #- Domain,ad.doubleclick.net
 #- Domain,pagead2.googlesyndication.com
