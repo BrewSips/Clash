@@ -33,4 +33,6 @@ payload:
 #
 - Domain,ads.cup.com.cn
 #
+- Domain,adstrategy.biz.weibo.com
+#
 - Domain-Keyword,adashx
