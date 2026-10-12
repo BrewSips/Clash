@@ -8,3 +8,5 @@ payload:
 - Domain,dsa-mfp.fengshows.cn
 #
 - Domain-Suffix,algoad.hkai.io
+#
+- Domain,noti-asia.adsmoloco.com
