@@ -1,5 +1,6 @@
 payload:
 #
+- Domain,ad.doubleclick.net
 - Domain,pagead2.googlesyndication.com
 - Domain-Keyword,ads.g.doubleclick
 #
