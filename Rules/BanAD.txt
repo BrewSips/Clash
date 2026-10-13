@@ -3,6 +3,10 @@ payload:
 #
 - GeoSite,category-ads
 #
+- Domain,ads.cup.com.cn
+#
+- Domain,adx.v.mitvos.com
+#
 - Domain,galaxy.bjcathay.com
 #
 - Domain-Suffix,algoad.hkai.io
