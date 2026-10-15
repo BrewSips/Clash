@@ -18,4 +18,5 @@ payload:
 #
 - Domain-Wildcard,ads*.zijieapi.com
 #
+- Domain,adashx.ut.cainiao.com
 - Domain,h-adashx.ut.cainiao.com
