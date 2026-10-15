@@ -20,3 +20,6 @@ payload:
 #
 - Domain,adashx.ut.cainiao.com
 - Domain,h-adashx.ut.cainiao.com
+- Domain-Wildcard,ad*.zhltech.net
+- Domain-Wildcard,adx*.ubixioe.com
+- Domain-Wildcard,admonitor*.aliyuncs.com
