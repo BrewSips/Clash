@@ -8,9 +8,7 @@ payload:
 - Domain-Suffix,gdt.qq.com
 #
 - Domain,dsa-mfp.fengshows.cn
-#- Domain-Keyword,pangolin-sdk-toutiao
-- Domain,api-access.pangolin-sdk-toutiao.com
-- Domain,api-access.pangolin-sdk-toutiao1.com
+- Domain-Keyword,pangolin-sdk-toutiao
 #- Domain-Suffix,pglstatp-toutiao.com
 #- Domain-Wildcard,*pangolin*toutiao*
 #
