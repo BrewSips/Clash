@@ -8,7 +8,7 @@ payload:
 - Domain-Suffix,gdt.qq.com
 #
 - Domain,dsa-mfp.fengshows.cn
-- Domain-Suffix,pglstatp-toutiao.com
+#- Domain-Suffix,pglstatp-toutiao.com
 - Domain-Wildcard,*pangolin*toutiao*
 #
 - Domain,ads.pubmatic.com
