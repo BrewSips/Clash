@@ -16,4 +16,6 @@ payload:
 - Domain-Suffix,adsmoloco.com
 - Domain-Suffix,tradplusad.com
 #
-#- Domain-Wildcard,ads*.zijieapi.com
+- Domain-Wildcard,ads*.zijieapi.com
+#
+- Domain,h-adashx.ut.cainiao.com
