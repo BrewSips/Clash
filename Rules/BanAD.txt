@@ -1,5 +1,5 @@
 payload:
-- GeoSite,category-httpdns-cn
+#- GeoSite,category-httpdns-cn
 #
 - GeoSite,category-ads-all
 #
@@ -13,6 +13,5 @@ payload:
 #
 - Domain,dsa-mfp.fengshows.cn
 #
-#- Domain-Suffix,pubmatic.com
-#- Domain-Suffix,adsmoloco.com
-#- Domain-Suffix,tradplusad.com
+- Domain-Suffix,adsmoloco.com
+- Domain-Suffix,tradplusad.com
