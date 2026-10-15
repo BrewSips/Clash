@@ -9,11 +9,9 @@ payload:
 #
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
-#- Domain-Suffix,pglstatp-toutiao.com
-#- Domain-Wildcard,*pangolin*toutiao*
 #
-- Domain,ads.pubmatic.com
-- Domain,oi-ow.pubmatic.com
+#- Domain,ads.pubmatic.com
+#- Domain,oi-ow.pubmatic.com
 - Domain,api.tradplusad.com
 - Domain,event.tradplusad.com
 - Domain,bidder.tradplusad.com
