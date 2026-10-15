@@ -1,5 +1,5 @@
 payload:
-#- GeoSite,category-httpdns-cn
+- GeoSite,category-httpdns-cn
 #
 - GeoSite,category-ads-all
 #
@@ -15,3 +15,5 @@ payload:
 #
 - Domain-Suffix,adsmoloco.com
 - Domain-Suffix,tradplusad.com
+#
+- Domain-Wildcard,ads*.zijieapi.com
