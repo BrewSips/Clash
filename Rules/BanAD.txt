@@ -1,25 +1,27 @@
 payload:
-- GeoSite,category-httpdns-cn
 #
-- GeoSite,category-ads-all
-#
-- Domain,ads.cup.com.cn
-#
-- Domain,adx.v.mitvos.com
-#
-- Domain,galaxy.bjcathay.com
+- Domain-Keyword,ads.g.doubleclick
 #
 - Domain-Suffix,algoad.hkai.io
 #
+- Domain-Suffix,e.qq.com
+- Domain-Suffix,gdt.qq.com
+#
 - Domain,dsa-mfp.fengshows.cn
+- Domain-Suffix,pglstatp-toutiao.com
+- Domain-Wildcard,*pangolin*toutiao*
 #
-- Domain-Suffix,adsmoloco.com
-- Domain-Suffix,tradplusad.com
+- Domain,ads.pubmatic.com
+- Domain,oi-ow.pubmatic.com
+- Domain,api.tradplusad.com
+- Domain,event.tradplusad.com
+- Domain,bidder.tradplusad.com
+- Domain,noti-asia.adsmoloco.com
+- Domain-Suffix,ads.vungle.com
 #
-- Domain-Wildcard,ads*.zijieapi.com
+- Domain,adx.v.mitvos.com
+- Domain-Suffix,ad.xiaomi.com
 #
-- Domain,adashx.ut.cainiao.com
-- Domain,h-adashx.ut.cainiao.com
-- Domain-Wildcard,ad*.zhltech.net
-- Domain-Wildcard,adx*.ubixioe.com
-- Domain-Wildcard,admonitor*.aliyuncs.com
+- Domain,galaxy.bjcathay.com
+#
+- Domain,ads.cup.com.cn
