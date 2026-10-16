@@ -16,3 +16,4 @@ payload:
 - GeoSite,microsoft@cn
 - Domain,www.zaobao.com
 - Domain,m.fengshows.com
+- Domain,brewsips.brewsips
