@@ -12,4 +12,6 @@ payload:
 #- IP-Cidr6,2a01:b740:a42::/48
 #
 - GeoSite,apple
+- GeoSite,google@cn
+- GeoSite,microsoft@cn
 - Domain,m.fengshows.com
