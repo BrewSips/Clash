@@ -23,7 +23,7 @@ payload:
 #
 - Domain,ads.cup.com.cn
 #
-- Domain,advapi.nfnews.com
+- Domain,adpai.thepaper.cn
 #
 - Domain,galaxy.bjcathay.com
 #
