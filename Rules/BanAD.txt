@@ -23,7 +23,7 @@ payload:
 #
 - Domain,ads.cup.com.cn
 #
-- Domain,adpai.thepaper.cn
+- Domain,emdcadvertise.eastmoney.com
 #
 - Domain,galaxy.bjcathay.com
 #
