@@ -1,5 +1,8 @@
 payload:
 #
+- GeoSite,category-httpdns-cn
+- GeoSite,category-ads-all
+#
 - Domain-Keyword,ads.g.doubleclick
 #
 - Domain-Suffix,algoad.hkai.io
