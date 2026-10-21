@@ -7,8 +7,9 @@ payload:
 #
 - Domain-Suffix,algoad.hkai.io
 #
-- Domain-Suffix,e.qq.com
-- Domain-Suffix,gdt.qq.com
+- Domain,sdk.e.qq.com
+#- Domain-Suffix,e.qq.com
+#- Domain-Suffix,gdt.qq.com
 #
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
