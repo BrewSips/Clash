@@ -1,7 +1,7 @@
 payload:
 #
-- GeoSite,category-httpdns-cn
-- GeoSite,category-ads-all
+#- GeoSite,category-httpdns-cn
+#- GeoSite,category-ads-all
 #
 - Domain-Keyword,ads.g.doubleclick
 #
