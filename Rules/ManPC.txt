@@ -1,2 +1,2 @@
 payload:
-- Domain,brewsips.brewsips
+- Geosite,youtube
