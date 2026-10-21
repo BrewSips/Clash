@@ -9,7 +9,6 @@ payload:
 #
 - Domain-Suffix,e.qq.com
 - Domain-Suffix,gdt.qq.com
-- Domain-Suffix,connect.qq.com
 #
 - Domain,dsa-mfp.fengshows.cn
 - Domain-Keyword,pangolin-sdk-toutiao
