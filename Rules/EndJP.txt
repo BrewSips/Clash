@@ -1,2 +1,4 @@
 payload:
+- GeoSite,zhihu
+- GeoSite,netease
 - Domain,jp.iqos.com
