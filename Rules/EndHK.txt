@@ -1,5 +1,7 @@
 payload:
 #
+- GeoSite,zhihu
+#
 - Domain-Keyword,rthk
 #
 - Domain-Keyword,mytvsuper
