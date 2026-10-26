@@ -1,2 +1,2 @@
 payload:
-- GeoSite,tiktok
+- Domain,brewsips.brewsips
