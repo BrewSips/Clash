@@ -1,5 +1,2 @@
 payload:
-- GeoSite,zhihu
-- GeoSite,google
-- GeoSite,category-ai-!cn
 - Domain,jp.iqos.com
