@@ -1,5 +1,5 @@
 payload:
-#- GeoSite,tiktok
-#- GeoSite,google
-#- GeoSite,category-ai-!cn
-- Domain,brewsips.brewsips
+- GeoSite,zhihu
+- GeoSite,tiktok
+- GeoSite,google
+- GeoSite,category-ai-!cn
