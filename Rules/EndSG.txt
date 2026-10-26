@@ -1,5 +1,4 @@
 payload:
 - GeoSite,zhihu
-- GeoSite,tiktok
 - GeoSite,google
 - GeoSite,category-ai-!cn
