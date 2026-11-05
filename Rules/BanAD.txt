@@ -33,3 +33,5 @@ payload:
 #
 - Domain-Keyword,ad-sign.byteimg.com
 - Domain-Wildcard,ads*.zijieapi.com
+#
+- Domain,brewsips.brewsips
