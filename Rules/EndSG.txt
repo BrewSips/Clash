@@ -1,4 +1,2 @@
 payload:
-- GeoSite,google
-#
 - Domain,brewsips.brewsips
