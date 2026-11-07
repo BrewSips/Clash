@@ -2,4 +2,4 @@ payload:
 #
 - GeoSite,tiktok
 #
-- Domain,brewsips.brewsips
+#- Domain,brewsips.brewsips
