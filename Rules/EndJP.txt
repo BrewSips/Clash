@@ -5,4 +5,4 @@ payload:
 #
 - Domain,jp.iqos.com
 #
-- Domain,brewsips.brewsips
+#- Domain,brewsips.brewsips
