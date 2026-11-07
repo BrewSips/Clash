@@ -1,6 +1,6 @@
 payload:
 #
-- GeoSite,category-httpdns-cn
+#- GeoSite,category-httpdns-cn
 #
 - Domain-Keyword,ads.g.doubleclick
 #
@@ -31,9 +31,9 @@ payload:
 #
 - Domain-Keyword,ad.10010.com
 #
-- Domain-Wildcard,ads*.xhscdn.com
+#- Domain-Wildcard,ads*.xhscdn.com
 #
-- Domain-Keyword,ad-sign.byteimg.com
-- Domain-Wildcard,ads*.zijieapi.com
+#- Domain-Keyword,ad-sign.byteimg.com
+#- Domain-Wildcard,ads*.zijieapi.com
 #
 - Domain,brewsips.brewsips
