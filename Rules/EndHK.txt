@@ -14,4 +14,4 @@ payload:
 - Domain-Suffix,d2e7d1zclofwnl.cloudfront.net
 - Domain-Suffix,d2anahhhmp1ffz.cloudfront.net
 #
-- Domain,brewsips.brewsips
+#- Domain,brewsips.brewsips
