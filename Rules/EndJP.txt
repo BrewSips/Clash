@@ -1,7 +1,7 @@
 payload:
 #
-#- GeoSite,google
-#- GeoSite,category-ai-!cn
+- GeoSite,google
+- GeoSite,category-ai-!cn
 - Domain,jp.iqos.com
 #
 - Domain,brewsips.brewsips
