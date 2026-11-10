@@ -1,6 +1,6 @@
 payload:
 #
-- GeoSite,google
-- GeoSite,category-ai-!cn
+#- GeoSite,google
+#- GeoSite,category-ai-!cn
 #
 #- Domain,brewsips.brewsips
