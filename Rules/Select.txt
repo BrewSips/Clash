@@ -1,5 +1,6 @@
 payload:
 #
 - GeoSite,youtube
+- GeoSite,category-ai-!cn
 #
 #- Domain,brewsips.brewsips
