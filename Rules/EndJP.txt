@@ -4,5 +4,6 @@ payload:
 #- GeoSite,category-ai-!cn
 #
 - Domain,jp.iqos.com
+- Domain-Keywork,qobuz
 #
 #- Domain,brewsips.brewsips
