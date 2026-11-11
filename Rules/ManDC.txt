@@ -13,6 +13,5 @@ payload:
 #
 - Domain,www.zaobao.com
 - Domain,m.fengshows.com
-- Domain-Keyword,qobuz
 #
 #- Domain,brewsips.brewsips
