@@ -1,6 +1,6 @@
 payload:
 #
-- GeoSite,google
+#- GeoSite,google
 #- GeoSite,category-ai-!cn
 #
 - Domain,jp.iqos.com
