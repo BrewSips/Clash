@@ -1,7 +1,5 @@
 payload:
 #
-- GeoSite,youtube
-#
 - Domain-Keyword,rthk
 #
 - Domain-Keyword,mytvsuper
