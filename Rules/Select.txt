@@ -1,6 +1,6 @@
 payload:
 #
-#- GeoSite,youtube
+- GeoSite,youtube
 #- GeoSite,google
 #- GeoSite,category-ai-!cn
 #
